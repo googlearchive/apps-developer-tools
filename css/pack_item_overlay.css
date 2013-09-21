@@ -14,9 +14,3 @@
 .pack-item-text-area {
   width: 260px;
 }
-
-<if expr="pp_ifdef('toolkit_views')">
-.button-strip {
-  -webkit-box-direction: reverse;
-}
-</if>
