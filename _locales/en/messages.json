@@ -195,16 +195,16 @@
     "message": "The packed application and the private key will be written in the parent directory of the root directory of the application to pack. To update an application, select the private key file to reuse."
   },
   "deleteConfirmationDeleteButton": {
-    "message": "Delete"
+    "message": "Uninstall"
   },
   "deleteConfirmationTitle": {
-    "message": "Delete"
+    "message": "Uninstall"
   },
   "deleteConfirmationMessageApp": {
-    "message": "Do you really want to delete this application?"
+    "message": "Do you really want to uninstall this application?"
   },
   "deleteConfirmationMessageExtension": {
-    "message": "Do you really want to delete this extension?"
+    "message": "Do you really want to uninstall this extension?"
   },
   "managedProfileDialogCloseButton": {
     "message": "Close"
