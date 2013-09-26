@@ -284,6 +284,17 @@ html[dir='rtl'] .extension-list-item {
   text-decoration: underline;
 }
 
+.extension-title-not-an-app:hover {
+  text-decoration: none;
+  cursor: default;
+}
+
+.extension-title-not-an-app:active {
+  color: rgb(48, 57, 66);
+  text-decoration: none;
+  cursor: default;
+}
+
 /**
  * extension-title should be unhighlighted as the parent when the extension is
  * inactive.

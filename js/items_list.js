@@ -200,10 +200,13 @@ cr.define('apps_dev_tool', function() {
 
       var title = node.querySelector('.extension-title');
       title.textContent = item.name;
-      title.onclick = function() {
-        if (item.isApp)
+      if (item.isApp) {
+        title.onclick = function() {
           ItemsList.launchApp(item.id);
-      };
+        };
+      } else {
+        title.classList.add('extension-title-not-an-app');
+      }
 
       var version = node.querySelector('.extension-version');
       version.textContent = item.version;
