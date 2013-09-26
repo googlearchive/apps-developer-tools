@@ -230,7 +230,8 @@ cr.define('apps_dev_tool', function() {
 
       // Hide it anyway.
       // TODO(dinhviethoa): make "Options" link work. crbug/297515.
-      options.hidden = false;
+      var options = node.querySelector('.options-link');
+      options.hidden = true;
 
       // The 'Permissions' link.
       this.setPermissionsLink_(item, node);
