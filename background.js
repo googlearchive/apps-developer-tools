@@ -10,11 +10,11 @@ chrome.app.runtime.onLaunched.addListener(function() {
 
   chrome.app.window.create('main.html', {
     id: 'apps_devtool',
-    minHeight: 600,
     minWidth: 800,
-    height: width,
-    width: height,
-    singleton: true,
+    minHeight: 600,
+    width: width,
+    height: height,
     left: Math.floor((screenWidth - width) / 2),
-    top : Math.floor((screenHeight - height) / 2)
+    top : Math.floor((screenHeight - height) / 2),
+    singleton: true
 });
