@@ -83,9 +83,9 @@ cr.define('apps_dev_tool', function() {
    */
   PackItemOverlay.showSuccessMessage = function(response) {
     alertOverlay.setValues(
-        loadTimeData.getString('packExtensionOverlay'),
+        chrome.i18n.getMessage('packExtensionOverlay'),
         response.message,
-        loadTimeData.getString('ok'),
+        chrome.i18n.getMessage('ok'),
         '',
         hideOverlay,
         null);
@@ -99,9 +99,9 @@ cr.define('apps_dev_tool', function() {
    */
   PackItemOverlay.showError = function(response) {
     alertOverlay.setValues(
-        loadTimeData.getString('packExtensionErrorTitle'),
+        chrome.i18n.getMessage('packExtensionErrorTitle'),
         response.message /* message returned by the packiing api */,
-        loadTimeData.getString('ok'),
+        chrome.i18n.getMessage('ok'),
         '',
         function() {
           AppsDevTool.showOverlay($('packItemOverlay'));
@@ -117,10 +117,10 @@ cr.define('apps_dev_tool', function() {
    */
   PackItemOverlay.showWarningMessage = function(response) {
     alertOverlay.setValues(
-        loadTimeData.getString('packExtensionWarningTitle'),
+        chrome.i18n.getMessage('packExtensionWarningTitle'),
         response.message /* message returned by the packing api */,
-        loadTimeData.getString('packExtensionProceedAnyway'),
-        loadTimeData.getString('cancel'),
+        chrome.i18n.getMessage('packExtensionProceedAnyway'),
+        chrome.i18n.getMessage('cancel'),
         function() {
           chrome.developerPrivate.packDirectory(
               response.item_path,

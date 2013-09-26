@@ -40,7 +40,7 @@ var i18nTemplate = (function() {
      * @param {LoadTimeData} dictionary The dictionary of strings to draw from.
      */
     'i18n-content': function(element, key, dictionary) {
-      element.textContent = dictionary.getString(key);
+      element.textContent = chrome.i18n.getMessage(key);
     },
 
     /**
@@ -53,7 +53,7 @@ var i18nTemplate = (function() {
      * @param {LoadTimeData} dictionary The dictionary of strings to draw from.
      */
     'i18n-options': function(select, key, dictionary) {
-      var options = dictionary.getValue(key);
+      var options = chrome.i18n.getMessage(key);
       options.forEach(function(optionData) {
         var option = typeof optionData == 'string' ?
             new Option(optionData) :
@@ -86,7 +86,7 @@ var i18nTemplate = (function() {
         var propName = attributeAndKeyPair[1];
         var propExpr = attributeAndKeyPair[2];
 
-        var value = dictionary.getValue(propExpr);
+        var value = chrome.i18n.getMessage(propExpr);
 
         // Allow a property of the form '.foo.bar' to assign a value into
         // element.foo.bar.

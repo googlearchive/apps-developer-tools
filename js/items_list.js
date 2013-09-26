@@ -49,7 +49,7 @@ cr.define('apps_dev_tool', function() {
    * @return {string} The translated string.
    */
   function str(id) {
-    return loadTimeData.getString(id);
+    return chrome.i18n.getMessage(id);
   }
 
   /**
@@ -359,14 +359,14 @@ cr.define('apps_dev_tool', function() {
       packButton.addEventListener('click', function(e) {
         if (item.isApp) {
           $('pack-heading').textContent =
-              loadTimeData.getString('packAppHeading');
+              str('packAppHeading');
           $('pack-title').textContent =
-              loadTimeData.getString('packAppOverlay');
+              str('packAppOverlay');
         } else {
           $('pack-heading').textContent =
-              loadTimeData.getString('packExtensionHeading');
+              str('packExtensionHeading');
           $('pack-title').textContent =
-              loadTimeData.getString('packExtensionOverlay');
+              str('packExtensionOverlay');
         }
         $('item-root-dir').value = item.path;
         AppsDevTool.showOverlay($('packItemOverlay'));
@@ -383,15 +383,15 @@ cr.define('apps_dev_tool', function() {
     showDeleteConfirmationDialog: function(item) {
       var message;
       if (item.isApp)
-        message = loadTimeData.getString('deleteConfirmationMessageApp');
+        message = str('deleteConfirmationMessageApp');
       else
-        message = loadTimeData.getString('deleteConfirmationMessageExtension');
+        message = str('deleteConfirmationMessageExtension');
 
       alertOverlay.setValues(
-          loadTimeData.getString('deleteConfirmationTitle'),
+          str('deleteConfirmationTitle'),
           message,
-          loadTimeData.getString('deleteConfirmationDeleteButton'),
-          loadTimeData.getString('cancel'),
+          str('deleteConfirmationDeleteButton'),
+          str('cancel'),
           function() {
             AppsDevTool.showOverlay(null);
             var options = {showConfirmDialog: false};
