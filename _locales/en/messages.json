@@ -1,0 +1,215 @@
+{
+  "extensionSettings": {
+    "message": "Extensions"
+  },
+  "appsDevtoolSearch": {
+    "message": "search"
+  },
+  "appsDevtoolApps": {
+    "message": "Apps"
+  },
+  "appsDevtoolExtensions": {
+    "message": "Extensions"
+  },
+  "appsDevtoolNoExtensions": {
+    "message": "Boo... You have no extensions :-("
+  },
+  "appsDevtoolUnpacked": {
+    "message": "Unpacked"
+  },
+  "appsDevtoolInstalled": {
+    "message": "Installed"
+  },
+  "appsDevtoolNoPackedApps": {
+    "message": "No installed applications."
+  },
+  "appsDevtoolNoUnpackedApps": {
+    "message": "No unpacked applications."
+  },
+  "appsDevtoolNoPackedExtensions": {
+    "message": "No installed extensions."
+  },
+  "appsDevtoolNoUnpackedExtensions": {
+    "message": "No unpacked extensions."
+  },
+  "appsDevtoolUpdating": {
+    "message": "Updating..."
+  },
+  "extensionSettingsGetMoreExtensions": {
+    "message": "Get more extensions"
+  },
+  "extensionSettingsExtensionId": {
+    "message": "ID:"
+  },
+  "extensionSettingsExtensionPath": {
+    "message": "Loaded from:"
+  },
+  "extensionSettingsInspectViews": {
+    "message": "Inspect views:"
+  },
+  "extensionSettingsInstallWarnings": {
+    "message": "There were warnings when trying to install this extension:"
+  },
+  "viewIncognito": {
+    "message": "(Incognito)"
+  },
+  "viewInactive": {
+    "message": "(Inactive)"
+  },
+  "backgroundPage": {
+    "message": "background page"
+  },
+  "extensionSettingsEnable": {
+    "message": "Enable"
+  },
+  "extensionSettingsEnabled": {
+    "message": "Enabled"
+  },
+  "extensionSettingsRemove": {
+    "message": "Remove"
+  },
+  "extensionSettingsEnableIncognito": {
+    "message": "Allow in incognito"
+  },
+  "extensionSettingsAllowFileAccess": {
+    "message": "Allow access to file URLs"
+  },
+  "extensionSettingsReloadTerminated": {
+    "message": "Reload"
+  },
+  "extensionSettingsReloadUnpacked": {
+    "message": "Reload"
+  },
+  "extensionSettingsLaunch": {
+    "message": "Launch"
+  },
+  "extensionSettingsOptions": {
+    "message": "Options"
+  },
+  "extensionSettingsPermissions": {
+    "message": "Permissions"
+  },
+  "extensionSettingsVisitWebsite": {
+    "message": "Visit website"
+  },
+  "extensionSettingsVisitWebStore": {
+    "message": "View in Web Store"
+  },
+  "extensionSettingsPolicyControlled": {
+    "message": "(This extension is managed and cannot be removed or disabled.)"
+  },
+  "extensionSettingsManagedMode": {
+    "message": "Applications and extensions cannot be modified by supervised users."
+  },
+  "extensionSettingsShowButton": {
+    "message": "Show button"
+  },
+  "appsDevtoolLoadUnpackedButton": {
+    "message": "Load unpacked..."
+  },
+  "appsDevtoolPackButton": {
+    "message": "Pack..."
+  },
+  "extensionSettingsCommandsLink": {
+    "message": "Keyboard shortcuts"
+  },
+  "appsDevtoolUpdateButton": {
+    "message": "Update"
+  },
+  "extensionSettingsWarningsTitle": {
+    "message": "Warning:"
+  },
+  "extensionSettingsShowDetails": {
+    "message": "Show Details"
+  },
+  "extensionSettingsHideDetails": {
+    "message": "Hide Details"
+  },
+  "extensionUninstall": {
+    "message": "IDS_EXTENSIONS_UNINSTALL"
+  },
+  "extensionsPermissionsHeading": {
+    "message": "It can:"
+  },
+  "extensionsPermissionsClose": {
+    "message": "Close"
+  },
+  "extensionDisabled": {
+    "message": "(Disabled)"
+  },
+  "extensionSettingsShowLogsButton": {
+    "message": "Show Logs"
+  },
+  "extensionSettingsMoreDetailsButton": {
+    "message": "More Details"
+  },
+  "extensionSettingsVersion": {
+    "message": "Version"
+  },
+  "extensionSettingsDelete": {
+    "message": "Uninstall"
+  },
+  "extensionSettingsPack": {
+    "message": "Pack"
+  },
+  "packExtensionOverlay": {
+    "message": "Pack Extension"
+  },
+  "packExtensionHeading": {
+    "message": "The packed extension and the private key will be written in the parent directory of the root directory of the extension to pack. To update an extension, select the private key file to reuse."
+  },
+  "packButton": {
+    "message": "Pack"
+  },
+  "ok": {
+    "message": "OK"
+  },
+  "cancel": {
+    "message": "Cancel"
+  },
+  "packExtensionRootDir": {
+    "message": "Extension root directory:"
+  },
+  "packExtensionPrivateKey": {
+    "message": "Private key file (optional):"
+  },
+  "packExtensionBrowseButton": {
+    "message": "Browse..."
+  },
+  "packExtensionProceedAnyway": {
+    "message": "Proceed anyway"
+  },
+  "packExtensionWarningTitle": {
+    "message": "Pack Extension"
+  },
+  "packExtensionErrorTitle": {
+    "message": "Pack Extension Error"
+  },
+  "packAppOverlay": {
+    "message": "Pack Application"
+  },
+  "packAppHeading": {
+    "message": "The packed application and the private key will be written in the parent directory of the root directory of the application to pack. To update an application, select the private key file to reuse."
+  },
+  "deleteConfirmationDeleteButton": {
+    "message": "Delete"
+  },
+  "deleteConfirmationTitle": {
+    "message": "Delete"
+  },
+  "deleteConfirmationMessageApp": {
+    "message": "Do you really want to delete this application?"
+  },
+  "deleteConfirmationMessageExtension": {
+    "message": "Do you really want to delete this extension?"
+  },
+  "managedProfileDialogCloseButton": {
+    "message": "Close"
+  },
+  "managedProfileDialogTitle": {
+    "message": "This user is supervised."
+  },
+  "managedProfileDialogDescription": {
+    "message": "Applications and extensions cannot be modified by supervised users. Apps Developer Tools will be closed."
+  }
+}
