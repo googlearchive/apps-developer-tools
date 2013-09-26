@@ -1,4 +1,7 @@
 {
+  "direction": {
+    "message":"ltr"
+  },
   "extensionSettings": {
     "message": "Extensions"
   },
@@ -126,7 +129,7 @@
     "message": "Hide Details"
   },
   "extensionUninstall": {
-    "message": "IDS_EXTENSIONS_UNINSTALL"
+    "message": "Remove from Chrome"
   },
   "extensionsPermissionsHeading": {
     "message": "It can:"
