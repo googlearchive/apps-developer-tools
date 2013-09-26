@@ -1,4 +1,5 @@
 {
+  "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDdTTWp0WWTp4XU15/xCchl4x4ZvG31cx/VT567UDgMLUL/+8j+3w3C87UJemJ3I5x81XJv8lhK3eIxR05H59UFsW9C70/hZCQeOhi5Uutl1gAlG4xsJAX9EQjFmmKsN88wmfZvxNPlu0WoxtHxjXKogRfk+wujanMyXnmhHaDrvwIDAQAB",
   "name": "Apps Developer Tool",
   "description": "Develop and Debug Chrome apps.",
   "manifest_version": 2,
@@ -18,5 +19,6 @@
   "icons": {
     "16": "images/dev-icon-16.png",
     "128": "images/dev-icon-128.png"
-  }
+  },
+  "default_locale": "en"
 }
