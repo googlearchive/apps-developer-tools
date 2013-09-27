@@ -17,4 +17,5 @@ chrome.app.runtime.onLaunched.addListener(function() {
     left: Math.floor((screenWidth - width) / 2),
     top : Math.floor((screenHeight - height) / 2),
     singleton: true
+  });
 });
