@@ -70,7 +70,7 @@ exec(cmd, function(error, stdout, stderr) {
            function(error, stdout, stderr) {
         process.chdir('..');
         exec('zip -r ' + projectName + '-' + version + '.zip ' + projectName +
-                 ' -x "*/.git/*" -x "' + projectName + '/js/*"',
+                 ' -x "*/.git/*" -x "' + projectName + '/scripts/*"',
              function(error, stdout, stderr) {
                console.log('You can now push changes from ~/ADTBuilds/' +
                            projectName);
