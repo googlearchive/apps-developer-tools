@@ -10,7 +10,7 @@ var workDir = process.env.HOME + '/ADTBuilds';
 
 function fatal(msg) {
   console.error(msg);
-  exit(1);
+  process.exit(1);
 }
 
 function exec(cmd, onSuccess, opt_onError, opt_silent) {
@@ -72,10 +72,16 @@ exec(cmd, function(error, stdout, stderr) {
         exec('zip -r ' + projectName + '-' + version + '.zip ' + projectName +
                  ' -x "*/.git/*" -x "' + projectName + '/js/*"',
              function(error, stdout, stderr) {
-          console.log('You can now push changes from ~/ADTBuilds/' +
-                      projectName);
-        });
+               console.log('You can now push changes from ~/ADTBuilds/' +
+                           projectName);
+             }, function(error) {
+               fatal('zip failed');
+             });
+      }, function(error) {
+        fatal('commit failed');
       });
     });
   });
+}, function(error) {
+  fatal('could not get source from the repository');
 });
