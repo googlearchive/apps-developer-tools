@@ -32,11 +32,15 @@ cr.define('apps_dev_tool', function() {
       document.querySelector('#extensions-tab .update-items-now').
           addEventListener('click', this.handleUpdateItemNow_.bind(this,
           document.querySelector('#extensions-tab .update-items-progress')));
+
+      // Add Cmd-F / Ctrl-F shortcut to focus the search field.
       document.addEventListener('keydown', function(event) {
         if ((event.keyCode == 70) && (event.metaKey || event.ctrlKey)) {
           document.querySelector('#search').focus();
         }
-      })
+      });
+
+      // ESC will unfocus the search field.
       document.querySelector('#search').addEventListener(
           'keydown', function(event) {
         if (event.keyCode == 27) {
