@@ -32,6 +32,17 @@ cr.define('apps_dev_tool', function() {
       document.querySelector('#extensions-tab .update-items-now').
           addEventListener('click', this.handleUpdateItemNow_.bind(this,
           document.querySelector('#extensions-tab .update-items-progress')));
+      document.addEventListener('keydown', function(event) {
+        if ((event.keyCode == 70) && (event.metaKey || event.ctrlKey)) {
+          document.querySelector('#search').focus();
+        }
+      })
+      document.querySelector('#search').addEventListener(
+          'keydown', function(event) {
+        if (event.keyCode == 27) {
+          document.querySelector('#search').blur();
+        }
+      });
       var packItemOverlay =
           apps_dev_tool.PackItemOverlay.getInstance().initializePage();
 
