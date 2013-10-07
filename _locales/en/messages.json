@@ -213,6 +213,6 @@
     "message": "This user is supervised."
   },
   "managedProfileDialogDescription": {
-    "message": "Applications and extensions cannot be modified by supervised users. Apps Developer Tools will be closed."
+    "message": "Applications and extensions cannot be modified by supervised users. Chrome Apps Developer Tools will be closed."
   }
 }
