@@ -28,6 +28,8 @@ hr {
   border-bottom: none;
   padding: 0;
   position: relative;
+  height: 57px;
+  background: none;
 }
 
 tabs tab {
@@ -442,10 +444,6 @@ html[dir='rtl'] .delete-link {
 :-webkit-any(.checkbox, .radio) label input ~ span {
   -webkit-margin-start: 0;
   display: inline;
-}
-
-#tabs {
-  background: none;
 }
 
 #tab-panels {

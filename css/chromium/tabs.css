@@ -30,7 +30,6 @@ tabs.new-style-tabs {
 
 tabs > * {
   -webkit-margin-start: 5px;
-  -webkit-transition: border-color 150ms, background-color 150ms;
   background: rgba(160, 160, 160, .3);
   border: 1px solid rgba(160, 160, 160, .3);
   border-bottom: 0;
