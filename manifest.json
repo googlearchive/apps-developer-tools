@@ -11,10 +11,8 @@
     }
   },
   "permissions": [
-    "notifications",
     "management",
-    "developerPrivate",
-    "fileSystem"
+    "developerPrivate"
   ],
   "icons": {
     "16": "images/icon-16.png",
