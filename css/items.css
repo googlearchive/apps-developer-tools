@@ -484,7 +484,7 @@ html[dir='rtl'] .delete-link {
 #packItemOverlay .button-strip button,
 #item-private-key-container button,
 #alertOverlay .button-strip button {
-  width: 90px;
+  min-width: 90px;
 }
 
 .extension-id {
