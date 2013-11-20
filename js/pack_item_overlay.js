@@ -71,7 +71,7 @@ cr.define('apps_dev_tool', function() {
      */
     handleBrowsePrivateKey_: function(e) {
       chrome.developerPrivate.choosePath('FILE', 'PEM', function(filePath) {
-        $('item-private-key').value = filePath;
+        $('item-private-key').value = filePath || '';
       });
     },
   };
