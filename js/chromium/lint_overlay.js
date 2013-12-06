@@ -70,14 +70,14 @@ cr.define('lintOverlay', function() {
     {
       // Need to ask the user because we can't detect document.execCommand(...).
       name: 'clipboardRead',
-      onManifest: detectPermissionClipboard,
+      onManifest: manifestPermissionClipboard,
       onQuestionAnswered: qaClipboard,
       triggersQuestion: 'clipboard'
     },
     {
       // Need to ask the user because we can't detect document.execCommand(...).
       name: 'clipboardWrite',
-      onManifest: detectPermissionClipboard,
+      onManifest: manifestPermissionClipboard,
       onQuestionAnswered: qaClipboard,
       triggersQuestion: 'clipboard'
     },
@@ -85,7 +85,7 @@ cr.define('lintOverlay', function() {
       // Need to verify that the developer insists on getting the user's
       // location without prompt.
       name: 'geolocation',
-      onManifest: detectPermissionGeolocation,
+      onManifest: manifestPermissionGeolocation,
       onQuestionAnswered: qaGeolocation,
       triggersQuestion: 'geolocation'
     },
@@ -93,7 +93,7 @@ cr.define('lintOverlay', function() {
       // Need to verify that the developer uses localStorage and needs more than
       // 5MB.
       name: 'unlimitedStorage',
-      onManifest: detectPermissionUnlimitedStorage,
+      onManifest: manifestPermissionUnlimitedStorage,
       onQuestionAnswered: qaUnlimitedStorage,
       triggersQuestion: 'unlimitedStorage'
     },
@@ -101,7 +101,7 @@ cr.define('lintOverlay', function() {
       // Ask the developer whether he really intends to keep Chrome up all the
       // time.
       name: 'background',
-      onManifest: detectPermissionBackground,
+      onManifest: manifestPermissionBackground,
       onQuestionAnswered: qaBackground,
       triggersQuestion: 'background'
     },
@@ -195,7 +195,7 @@ cr.define('lintOverlay', function() {
    * Process item's info from the perspective of clipboard* permissions.
    * @param {!Object} item ItemInfo from chrome.management.get API
    */
-  function detectPermissionClipboard(permissions) {
+  function manifestPermissionClipboard(item) {
     // If the developer asked for clipboard permission, display a question.
     manifestPermissionGeneric(item, 'clipboardRead', 'clipboard');
     manifestPermissionGeneric(item, 'clipboardWrite', 'clipboard');
@@ -205,7 +205,7 @@ cr.define('lintOverlay', function() {
    * Process item's info from the perspective of unlimitedStorage permission.
    * @param {!Object} item ItemInfo from chrome.management.get API
    */
-  function detectPermissionUnlimitedStorage(permissions) {
+  function manifestPermissionUnlimitedStorage(item) {
     // If the developer asked for unlimitedStorage permission, display
     // a question.
     manifestPermissionGeneric(item, 'geolocation', 'geolocation');
@@ -215,7 +215,7 @@ cr.define('lintOverlay', function() {
    * Process item's info from the perspective of background permission.
    * @param {!Object} item ItemInfo from chrome.management.get API
    */
-  function detectPermissionBackground(permissions) {
+  function manifestPermissionBackground(item) {
     // If the developer asked for background permission, display a question.
     manifestPermissionGeneric(item, 'background', 'background');
   }
