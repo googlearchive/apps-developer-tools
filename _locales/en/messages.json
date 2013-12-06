@@ -304,7 +304,7 @@
     "description": "Title of a list with used permissions."
   },
   "lintQuestions": {
-    "message": "Clarify",
+    "message": "Answer",
     "description": "Title of a list with questions."
   }
 }
