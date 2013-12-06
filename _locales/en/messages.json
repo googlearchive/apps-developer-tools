@@ -296,7 +296,7 @@
     "description": "Text of the button in the linting dialog that triggers ending of linting."
   },
   "lintRedundantPermissions": {
-    "message": "Redundant permissions",
+    "message": "These permissions are requested but never used",
     "description": "Title of a list with redundant permissions."
   },
   "lintUsedPermissions": {
