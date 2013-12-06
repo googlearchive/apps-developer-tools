@@ -21,6 +21,7 @@ found in the LICENSE file.
     <script src="js/chromium/cr.js"></script>
     <script src="js/chromium/ui.js"></script>
     <script src="js/chromium/alert_overlay.js"></script>
+    <script src="js/chromium/lint_overlay.js"></script>
     <script src="js/chromium/focus_outline_manager.js"></script>
     <script src="js/chromium/i18n_template_no_process.js"></script>
     <script src="js/chromium/load_time_data.js"></script>
@@ -45,6 +46,69 @@ found in the LICENSE file.
           <div class="button-strip">
             <button id="alertOverlayCancel" type="reset"></button>
             <button id="alertOverlayOk" type="submit"></button>
+          </div>
+        </div>
+      </div>
+      <div id="lintOverlay" class="page">
+        <h1 i18n-content="lintStartTitle"></h1>
+        <div class="content-area">
+          <div i18n-content="lintStart"></div>
+          <div class="list-header" id="lintQuestionsLabel" hidden>
+            <span class="title" i18n-content="lintQuestions"></span>
+          </div>
+          <div id="lintQuestions">
+            <div question-id="background" class="question" hidden>
+              <p>Do you require that the browser runs on background all the time? (starts with system and exists only if the user explictitly closes it)</p>
+              <div>
+                <button type="button" q-answer="yes">Yes</button>
+                <button type="button" q-answer="no">No</button>
+              </div>
+            </div>
+            <div question-id="clipboard" class="question" hidden>
+              <p>Do you use clipboard? If so, which operations?</p>
+              <p class="text-muted">(e.g. you use <code>document.execCommand('paste')</code>)</p>
+              <div>
+                <button type="button" q-answer="copy">Copy</button>
+                <button type="button" q-answer="paste">Paste</button>
+                <button type="button" q-answer="copypaste">Copy and Paste</button>
+                <button type="button" q-answer="neither">Neither</button>
+              </div>
+            </div>
+            <div question-id="geolocation" class="question" hidden>
+                <p>Do you need to get the user's location without further prompting his permission?</p>
+                <div>
+                  <button type="button" q-answer="yes">Yes</button>
+                  <button type="button" q-answer="no">No</button>
+                </div>
+            </div>
+            <div question-id="tabs" class="question" hidden>
+                <p>We detected that you use the <code>chrome.tabs</code> API. Do you access the url/title/favIconUrl attribute of the <code>Tab</code> objects returned from this API?</p>
+                <p class="text-muted">(e.g. you use <code>chrome.tabs.query</code> and in the callback you use the <code>tabs.url</code> property)</p>
+                <div>
+                  <button type="button" q-answer="yes">Yes</button>
+                  <button type="button" q-answer="no">No</button>
+                </div>
+            </div>
+            <div question-id="unlimitedStorage" class="question" hidden>
+                <p>Do you need to store more than 5MB in <code>localStorage</code>? Do you need unlimited storage?</p>
+                <div>
+                  <button type="button" q-answer="yes">Yes</button>
+                  <button type="button" q-answer="no">No</button>
+                </div>
+            </div>
+          </div>
+          <div class="list-header">
+            <span class="title" i18n-content="lintRedundantPermissions"></span>
+          </div>
+          <div id="lintRedundantPermissions"></div>
+          <div class="list-header" hidden>
+            <span class="title" i18n-content="lintUsedPermissions"></span>
+          </div>
+          <div id="lintUsedPermissions" hidden></div>
+        </div>
+        <div class="action-area">
+          <div class="button-strip">
+            <button id="lintCancel" i18n-content="cancel" type="reset"></button>
           </div>
         </div>
       </div>
@@ -248,6 +312,8 @@ found in the LICENSE file.
               <a class="pack-link" i18n-content="extensionSettingsPack"
                   href="#" hidden></a>
               <a class="delete-link" i18n-content="extensionSettingsDelete"
+                  href="#"></a>
+              <a class="lint-link" i18n-content="extensionSettingsLint"
                   href="#"></a>
             </div>
           </div>

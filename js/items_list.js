@@ -261,6 +261,9 @@ cr.define('apps_dev_tool', function() {
       // Set delete button handler.
       this.setDeleteButton_(item, node);
 
+      // The 'Run with Security Lint' link.
+      this.setLintLink_(item, node);
+
       // First get the item id.
       var idLabel = node.querySelector('.extension-id');
       idLabel.textContent = ' ' + item.id;
@@ -353,6 +356,27 @@ cr.define('apps_dev_tool', function() {
       var permissions = el.querySelector('.permissions-link');
       permissions.addEventListener('click', function(e) {
         chrome.developerPrivate.showPermissionsDialog(item.id);
+      });
+    },
+
+    /**
+     * Sets the lint link handler.
+     * @param {!Object} item A dictionary of item metadata.
+     * @param {!HTMLElement} el HTML element containing all items.
+     * @private
+     */
+    setLintLink_: function(item, el) {
+      var lint = el.querySelector('.lint-link');
+      lint.addEventListener('click', function(e) {
+        lintOverlay.start(item.id, function() {
+          AppsDevTool.showOverlay($('lintOverlay'));
+        });
+      });
+
+      $('lintCancel').addEventListener('click', function (e){
+        lintOverlay.stop(function() {
+          AppsDevTool.showOverlay(null);
+        });
       });
     },
 

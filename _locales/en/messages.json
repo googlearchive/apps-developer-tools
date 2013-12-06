@@ -199,6 +199,10 @@
     "message": "Pack",
     "description": "Text for the link to pack the extension / app."
   },
+  "extensionSettingsLint": {
+    "message": "Run with Security Lint",
+    "description": "The link for running the extension lint-er."
+  },
   "packExtensionOverlay": {
     "message": "Pack Extension",
     "description": "Title of pack extension dialog."
@@ -278,5 +282,29 @@
   "managedProfileDialogDescription": {
     "message": "Applications and extensions cannot be modified by supervised users. Chrome Apps Developer Tools will be closed.",
     "description": "Content of the dialog for managed profile. It's informing a supervised user that extensions cannot be changed."
+  },
+  "lintStart": {
+    "message": "Please interact with the app or extension to exercise its full functionality. In the meanwhile the list of redundant permissions and used permissions will be updated.",
+    "description": "Content of the dialog displayed when the user runs an item with security lint."
+  },
+  "lintStartTitle": {
+    "message": "Security Lint is now running",
+    "description": "Title of the dialog displayed when the user runs an item with security lint."
+  },
+  "lintShowManifest": {
+    "message": "Stop and show modified manifest",
+    "description": "Text of the button in the linting dialog that triggers ending of linting."
+  },
+  "lintRedundantPermissions": {
+    "message": "Redundant permissions",
+    "description": "Title of a list with redundant permissions."
+  },
+  "lintUsedPermissions": {
+    "message": "Used permissions",
+    "description": "Title of a list with used permissions."
+  },
+  "lintQuestions": {
+    "message": "Clarify",
+    "description": "Title of a list with questions."
   }
 }
