@@ -12,7 +12,10 @@
   },
   "permissions": [
     "management",
-    "developerPrivate"
+    "developerPrivate",
+    "activityLogPrivate",
+    "debugger",
+    "tabs"
   ],
   "icons": {
     "16": "images/icon-16.png",
@@ -21,5 +24,6 @@
     "128": "images/icon-128.png"
   },
   "default_locale": "en",
-  "minimum_chrome_version": "31.0.1650.8"
+  "minimum_chrome_version": "31.0.1650.8",
+  "key": "MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDV/GMX7sjLe3ceUizalvfZK0qhsWnXcjJ3cCbYvXFo43Q2F7SZM8/0roex0wSpNRSO1j9c/m7YXLYBAOiy21ERRJEVEIvOvWp1LLeoBSsbQnnhSPKInqUrkA8fMRCqI0gHRUK3K7dIiOC2A7jkWUMs4DqRiQSkntUUGzVIoY6OYQIDAQAB"
 }
