@@ -65,6 +65,7 @@ cr.define('lintOverlay', function() {
       // functions that are called.
       name: 'tabs',
       onActivity: detectPermissionTabs,
+      onQuestionAnswered: qaTabs,
       triggersQuestion: 'tabs'
     },
     {
@@ -105,6 +106,14 @@ cr.define('lintOverlay', function() {
       onQuestionAnswered: qaBackground,
       triggersQuestion: 'background'
     },
+    {
+      // Meta permission for triggering code that detects host permissions and
+      // content security policy.
+      name: '<host permissions and CSP>',
+      onManifest: manifestHostAndCSP,
+      onNetworkEvent: networkEventHostAndCSP,
+      onActivity: activityHostAndCSP
+    }
   ];
 
   /**
@@ -176,6 +185,13 @@ cr.define('lintOverlay', function() {
     return false;
   }
 
+  /**
+   * Helper function that displays given question if the extension asked for
+   * the given permission.
+   * @param {!Object} item ItemInfo from chrome.management.get API
+   * @param {!string} param Name of the permission to check
+   * @param {!string} question ID of the question to show
+   */
   function manifestPermissionGeneric(item, perm, question) {
     if(item.permissions.indexOf(perm) !== -1) {
       showQuestion(question);
@@ -189,6 +205,15 @@ cr.define('lintOverlay', function() {
   function manifestPermissionGeolocation(item) {
     // If the developer asked for geolocation permission, display a question.
     manifestPermissionGeneric(item, 'geolocation', 'geolocation');
+  }
+
+  /**
+   * Process item's info from the perspective of host permission and CSP.
+   * @param {!Object} item ItemInfo from chrome.management.get API
+   */
+  function manifestHostAndCSP(item) {
+    // Should process item.hostPermissions here.
+    return false;
   }
 
   /**
@@ -267,6 +292,19 @@ cr.define('lintOverlay', function() {
   }
 
   /**
+   * Process answer to a question from the perspective of tabs perm.
+   * @param {!string} questionId Identifier of the question.
+   * @param {!string} answer User's answer.
+   */
+  function qaTabs(questionId, answer) {
+    if(questionId === 'tabs') {
+      if(answer === 'yes') {
+        onPermissionDetected('tabs');
+      }
+    }
+  }
+
+  /**
    * Process answer to a question from the perspective of background perm.
    * @param {!string} questionId Identifier of the question.
    * @param {!string} answer User's answer.
@@ -288,20 +326,59 @@ cr.define('lintOverlay', function() {
     if(activity.activityType === "api_call") {
       var regexp = new RegExp("^tabs");
       if(regexp.exec(activity.apiCall) !== null) {
-        if(apiCall.indexOf("query") !== 0 ||
-            apiCall.indexOf("executeScript") !== 0 ||
-            apiCall.indexOf("get") !== 0 ||
-            apiCall.indexOf("getCurrent") !== 0 ||
-            apiCall.indexOf("duplicate") !== 0 ||
-            apiCall.indexOf("update") !== 0 ||
-            apiCall.indexOf("move") !== 0 ||
-            apiCall.indexOf("onCreated") !== 0 ||
-            apiCall.indexOf("onUpdated") !== 0 ||
-            apiCall.indexOf("executeScript") !== 0) {
-          return true;
+        var apiCall = activity.apiCall;
+        if(apiCall.indexOf("query") !== -1 ||
+            apiCall.indexOf("executeScript") !== -1 ||
+            apiCall.indexOf("get") !== -1 ||
+            apiCall.indexOf("getCurrent") !== -1 ||
+            apiCall.indexOf("duplicate") !== -1 ||
+            apiCall.indexOf("update") !== -1 ||
+            apiCall.indexOf("move") !== -1 ||
+            apiCall.indexOf("onCreated") !== -1 ||
+            apiCall.indexOf("onUpdated") !== -1 ||
+            apiCall.indexOf("executeScript") !== -1) {
+          if(requestedPermissions.indexOf("tabs") !== -1)
+            showQuestion("tabs");
+          return false;
         }
       }
     }
+    return false;
+  }
+
+  /**
+   * Get url from the given activity.
+   * @param {!Object} activity Activity from activityLogPrivate API
+   */
+  function getActivityArgUrl(activity, ndx) {
+    var args = JSON.parse(activity.args);
+    var url = args[ndx];
+    if(url === "<arg_url>") {
+      url = activity.argUrl;
+    }
+    return url;
+  }
+
+  /**
+   * Process the activity from the standpoint of host permissions and CSP.
+   * @param {!Object} activity Activity from activityLogPrivate API
+   */
+  function activityHostAndCSP(activity) {
+    if(activity.activityType === "dom_access") {
+      if(activity.apiCall === "XMLHttpRequest.open") {
+        var url = getActivityArgUrl(activity, 1);
+        onWebResourceDetected(url, "XHR");
+      }
+    }
+    return false;
+  }
+
+  /**
+   * Process network event from chrome.debugger API from the standpoint of
+   * host permissions and CSP.
+   */
+  function networkEventHostAndCSP(req) {
+    onWebResourceDetected(req.url, req.type);
     return false;
   }
 
@@ -320,8 +397,8 @@ cr.define('lintOverlay', function() {
         // When located, unhide it and assign proper actions for click.
         question.hidden = false;
         var answers = question.querySelectorAll('[type="button"]');
-        for(var i = 0; i < answers.length; i++) {
-          var answer = answers[i];
+        for(var y = 0; y < answers.length; y++) {
+          var answer = answers[y];
           answer.onclick = onQuestionAnswered.bind(
               null, questionId, answer.getAttribute('q-answer'));
         }
@@ -377,6 +454,7 @@ cr.define('lintOverlay', function() {
       var question = questions[i];
       question.hidden = true;
     }
+    updateQuestionLabel();
   }
 
   /**
@@ -391,6 +469,28 @@ cr.define('lintOverlay', function() {
           onPermissionDetected(permCfg.name);
         }
       });
+    }
+  }
+
+  /**
+   * Handle chrome.debugger.onEvent event by invoking the corresponding handlers
+   * of each configured permission.
+   * @param {!object} chrome.debugger.onEvent API event object
+   */
+  function onNetworkEvent(tab, message, params) {
+    if(message === "Network.responseReceived") {
+      if(params.type !== "XHR") {  // XHRs are captured in onActivity
+        var req = {
+          url: params.response.url,
+          type: params.type
+        };
+        permissionCfg.forEach(function(permCfg, i) {
+          if(permCfg.onNetworkEvent &&
+              permCfg.onNetworkEvent(req, permCfg.name)) {
+            onPermissionDetected(permCfg.name);
+          }
+        });
+      }
     }
   }
 
@@ -411,17 +511,87 @@ cr.define('lintOverlay', function() {
   }
 
   /**
+   * Get host location from the given url.
+   * @param {!string} href URL
+   */
+  function getLocation(href) {
+      var l = document.createElement("a");
+      l.href = href;
+      return l;
+  }
+
+  /**
+   * Extract CSP location string from the url.
+   * @param {!string} url URL
+   */
+  function extractCSPHost(url) {
+    var loc = getLocation(url);
+    var host = loc.protocol + '//' + loc.hostname;
+    return host;
+  }
+
+  /**
+   * Extract host permission from given URL.
+   * @param {!string} url URL
+   */
+  function extractPermHost(url) {
+    return extractCSPHost(url) + "/*";
+  }
+
+  /**
+   * Handle the event of detecting a web resource.
+   * @param {!string} url URL of the resource
+   * @param {!string} type Type of the resource
+   */
+  function onWebResourceDetected(url, type) {
+    if(type === "XHR") {
+      var hostPerm = extractPermHost(url);
+      if(hostPerm.indexOf("chrome-extension://") !== 0)
+        onHostPermissionDetected(hostPerm);
+
+      var hostCSP = extractCSPHost(url);
+      if(hostCSP.indexOf("chrome-extension://") !== 0)
+        onCSPDetected(hostCSP, "connect");
+      else
+        onCSPDetected("self", "connect");
+    } else {
+      var hostCSP = extractCSPHost(url);
+      if(hostCSP.indexOf("chrome-extension://") !== 0)
+        onCSPDetected(hostCSP, "default");
+      else
+        onCSPDetected("self", "default");
+    }
+  }
+
+  /**
    * Handle the event of detecting a permission.
    * @param {!string} permName Name of the permission that's been detected.
    */
   function onPermissionDetected(permName) {
-    var originalValue = exercisedPermissions[permName];
+    console.debug("permission detected: " + permName);
     exercisedPermissions[permName] = true;
 
-    // In case the permission was detected for the first time.
-    if(originalValue !== true) {
-      displayResults();
-    }
+    displayResults();
+  }
+
+  /**
+   * Handle the event of detecting a host permission.
+   * @param {!string} permName Name of the permission that's been detected.
+   */
+  function onHostPermissionDetected(permName) {
+    exercisedHostPermissions[permName] = true;
+
+    displayResults();
+  }
+
+  /**
+   * Handle the event of detecting a CSP.
+   * @param {!string} permName Name of the permission that's been detected.
+   */
+  function onCSPDetected(host, type) {
+    exercisedCSP[type][host] = true;
+
+    displayResults();
   }
 
   /**
@@ -453,6 +623,19 @@ cr.define('lintOverlay', function() {
     clearElement(redundantPermNode);
     redundantPermNode.appendChild(redundantList);
 
+    // Assemble CSP suggestion.
+    var cspSuggestionNode = $('lintCSPSuggestion');
+    var cspStr = "  'content_security_policy': ";
+    for(var cspType in exercisedCSP) {
+      cspStr += cspType + "-src ";
+      for(var cspHost in exercisedCSP[cspType]) {
+        cspStr += cspHost + " ";
+      }
+      cspStr += "; ";
+    }
+    cspSuggestionNode.innerText = cspStr;
+
+
     // Assemble list of used permissions.
     var usedList = document.createElement('ul');
     for(var perm in exercisedPermissions) {
@@ -472,8 +655,75 @@ cr.define('lintOverlay', function() {
    */
   function initialize() {
     managedPermissions = buildManagedPermissions(permissionCfg);
+
+    $('lintQuestionsLabel').onclick = function() {
+      $('lintQuestions').hidden = ! $('lintQuestions').hidden;
+    };
   };
 
+  /**
+   * Handle the onAttach event.
+   * @param{!int} tabId ID of the tab to attach debugger to
+   */
+  function onAttach(tabId) {
+    if (chrome.runtime.lastError) {
+      console.debug(chrome.runtime.lastError.message);
+      return;
+    }
+
+    chrome.debugger.sendCommand({tabId:tabId}, "Network.enable");
+    console.debug("attached " + tabId);
+  }
+
+  /**
+   * Handle the onAttach event.
+   * @param{!int} eId ID of the extension to attach debugger to
+   */
+  function onAttachExtension(eId) {
+    if (chrome.runtime.lastError) {
+      var msg = chrome.runtime.lastError.message;
+      if(msg.indexOf("silent-debugger-extension-api") !== -1) {
+        $("#error").html("Please go to chrome://flags and enable silent-debugger-extension-api. Then restart your browser and try again.").show();
+      }
+      console.debug(msg);
+      return;
+    }
+
+    var debugeeId = {extensionId: eId};
+    chrome.debugger.sendCommand(debugeeId, "Network.enable", function() {
+      if(chrome.runtime.lastError)
+        console.debug("Failed enabling network for extension: " + chrome.runtime.lastError.message);
+      else
+        console.debug("dbugger nbled");
+    });
+  }
+
+  /**
+   * Attach the debugger to given tab.
+   * @param{!int} tabId ID of the tab to attach debugger to.
+   */
+  function attachDebugger(tab) {
+    console.debug("attaching");
+    chrome.debugger.attach({tabId:tab.id}, "1.0",
+          onAttach.bind(null, tab.id));
+  }
+
+  /**
+   * Attach the debugger to the given extension background page.
+   * @param{!string} eId ID of the extension to attach to
+   */
+  function attachDebuggerToExtension(eid) {
+    chrome.debugger.attach({extensionId: eid}, "1.0",
+          onAttachExtension.bind(null, eid));
+  }
+
+  /**
+   * Get extension's url.
+   * @param{!string} eId extension's id
+   */
+  function getExtensionUrl(eId) {
+    return "chrome-extension://" + eId + "/";
+  }
 
   /**
    * Starts security lint-ing the item
@@ -483,12 +733,20 @@ cr.define('lintOverlay', function() {
   function start(itemId, doneCallback) {
     lintedId = itemId;
     exercisedPermissions = {};
+    exercisedHostPermissions = {};
     requestedPermissions = [];
+    requestedHostPermissions = [];
+    attachedTo = [];
+    exercisedCSP = {
+      connect: {},
+      default: {}
+    };
     displayedQuestions = {};
 
     // Get information about the lint-ed item.
     chrome.management.get(itemId, function(item) {
       requestedPermissions = item.permissions;
+      requestedHostPermissions = item.hostPermissions;
 
       // Trigger onManifest events of each configured permission.
       permissionCfg.forEach(function(permCfg, i) {
@@ -496,6 +754,9 @@ cr.define('lintOverlay', function() {
           onPermissionDetected(permCfg.name);
         }
       });
+
+      // Refresh view.
+      displayResults();
     });
 
     // Start logging the activity of extenisons.
@@ -504,9 +765,21 @@ cr.define('lintOverlay', function() {
 
     hideAllQuestions();
 
+    // Attach debugger to the extension's background page.
+    chrome.debugger.onEvent.addListener(onNetworkEvent);
+
+    // If a new tab is created belonging to the extension, attach debugger.
+    chrome.tabs.onCreated.addListener(function(tab) {
+      if(tab.url.indexOf(getExtensionUrl(itemId)) === 0) {
+        attachDebugger(tab);
+        attachedTo.push(tab.id);
+      }
+    });
+
     // Reload the extension (disable -> enable).
     chrome.management.setEnabled(itemId, false, function() {
       chrome.management.setEnabled(itemId, true, function() {
+        attachDebuggerToExtension(itemId);
         doneCallback();
       });
     });
@@ -518,6 +791,11 @@ cr.define('lintOverlay', function() {
    * @param {function} callback Function called when lining stopped.
    */
   function stop(callback) {
+    chrome.debugger.detach({extensionId: itemId});
+    for(var i in attachedTo) {
+      chrome.debugger.detach({tabId: attachedTo[i]});
+    }
+
     chrome.activityLogPrivate.onExtensionActivity.removeListener(
         onExtensionActivity);
     callback();
@@ -527,7 +805,7 @@ cr.define('lintOverlay', function() {
   return {
     initialize: initialize,
     start: start,
-    stop: stop,
+    stop: stop
   };
 });
 

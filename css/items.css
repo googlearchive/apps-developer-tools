@@ -571,3 +571,15 @@ button[disabled]:active {
 #browse-private-key {
   margin-left: 10px;
 }
+
+#linting-results {
+  padding-bottom: 10px;
+  border-bottom: 1px solid #d1d1d1;
+  width: calc(100% - 40px);
+  font-weight: bold;
+}
+
+#lintRedundantPermissions ul {
+  list-style: none;
+  color: red;
+}

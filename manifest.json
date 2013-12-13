@@ -13,7 +13,9 @@
   "permissions": [
     "management",
     "developerPrivate",
-    "activityLogPrivate"
+    "activityLogPrivate",
+    "debugger",
+    "tabs"
   ],
   "icons": {
     "16": "images/icon-16.png",

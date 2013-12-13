@@ -284,11 +284,11 @@
     "description": "Content of the dialog for managed profile. It's informing a supervised user that extensions cannot be changed."
   },
   "lintStart": {
-    "message": "Please interact with the app or extension to exercise its full functionality. In the meanwhile the list of redundant permissions and used permissions will be updated.",
+    "message": "Please interact with the app or extension to exercise its full functionality. Security Lint will assess the permissions and web-resources needs of your extension. The linting results are live-updated below.",
     "description": "Content of the dialog displayed when the user runs an item with security lint."
   },
   "lintStartTitle": {
-    "message": "Security Lint is now running",
+    "message": "Security Lint",
     "description": "Title of the dialog displayed when the user runs an item with security lint."
   },
   "lintShowManifest": {
@@ -304,7 +304,15 @@
     "description": "Title of a list with used permissions."
   },
   "lintQuestions": {
-    "message": "Answer",
-    "description": "Title of a list with questions."
+    "message": "To get better results answer some questions",
+    "description": "Title of a button with questions."
+  },
+  "lintCSPSuggestions": {
+    "message": "Advised Content Security Policy",
+    "description": "Title of the item with CSP suggestions."
+  },
+  "lintResults": {
+    "message": "Results of linting",
+    "description": "Title of the results section."
   }
 }

@@ -53,10 +53,12 @@ found in the LICENSE file.
         <h1 i18n-content="lintStartTitle"></h1>
         <div class="content-area">
           <div i18n-content="lintStart"></div>
-          <div class="list-header" id="lintQuestionsLabel" hidden>
-            <span class="title" i18n-content="lintQuestions"></span>
-          </div>
-          <div id="lintQuestions">
+
+          <p>
+
+          <button class="title" id="lintQuestionsLabel" hidden i18n-content="lintQuestions"></button>
+
+          <div id="lintQuestions" hidden>
             <div question-id="background" class="question" hidden>
               <p>Do you require that the browser runs on background all the time? (starts with system and exists only if the user explictitly closes it)</p>
               <div>
@@ -97,13 +99,12 @@ found in the LICENSE file.
                 </div>
             </div>
           </div>
-          <div class="list-header">
-            <span class="title" i18n-content="lintRedundantPermissions"></span>
-          </div>
+          <h2 i18n-content="lintResults" id="linting-results"></h2>
+          <h3 class="title" i18n-content="lintCSPSuggestions"></h3>
+          <pre id="lintCSPSuggestion"></pre>
+          <h3 class="title" i18n-content="lintRedundantPermissions"></h3>
           <div id="lintRedundantPermissions"></div>
-          <div class="list-header" hidden>
-            <span class="title" i18n-content="lintUsedPermissions"></span>
-          </div>
+          <h3 class="title" i18n-content="lintUsedPermissions" hidden></h3>
           <div id="lintUsedPermissions" hidden></div>
         </div>
         <div class="action-area">
