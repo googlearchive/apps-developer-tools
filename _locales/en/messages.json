@@ -278,5 +278,17 @@
   "managedProfileDialogDescription": {
     "message": "Applications and extensions cannot be modified by supervised users. Chrome Apps Developer Tools will be closed.",
     "description": "Content of the dialog for managed profile. It's informing a supervised user that extensions cannot be changed."
+  },
+  "extensionsErrorsShowMore": {
+    "message": "Show more...",
+    "description": "The text which allows the user to display more errors for a given extension."
+  },
+  "extensionErrorStackTrace": {
+    "message": "Stack Trace",
+    "description": "The label for the stack trace of an extension's error."
+  },
+  "extensionErrorContext": {
+    "message": "Context: ",
+    "description": "The label for the context of an extension's error."
   }
 }

@@ -279,6 +279,35 @@ cr.define('apps_dev_tool', function() {
       if (!item.may_disable)
         node.querySelector('.managed-message').hidden = false;
 
+      // The extension errors.
+      if (item.manifest_errors.length > 0 || item.runtime_errors.length > 0) {
+        var chromeFunctions = {};
+        chromeFunctions.openDevTools =
+            chrome.developerPrivate.openDevTools;
+        chromeFunctions.requestFileSource = function(dict) {
+          chrome.developerPrivate.requestFileSource(dict, function(result) {
+            extensions.ExtensionErrorOverlay.requestFileSourceResponse(result);
+          });
+        };
+        chromeFunctions.inspectContextPage = chrome.developerPrivate.inspect;
+        if (item.manifest_errors.length > 0) {
+          var panel = node.querySelector('.manifest-errors');
+          panel.hidden = false;
+          panel.appendChild(new extensions.ExtensionErrorList(
+              item.manifest_errors,
+              'extensionErrorsManifestErrors',
+              chromeFunctions));
+        }
+        if (item.runtime_errors.length > 0) {
+          var panel = node.querySelector('.runtime-errors');
+          panel.hidden = false;
+          panel.appendChild(new extensions.ExtensionErrorList(
+              item.runtime_errors,
+              'extensionErrorsRuntimeErrors',
+              chromeFunctions));
+        }
+      }
+
       // The install warnings.
       if (item.install_warnings.length > 0) {
         var panel = node.querySelector('.install-warnings');

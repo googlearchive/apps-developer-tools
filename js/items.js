@@ -49,6 +49,8 @@ cr.define('apps_dev_tool', function() {
       });
       var packItemOverlay =
           apps_dev_tool.PackItemOverlay.getInstance().initializePage();
+      extensions.ExtensionErrorOverlay.getInstance().initializePage(
+          AppsDevTool.showOverlay);
 
       preventDefaultOnPoundLinkClicks();  // From webui/js/util.js
     },
