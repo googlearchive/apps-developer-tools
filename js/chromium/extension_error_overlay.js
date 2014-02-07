@@ -55,7 +55,7 @@ cr.define('extensions', function() {
     } else if (chrome.developerPrivate) {
       chrome.developerPrivate.openDevTools(args);
     } else {
-      console.error("Cannot call either requestFileSource function.");
+      console.error('Cannot call either requestFileSource function.');
     }
   };
 
@@ -127,6 +127,7 @@ cr.define('extensions', function() {
       this.extensionUrl_ = undefined;
       this.currentFrameNode_ = undefined;
       this.stackTrace_.innerHTML = '';
+      this.stackTrace_.hidden = true;
     },
 
     /**
@@ -222,8 +223,14 @@ cr.define('extensions', function() {
         this.stackTrace_.appendChild(frameNode);
       }
 
-      // Set the current stack frame to the first stack frame.
-      this.setActiveFrame_(this.stackTrace_.firstChild);
+      // Set the current stack frame to the first stack frame and show the
+      // trace, if one exists. (We can't just check error.stackTrace, because
+      // it's possible the trace was purely internal, and we don't show
+      // internal frames.)
+      if (this.stackTrace_.children.length > 0) {
+        this.stackTrace_.hidden = false;
+        this.setActiveFrame_(this.stackTrace_.firstChild);
+      }
     },
 
     /**
@@ -284,7 +291,7 @@ cr.define('extensions', function() {
           extensions.ExtensionErrorOverlay.requestFileSourceResponse(result);
       });
     } else {
-      console.error("Cannot call either requestFileSource function.");
+      console.error('Cannot call either requestFileSource function.');
     }
   };
 
@@ -397,14 +404,24 @@ cr.define('extensions', function() {
 
     /**
      * Set the code to be displayed in the code portion of the overlay.
-     * See also ExtensionErrorOverlay.requestFileSourceResponse().
-     * @param {Object} code The code to be displayed.
+     * @see ExtensionErrorOverlay.requestFileSourceResponse().
+     * @param {?Object} code The code to be displayed. If |code| is null, then
+     *     a "Could not display code" message will be displayed instead.
      */
     setCode: function(code) {
       document.querySelector(
           '#extension-error-overlay .extension-error-overlay-title').
               textContent = code.title;
       this.codeDiv_.innerHTML = '';
+
+      // If there's no code, then display an appropriate message.
+      if (!code) {
+        var span = document.createElement('span');
+        span.textContent =
+            loadTimeData.getString('extensionErrorOverlayNoCodeToDisplay');
+        this.codeDiv_.appendChild(span);
+        return;
+      }
 
       var createSpan = function(source, isHighlighted) {
         var span = document.createElement('span');
@@ -431,7 +448,7 @@ cr.define('extensions', function() {
   /**
    * Called by the ExtensionErrorHandler responding to the request for a file's
    * source. Populate the content area of the overlay and display the overlay.
-   * @param {Object} result An object with four strings - the title,
+   * @param {Object?} result An object with four strings - the title,
    *     beforeHighlight, afterHighlight, and highlight. The three 'highlight'
    *     strings represent three portions of the file's content to display - the
    *     portion which is most relevant and should be emphasized (highlight),

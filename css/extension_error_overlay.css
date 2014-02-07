@@ -1,0 +1,20 @@
+/* Copyright 2014 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+/* This file is used to override CSS settings from the chromium version of the
+ * same name (so that the chromium version in this repository can stay in sync
+ * with the version in chromium). */
+
+#extension-error-overlay h1 {
+  font-size: 1.3em !important;
+}
+
+#extension-error-overlay-code {
+  font-size: 0.9em;
+}
+
+#extension-error-overlay .content-area,
+#extension-error-overlay .action-area {
+  margin-top: 20px !important;
+}
