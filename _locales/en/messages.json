@@ -283,12 +283,16 @@
     "message": "Show more...",
     "description": "The text which allows the user to display more errors for a given extension."
   },
-  "extensionErrorStackTrace": {
+  "extensionErrorOverlayStackTrace": {
     "message": "Stack Trace",
     "description": "The label for the stack trace of an extension's error."
   },
-  "extensionErrorContext": {
+  "extensionErrorOverlayContextUrl": {
     "message": "Context: ",
-    "description": "The label for the context of an extension's error."
+    "description": "The label for the url of the context of an extension's error."
+  },
+  "extensionErrorOverlayLaunchDevtools": {
+    "message": "View in Developer Tools",
+    "description": "The text for the button to launch the developer tools for a given extension error."
   }
 }
