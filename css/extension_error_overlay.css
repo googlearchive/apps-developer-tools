@@ -6,6 +6,10 @@
  * same name (so that the chromium version in this repository can stay in sync
  * with the version in chromium). */
 
+#extension-error-overlay .button-strip {
+  -webkit-box-direction: reverse;
+}
+
 #extension-error-overlay h1 {
   font-size: 1.3em !important;
 }

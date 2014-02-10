@@ -52,6 +52,10 @@ cr.define('apps_dev_tool', function() {
     return chrome.i18n.getMessage(id);
   }
 
+  var loadTimeData = {'getString': function(id) {
+    return str(id);
+  }};
+
   /**
    * compares strings |app1| and |app2| (case insensitive).
    * @param {string} app1 first app_name.
@@ -280,7 +284,8 @@ cr.define('apps_dev_tool', function() {
         node.querySelector('.managed-message').hidden = false;
 
       // The extension errors.
-      if (item.manifest_errors.length > 0 || item.runtime_errors.length > 0) {
+      if ((item.manifest_errors && item.manifest_errors.length > 0) ||
+          (item.runtime_errors && item.runtime_errors.length > 0)) {
         if (item.manifest_errors.length > 0) {
           var panel = node.querySelector('.manifest-errors');
           panel.hidden = false;
