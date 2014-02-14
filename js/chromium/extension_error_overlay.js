@@ -63,13 +63,12 @@ cr.define('extensions', function() {
    * @private
    */
   RuntimeErrorContent.openDevtools_ = function(args) {
-    if (chrome.send) {
+    if (chrome.send)
       chrome.send('extensionErrorOpenDevTools', [args]);
-    } else if (chrome.developerPrivate) {
+    else if (chrome.developerPrivate)
       chrome.developerPrivate.openDevTools(args);
-    } else {
-      console.error('Cannot call either openDevTools function.');
-    }
+    else
+      assert(false, 'Cannot call either openDevTools function.');
   };
 
   RuntimeErrorContent.prototype = {
@@ -284,7 +283,7 @@ cr.define('extensions', function() {
    * @private
    */
   ExtensionErrorOverlay.canLoadFileSource = function(file, extensionUrl) {
-    return RegExp('^' + extensionUrl).test(file) ||
+    return file.substr(0, extensionUrl.length) == extensionUrl ||
            file.toLowerCase() == ExtensionErrorOverlay.MANIFEST_FILENAME_;
   };
 
@@ -324,10 +323,10 @@ cr.define('extensions', function() {
       chrome.send('extensionErrorRequestFileSource', [args]);
     } else if (chrome.developerPrivate) {
       chrome.developerPrivate.requestFileSource(args, function(result) {
-          extensions.ExtensionErrorOverlay.requestFileSourceResponse(result);
+        extensions.ExtensionErrorOverlay.requestFileSourceResponse(result);
       });
     } else {
-      console.error('Cannot call either requestFileSource function.');
+      assert(false, 'Cannot call either requestFileSource function.');
     }
   };
 
@@ -343,10 +342,10 @@ cr.define('extensions', function() {
 
     /**
      * Initialize the page.
-     * @param {function} showOverlay The function to show or hide the
-     *     ExtensionErrorOverlay; this should take a single parameter which is
-     *     either the overlay Div if the overlay should be displayed, or null
-     *     if the overlay should be hidden.
+     * @param {function(HTMLDivElement)} showOverlay The function to show or
+     *     hide the ExtensionErrorOverlay; this should take a single parameter
+     *     which is either the overlay Div if the overlay should be displayed,
+     *     or null if the overlay should be hidden.
      */
     initializePage: function(showOverlay) {
       var overlay = $('overlay');
@@ -365,6 +364,13 @@ cr.define('extensions', function() {
       this.overlayDiv_ = $('extension-error-overlay');
 
       /**
+       * The portion of the overlay which shows the code relating to the error.
+       * @type {HTMLElement}
+       * @private
+       */
+      this.codeDiv_ = $('extension-error-overlay-code');
+
+      /**
        * The function to show or hide the ExtensionErrorOverlay.
        * @type {function}
        * @param {boolean} isVisible Whether the overlay should be visible.
@@ -372,13 +378,6 @@ cr.define('extensions', function() {
       this.setVisible = function(isVisible) {
         showOverlay(isVisible ? this.overlayDiv_ : null);
       };
-
-      /**
-       * The portion of the overlay which shows the code relating to the error.
-       * @type {HTMLElement}
-       * @private
-       */
-      this.codeDiv_ = $('extension-error-overlay-code');
 
       /**
        * The button to open the developer tools (only available for runtime

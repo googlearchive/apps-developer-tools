@@ -284,24 +284,21 @@ cr.define('apps_dev_tool', function() {
         node.querySelector('.managed-message').hidden = false;
 
       // The extension errors.
-      if ((item.manifest_errors && item.manifest_errors.length > 0) ||
-          (item.runtime_errors && item.runtime_errors.length > 0)) {
-        if (item.manifest_errors.length > 0) {
-          var panel = node.querySelector('.manifest-errors');
-          panel.hidden = false;
-          panel.appendChild(
-              new extensions.ExtensionErrorList(item.manifest_errors));
-        }
-        if (item.runtime_errors.length > 0) {
-          var panel = node.querySelector('.runtime-errors');
-          panel.hidden = false;
-          panel.appendChild(
-              new extensions.ExtensionErrorList(item.runtime_errors));
-        }
+      if (item.manifest_errors && item.manifest_errors.length > 0) {
+        var panel = node.querySelector('.manifest-errors');
+        panel.hidden = false;
+        panel.appendChild(
+            new extensions.ExtensionErrorList(item.manifest_errors));
+      }
+      if (item.runtime_errors && item.runtime_errors.length > 0) {
+        var panel = node.querySelector('.runtime-errors');
+        panel.hidden = false;
+        panel.appendChild(
+            new extensions.ExtensionErrorList(item.runtime_errors));
       }
 
       // The install warnings.
-      if (item.install_warnings.length > 0) {
+      if (item.install_warnings && item.install_warnings.length > 0) {
         var panel = node.querySelector('.install-warnings');
         panel.hidden = false;
         var list = panel.querySelector('ul');
