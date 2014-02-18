@@ -251,22 +251,6 @@
     "message": "The packed application and the private key will be written in the parent directory of the root directory of the application to pack. To update an application, select the private key file to reuse.",
     "description": "The heading of the pack application dialog in the Apps Developer Tool."
   },
-  "deleteConfirmationDeleteButton": {
-    "message": "Uninstall",
-    "description": "Text of the delete button in the apps/extension delete confirmation dialog."
-  },
-  "deleteConfirmationTitle": {
-    "message": "Uninstall",
-    "description": "Text of the title of the apps/extension delete confirmation dialog."
-  },
-  "deleteConfirmationMessageApp": {
-    "message": "Do you really want to uninstall this application?",
-    "description": "Text of the message of the apps/extension delete confirmation dialog in case the user is deleting an app."
-  },
-  "deleteConfirmationMessageExtension": {
-    "message": "Do you really want to uninstall this extension?",
-    "description": "Text of the message of the apps/extension delete confirmation dialog in case the user is deleting an extension."
-  },
   "managedProfileDialogCloseButton": {
     "message": "Close",
     "description": "Title of the button to close the dialog for managed profile."
