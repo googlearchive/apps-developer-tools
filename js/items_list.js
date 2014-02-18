@@ -52,10 +52,6 @@ cr.define('apps_dev_tool', function() {
     return chrome.i18n.getMessage(id);
   }
 
-  var loadTimeData = {'getString': function(id) {
-    return str(id);
-  }};
-
   /**
    * compares strings |app1| and |app2| (case insensitive).
    * @param {string} app1 first app_name.
