@@ -110,12 +110,7 @@ cr.define('apps_dev_tool', function() {
    * Loads translated strings.
    */
   AppsDevTool.initStrings = function() {
-    var loadTimeData = {'data': []};
     i18nTemplate.process(document, loadTimeData);
-    //chrome.developerPrivate.getStrings(function(strings) {
-    //  loadTimeData.data = strings;
-    //  i18nTemplate.process(document, loadTimeData);
-    //});
   };
 
   return {
