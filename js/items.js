@@ -49,6 +49,8 @@ cr.define('apps_dev_tool', function() {
       });
       var packItemOverlay =
           apps_dev_tool.PackItemOverlay.getInstance().initializePage();
+      extensions.ExtensionErrorOverlay.getInstance().initializePage(
+          AppsDevTool.showOverlay);
 
       preventDefaultOnPoundLinkClicks();  // From webui/js/util.js
     },
@@ -108,10 +110,7 @@ cr.define('apps_dev_tool', function() {
    * Loads translated strings.
    */
   AppsDevTool.initStrings = function() {
-    chrome.developerPrivate.getStrings(function(strings) {
-      loadTimeData.data = strings;
-      i18nTemplate.process(document, loadTimeData);
-    });
+    i18nTemplate.process(document, loadTimeData);
   };
 
   return {

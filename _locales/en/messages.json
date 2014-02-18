@@ -278,5 +278,45 @@
   "managedProfileDialogDescription": {
     "message": "Applications and extensions cannot be modified by supervised users. Chrome Apps Developer Tools will be closed.",
     "description": "Content of the dialog for managed profile. It's informing a supervised user that extensions cannot be changed."
+  },
+  "extensionErrorsShowFewer": {
+    "message": "Show fewer...",
+    "description": "The text which allows the user to display fewer errors for a given extension."
+  },
+  "extensionErrorsShowMore": {
+    "message": "Show more...",
+    "description": "The text which allows the user to display more errors for a given extension."
+  },
+  "extensionErrorViewDetails": {
+    "message": "View details",
+    "description": "The link to view the details of an extension error."
+  },
+  "extensionErrorViewManifest": {
+    "message": "View manifest.json",
+    "description": "The link to view the details of an extension error."
+  },
+  "extensionErrorOverlayContextUrl": {
+    "message": "Context:",
+    "description": "The label for the context of an extension's error."
+  },
+  "extensionErrorOverlayStackTrace": {
+    "message": "Stack Trace",
+    "description": "The label for the stack trace of an extension's error."
+  },
+  "extensionErrorOverlayAnonymousFunction": {
+    "message": "anonymous function",
+    "description": "The label indicating that an error was caused within an anonymous function in the code."
+  },
+  "extensionErrorOverlayLaunchDevtools": {
+    "message": "View in Developer Tools",
+    "description": "The text for the button to view an extension error in the developer tools."
+  },
+  "extensionErrorContextUnknown": {
+    "message": "Unknown",
+    "description": "Text indicating that the context URL for an error is unknown."
+  },
+  "extensionErrorNoCodeToDisplay": {
+    "message": "Sorry, we can't show the code for this error.",
+    "description": "Text indicating that there is no code to be displayed for a given error."
   }
 }

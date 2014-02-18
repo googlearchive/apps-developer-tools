@@ -1,0 +1,19 @@
+/* Copyright 2014 The Chromium Authors. All rights reserved.
+ * Use of this source code is governed by a BSD-style license that can be
+ * found in the LICENSE file. */
+
+/* This file is used to override CSS settings from the chromium version of the
+ * same name (so that the chromium version in this repository can stay in sync
+ * with the version in chromium). */
+
+.extension-error-severity-info .extension-error-icon {
+  content: url('../images/chromium/extension_error_severity_info.png');
+}
+
+.extension-error-severity-warning .extension-error-icon {
+  content: url('../images/chromium/extension_error_severity_warning.png');
+}
+
+.extension-error-severity-fatal .extension-error-icon {
+  content: url('../images/chromium/extension_error_severity_fatal.png');
+}

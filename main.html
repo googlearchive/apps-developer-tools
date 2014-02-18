@@ -14,20 +14,26 @@ found in the LICENSE file.
     <link rel="stylesheet" href="css/chromium/overlay.css">
     <link rel="stylesheet" href="css/chromium/trash.css">
     <link rel="stylesheet" href="css/chromium/uber_shared.css">
+    <link rel="stylesheet" href="css/chromium/extension_error.css">
+    <link rel="stylesheet" href="css/chromium/extension_error_overlay.css">
+    <link rel="stylesheet" href="css/extension_error.css">
+    <link rel="stylesheet" href="css/extension_error_overlay.css">
     <link rel="stylesheet" href="css/pack_item_overlay.css">
     <link rel="stylesheet" href="css/items.css">
 
+    <script src="js/chromium_compatibility.js"></script>
     <script src="js/chromium/assert.js"></script>
     <script src="js/chromium/cr.js"></script>
     <script src="js/chromium/ui.js"></script>
     <script src="js/chromium/alert_overlay.js"></script>
     <script src="js/chromium/focus_outline_manager.js"></script>
     <script src="js/chromium/i18n_template_no_process.js"></script>
-    <script src="js/chromium/load_time_data.js"></script>
     <script src="js/chromium/overlay.js"></script>
     <script src="js/chromium/tabs.js"></script>
     <script src="js/chromium/uber_utils.js"></script>
     <script src="js/chromium/util.js"></script>
+    <script src="js/chromium/extension_error_overlay.js"></script>
+    <script src="js/chromium/extension_error.js"></script>
     <script src="js/main_scripts.js"></script>
     <script src="js/items.js"></script>
     <script src="js/items_list.js"></script>
@@ -35,7 +41,51 @@ found in the LICENSE file.
     <script src="js/main.js"></script>
   </head>
   <body>
+    <div id="template-collection-extension-error" hidden>
+      <div class="extension-error-list">
+        <ul class="extension-error-list-contents"></ul>
+        <div class="extension-error-list-show-more">
+          <a i18n-content="extensionErrorsShowMore" hidden></a>
+        </div>
+      </div>
+      <div class="extension-error-metadata">
+        <span class="extension-error-message"></span>
+        <a class="extension-error-view-details"></a>
+      </div>
+    </div>
+
     <div id="overlay" class="overlay" hidden>
+      <div id="template-collection-extension-error-overlay" hidden>
+        <div class="extension-error-overlay-runtime-content">
+          <div class="extension-error-overlay-context">
+            <span i18n-content="extensionErrorOverlayContextUrl"></span>
+            <span class="extension-error-overlay-context-url"></span>
+          </div>
+          <details class="extension-error-overlay-stack-trace">
+            <summary i18n-content="extensionErrorOverlayStackTrace"></summary>
+            <ul class="extension-error-overlay-stack-trace-list"></ul>
+          </details>
+        </div>
+      </div>
+      <div id="extension-error-overlay" class="page">
+        <div class="close-button"></div>
+        <h1 class="extension-error-overlay-title"></h1>
+        <div class="content-area">
+          <div id="extension-error-overlay-code"></div>
+        </div>
+        <div class="action-area">
+          <div class="action-area-right">
+            <div class="button-strip">
+              <button id="extension-error-overlay-dismiss" i18n-content="ok">
+              </button>
+              <button id="extension-error-overlay-devtools-button"
+                      i18n-content="extensionErrorOverlayLaunchDevtools" hidden>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
       <div id="alertOverlay" class="page">
         <h1 id="alertOverlayTitle"></h1>
         <div class="content-area">
@@ -193,6 +243,8 @@ found in the LICENSE file.
             <div class="extension-warnings item" hidden>
               <span i18n-content="extensionSettingsWarningsTitle"></span>
             </div>
+            <div class="manifest-errors item" hidden></div>
+            <div class="runtime-errors item" hidden></div>
             <div class="install-warnings item" hidden>
               <span i18n-content="extensionSettingsInstallWarnings"></span>
               <ul></ul>
