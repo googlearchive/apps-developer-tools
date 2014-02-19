@@ -2,7 +2,7 @@
   "name": "Chrome Apps Developer Tool",
   "description": "Develop and Debug Chrome apps.",
   "manifest_version": 2,
-  "version": "0.1.12.1",
+  "version": "0.1.15",
   "app": {
     "background": {
       "scripts": [
