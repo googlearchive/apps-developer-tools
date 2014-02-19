@@ -397,36 +397,6 @@ cr.define('apps_dev_tool', function() {
     },
 
     /**
-     * Shows the delete confirmation dialog and will trigger the deletion
-     * if the user confirms deletion.
-     * @param {!Object} item Information about the item being deleted.
-     * @private
-     */
-    showDeleteConfirmationDialog: function(item) {
-      var message;
-      if (item.isApp)
-        message = str('deleteConfirmationMessageApp');
-      else
-        message = str('deleteConfirmationMessageExtension');
-
-      alertOverlay.setValues(
-          str('deleteConfirmationTitle'),
-          message,
-          str('deleteConfirmationDeleteButton'),
-          str('cancel'),
-          function() {
-            AppsDevTool.showOverlay(null);
-            var options = {showConfirmDialog: false};
-            chrome.management.uninstall(item.id, options);
-          },
-          function() {
-            AppsDevTool.showOverlay(null);
-          });
-
-      AppsDevTool.showOverlay($('alertOverlay'));
-    },
-
-    /**
      * Sets the delete button handler.
      * @param {!Object} item A dictionary of item metadata.
      * @param {!HTMLElement} el HTML element containing all items.
@@ -435,7 +405,8 @@ cr.define('apps_dev_tool', function() {
     setDeleteButton_: function(item, el) {
       var deleteLink = el.querySelector('.delete-link');
       deleteLink.addEventListener('click', function(e) {
-        this.showDeleteConfirmationDialog(item);
+        var options = {showConfirmDialog: true};
+        chrome.management.uninstall(item.id, options);
       }.bind(this));
     },
 
