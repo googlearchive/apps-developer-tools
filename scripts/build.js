@@ -68,15 +68,31 @@ exec(cmd, function(error, stdout, stderr) {
       process.chdir(projectName);
       exec('git commit -m "version ' + version + '" manifest.json',
            function(error, stdout, stderr) {
-        process.chdir('..');
-        exec('zip -r ' + projectName + '-' + version + '.zip ' + projectName +
-                 ' -x "*/.git/*" -x "' + projectName + '/scripts/*"',
-             function(error, stdout, stderr) {
-               console.log('You can now push changes from ~/ADTBuilds/' +
-                           projectName);
-             }, function(error) {
-               fatal('zip failed');
-             });
+        delete manifestDict['key'];
+        fs.writeFile('manifest.json',
+                     JSON.stringify(manifestDict, null, '  '),
+                     function(err) {
+          if (err) {
+            fatal('could not write manifest');
+          }
+          process.chdir('..');
+          exec('zip -r ' + projectName + '-' + version + '.zip ' +
+                   projectName + ' -x "*/.git/*" -x "' + projectName +
+                   '/scripts/*"',
+               function(error, stdout, stderr) {
+                 process.chdir(projectName);
+                 exec('git checkout manifest.json',
+                      function(error, stdout, stderr) {
+                        console.log(
+                            'You can now push changes from ~/ADTBuilds/' +
+                            projectName);
+                      }, function(error) {
+                        fatal('checkout failed');
+                      });
+               }, function(error) {
+                 fatal('zip failed');
+               });
+        });
       }, function(error) {
         fatal('commit failed');
       });
