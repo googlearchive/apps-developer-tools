@@ -6,6 +6,11 @@
  * same name (so that the chromium version in this repository can stay in sync
  * with the version in chromium). */
 
+#extension-error-overlay {
+  max-width: 90%;
+  max-height: 90% !important;
+}
+
 #extension-error-overlay .button-strip {
   -webkit-box-direction: reverse;
 }

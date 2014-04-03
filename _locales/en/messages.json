@@ -295,6 +295,10 @@
     "message": "View manifest.json",
     "description": "The link to view the details of an extension error."
   },
+  "extensionErrorOverlayClose": {
+    "message": "Close",
+    "description": "The button text to close the error overlay."
+  },
   "extensionErrorOverlayContextUrl": {
     "message": "Context:",
     "description": "The label for the context of an extension's error."
