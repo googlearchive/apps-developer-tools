@@ -1,5 +1,5 @@
 {
-  "name": "Chrome Apps Developer Tool",
+  "name": "Chrome Apps & Extensions Developer Tool",
   "description": "Develop and Debug Chrome apps.",
   "manifest_version": 2,
   "version": "0.1.15",
