@@ -2,7 +2,7 @@
   "name": "Chrome Apps & Extensions Developer Tool",
   "description": "Develop and Debug Chrome Apps & Extensions.",
   "manifest_version": 2,
-  "version": "0.1.15",
+  "version": "0.1.16",
   "app": {
     "background": {
       "scripts": [
