@@ -169,11 +169,11 @@
   },
   "extensionsPermissionsHeading": {
     "message": "It can:",
-    "description": "Heading for permissions dialog in apps_devtools."
+    "description": "Heading for permissions dialog in Chrome Apps & Extensions Developer Tool."
   },
   "extensionsPermissionsClose": {
     "message": "Close",
-    "description": "Close button for permissions dialog in apps_devtools."
+    "description": "Close button for permissions dialog in Chrome Apps & Extensions Developer Tool."
   },
   "extensionDisabled": {
     "message": "(Disabled)",
@@ -205,7 +205,7 @@
   },
   "packExtensionHeading": {
     "message": "The packed extension and the private key will be written in the parent directory of the root directory of the extension to pack. To update an extension, select the private key file to reuse.",
-    "description": "The heading of the pack extension dialog in the Apps Developer Tool."
+    "description": "The heading of the pack extension dialog in the Chrome Apps & Extensions Developer Tool."
   },
   "packButton": {
     "message": "Pack",
@@ -249,7 +249,7 @@
   },
   "packAppHeading": {
     "message": "The packed application and the private key will be written in the parent directory of the root directory of the application to pack. To update an application, select the private key file to reuse.",
-    "description": "The heading of the pack application dialog in the Apps Developer Tool."
+    "description": "The heading of the pack application dialog in the Chrome Apps & Extensions Developer Tool."
   },
   "managedProfileDialogCloseButton": {
     "message": "Close",
@@ -260,7 +260,7 @@
     "description": "Title of the dialog for managed profile."
   },
   "managedProfileDialogDescription": {
-    "message": "Applications and extensions cannot be modified by supervised users. Chrome Apps & Extensions Developer Tools will be closed.",
+    "message": "Applications and extensions cannot be modified by supervised users. Chrome Apps & Extensions Developer Tool will be closed.",
     "description": "Content of the dialog for managed profile. It's informing a supervised user that extensions cannot be changed."
   },
   "extensionErrorsShowFewer": {
