@@ -311,13 +311,17 @@
     "message": "Sorry, we can't show the code for this error.",
     "description": "Text indicating that there is no code to be displayed for a given error."
   },
-  "deleteBehaviorAppOverlay": {
-    "message": "Do you really want to delete all application behavior history?",
-    "description": "Title of delete application behavior history dialog."
+  "deleteBehaviorTitle": {
+    "message": "Clear behavior history?",
+    "description": "Title of delete behavior history dialog."
   },
-  "deleteBehaviorExtensionOverlay": {
+  "deleteBehaviorAppHeading": {
+    "message": "Do you really want to delete all application behavior history?",
+    "description": "Heading for delete application behavior history dialog."
+  },
+  "deleteBehaviorExtensionHeading": {
     "message": "Do you really want to delete all extension behavior history?",
-    "description": "Title of delete extension behavior history dialog."
+    "description": "Heading for delete extension behavior history dialog."
   },
   "extensionDeleteBehavior": {
     "message": "Clear behavior history",

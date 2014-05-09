@@ -496,12 +496,13 @@ cr.define('apps_dev_tool', function() {
     setDeleteBehaviorButton_: function(item, el) {
       var deleteBehaviorButton = el.querySelector('.delete-behavior-link');
       deleteBehaviorButton.addEventListener('click', function(e) {
+        $('delete-behavior-title').textContent = str('deleteBehaviorTitle');
         if (item.isApp) {
-          $('delete-behavior-title').textContent =
-              str('deleteBehaviorAppOverlay');
+          $('delete-behavior-heading').textContent =
+              str('deleteBehaviorAppHeading');
         } else {
-          $('delete-behavior-title').textContent =
-              str('deleteBehaviorExtensionOverlay');
+          $('delete-behavior-heading').textContent =
+              str('deleteBehaviorExtensionHeading');
         }
         $('item-root-dir').value = item.path;
         AppsDevTool.showOverlay($('deleteBehaviorOverlay'));
