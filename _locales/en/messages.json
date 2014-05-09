@@ -312,15 +312,15 @@
     "description": "Text indicating that there is no code to be displayed for a given error."
   },
   "deleteBehaviorAppOverlay": {
-    "message": "Delete all application behavior history?",
+    "message": "Do you really want to delete all application behavior history?",
     "description": "Title of delete application behavior history dialog."
   },
   "deleteBehaviorExtensionOverlay": {
-    "message": "Delete all extension behavior history?",
+    "message": "Do you really want to delete all extension behavior history?",
     "description": "Title of delete extension behavior history dialog."
   },
   "extensionDeleteBehavior": {
-    "message": "Delete Behavior",
+    "message": "Clear behavior history",
     "description": "The link text for the Delete Behavior link."
   },
   "deleteButton": {
