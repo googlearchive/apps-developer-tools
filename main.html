@@ -20,6 +20,7 @@ found in the LICENSE file.
     <link rel="stylesheet" href="css/extension_error_overlay.css">
     <link rel="stylesheet" href="css/pack_item_overlay.css">
     <link rel="stylesheet" href="css/items.css">
+    <link rel="stylesheet" href="css/behavior_overlay.css">
 
     <script src="js/chromium_compatibility.js"></script>
     <script src="js/chromium/assert.js"></script>
@@ -125,8 +126,28 @@ found in the LICENSE file.
           </div>
         </div>
       </div>
-      <div id="behaviorOverlay" class="page">
-        <div id="behavior-content-area" class="content-area">
+      <div class="page" id="behaviorOverlay" >
+        <div class="behavior-content-area" id="behavior-content-area">
+          <tabbox id="tab-box">
+            <div id="header">
+              <div id="tabs-header-container">
+                <tabs id="tabs" tabindex="0">
+                  <tab i18n-content="appsDevtoolHistory"></tab>
+                  <tab i18n-content="appsDevtoolRealtime"></tab>
+                </tabs>
+              </div>
+              <div id="header-bottom-separator">
+              </div>
+            </div>
+            <tabpanels id="tab-panels">
+              <!-- History Tab -->
+              <tabpanel id="history-tab">
+              </tabpanel>
+              <!-- Realtime Tab -->
+              <tabpanel id="realtime-tab">
+              </tabpanel>
+            </tabpanels>
+          </tabbox>
         </div>
       </div>
     </div>

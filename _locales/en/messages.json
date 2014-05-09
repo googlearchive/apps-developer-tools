@@ -19,6 +19,14 @@
     "message": "Boo... You have no extensions :-(",
     "description": "Text that lets the user know that no extensions are installed."
   },
+  "appsDevtoolHistory": {
+    "message": "History",
+    "description": "Text for the word 'History'."
+  },
+  "appsDevtoolRealtime": {
+    "message": "Realtime",
+    "description": "Text for the word 'Realtime'."
+  },
   "appsDevtoolUnpacked": {
     "message": "Unpacked",
     "description": "Text for the word 'Unpacked' (unpacked app or extension)."
