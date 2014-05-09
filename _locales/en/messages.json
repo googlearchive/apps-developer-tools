@@ -310,5 +310,21 @@
   "extensionErrorNoCodeToDisplay": {
     "message": "Sorry, we can't show the code for this error.",
     "description": "Text indicating that there is no code to be displayed for a given error."
+  },
+  "deleteBehaviorAppOverlay": {
+    "message": "Delete all application behavior history?",
+    "description": "Title of delete application behavior history dialog."
+  },
+  "deleteBehaviorExtensionOverlay": {
+    "message": "Delete all extension behavior history?",
+    "description": "Title of delete extension behavior history dialog."
+  },
+  "extensionDeleteBehavior": {
+    "message": "Delete Behavior",
+    "description": "The link text for the Delete Behavior link."
+  },
+  "deleteButton": {
+    "message": "Delete",
+    "description": "Text for the button to delete the extension / app behavior history."
   }
 }
