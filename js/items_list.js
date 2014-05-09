@@ -236,6 +236,9 @@ cr.define('apps_dev_tool', function() {
       // The 'Permissions' link.
       this.setPermissionsLink_(item, node);
 
+      // The 'Behavior' link.
+      this.setBehaviorLink_(item, node);
+
       // The 'View in Web Store/View Web Site' link.
       if (item.homepage_url)
         this.setWebstoreLink_(item, node);
@@ -367,6 +370,19 @@ cr.define('apps_dev_tool', function() {
       var permissions = el.querySelector('.permissions-link');
       permissions.addEventListener('click', function(e) {
         chrome.developerPrivate.showPermissionsDialog(item.id);
+      });
+    },
+
+    /**
+     * Sets the behavior link handler.
+     * @param {!Object} item A dictionary of item metadata.
+     * @param {!HTMLElement} el HTML element containing all items.
+     * @private
+     */
+    setBehaviorLink_: function(item, el) {
+      var behavior = el.querySelector('.behavior-link');
+      behavior.addEventListener('click', function(e) {
+        AppsDevTool.showOverlay($('behaviorOverlay'));
       });
     },
 
