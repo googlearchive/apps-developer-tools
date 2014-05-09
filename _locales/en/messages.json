@@ -119,6 +119,10 @@
     "message": "Permissions",
     "description": "The link text for the Permissions link."
   },
+  "extensionBehavior": {
+    "message": "Behavior",
+    "description": "The link text for the Behavior link."
+  },
   "extensionSettingsVisitWebsite": {
     "message": "Visit website",
     "description": ""
