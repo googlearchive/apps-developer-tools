@@ -49,6 +49,8 @@ cr.define('apps_dev_tool', function() {
       });
       var packItemOverlay =
           apps_dev_tool.PackItemOverlay.getInstance().initializePage();
+      var deleteBehaviorOverlay =
+          apps_dev_tool.DeleteBehaviorOverlay.getInstance().initializePage();
       extensions.ExtensionErrorOverlay.getInstance().initializePage(
           AppsDevTool.showOverlay);
 
