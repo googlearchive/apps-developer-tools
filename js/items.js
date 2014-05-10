@@ -21,10 +21,10 @@ cr.define('apps_dev_tool', function() {
     initialize: function() {
       cr.ui.decorate('tabbox', cr.ui.TabBox);
 
-      // Set up the showing setting menu.
+      // Set up showing setting menu.
       document.querySelector('#settings-button').
           addEventListener('click', this.handleShowSettingsMenu_.bind(this));
-      // Set up the hiding settings menu.
+      // Set up hiding settings menu.
       document.addEventListener('click',
           this.handleHideSettingMenu_.bind(this));
 
@@ -79,8 +79,10 @@ cr.define('apps_dev_tool', function() {
      * @private
      */
     handleHideSettingMenu_: function(e) {
+      // if the click happens to be on the settings button, do nothing.
       if (e.target && e.target.id == 'settings-button')
         return;
+      // if the click landed to the setting menu, keep the menu displayed.
       if (!e.target ||
           (e.target.className != 'menu' &&
            e.target.className != 'menu-item')) {

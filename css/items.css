@@ -113,7 +113,7 @@ tabpanel {
       url(../images/2x/search.png) 2x);
   background-position: 10px 8px;
   background-repeat: no-repeat;
-  border: 0px solid black;
+  border: none;
   font-size: 13px;
   height: 18px;
   position: absolute;
@@ -590,18 +590,15 @@ button[disabled]:active {
 
 .menu {
   text-align: left;
-  -webkit-border-radius: 0;
   -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
   -webkit-transition: opacity .218s;
   border: 1px solid rgba(0,0,0,0.1);
   margin: 0;
-  padding: 6px 0;
   display: block;
   position: absolute;
   right: 21px;
   top: 49px;
-  z-index: 3;
-  font-family: 'Helvetica Neue', Ubuntu, Arial, sans-serif;
+  z-index: 1;
   font-size: 12px;
   font-weight: bold;
   background: #fff;
