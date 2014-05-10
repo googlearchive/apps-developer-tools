@@ -33,6 +33,7 @@
   padding-top: 15px;
   -webkit-padding-start: 20px;
   -webkit-user-select: text;
+}
 
 #close-behavior-overlay {
   background-image: -webkit-image-set(
