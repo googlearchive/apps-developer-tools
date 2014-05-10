@@ -310,5 +310,9 @@
   "extensionErrorNoCodeToDisplay": {
     "message": "Sorry, we can't show the code for this error.",
     "description": "Text indicating that there is no code to be displayed for a given error."
+  },
+  "menuClearBehaviorItem": {
+    "message": "Clear all extension/app history",
+    "description": "Text for the clear all extension/app behavior history menu item."
   }
 }
