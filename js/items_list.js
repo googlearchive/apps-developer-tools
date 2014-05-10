@@ -386,7 +386,6 @@ cr.define('apps_dev_tool', function() {
       var behavior = el.querySelector('.behavior-link');
       behavior.addEventListener('click', function(e) {
         AppsDevTool.showOverlay($('behaviorOverlay'));
-        var watchdogApp = new watchdog.BehaviorWindow();
       });
     },
 
