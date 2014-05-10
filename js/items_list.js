@@ -385,9 +385,9 @@ cr.define('apps_dev_tool', function() {
     setBehaviorLink_: function(item, el) {
       var behavior = el.querySelector('.behavior-link');
       behavior.addEventListener('click', function(e) {
-         $('behavior-extension-icon').style.backgroundImage = 'url(' + item.icon_url + ')';
-         $('behavior-extension-title').textContent = item.name;
-         AppsDevTool.showOverlay($('behaviorOverlay'));
+        $('behavior-extension-icon').style.backgroundImage = 'url(' + item.icon_url + ')';
+        $('behavior-extension-title').textContent = item.name;
+        AppsDevTool.showOverlay($('behaviorOverlay'));
       });
     },
 
