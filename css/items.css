@@ -590,6 +590,15 @@ button[disabled]:active {
   width: 36px;
   min-height: 26px;
   min-width: 26px;
+  opacity: .6;
+}
+
+#settings-button:hover {
+  opacity: .8;
+}
+
+#settings-button:active {
+  opacity: 1;
 }
 
 .menu {
