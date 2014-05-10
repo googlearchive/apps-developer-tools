@@ -2,6 +2,10 @@
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
 
+goog.provide('watchdog.BehaviorWindow');
+
+goog.require('goog.bind');
+
 /**
  * @constructor Object defining core functionality for the Watchdog window.
  */
@@ -30,6 +34,9 @@ watchdog.BehaviorWindow = function() {
     pageUrl: null,
     argUrl: null
   });
+
+  // Initialize the window state.
+  this.initialize();
 };
 
 /**
@@ -56,3 +63,18 @@ watchdog.BehaviorWindow.MAX_NOTABLE_ = 10;
  * @const
  */
 watchdog.BehaviorWindow.MAX_LINE_LENGTH_ = 80;
+
+/**
+ * Initializes the window and some event handlers.
+ */
+watchdog.BehaviorWindow.prototype.initialize = function() {
+  document.getElementById('close-behavior-overlay').addEventListener(
+      'click', goog.bind(this.closeWindow, this), false);
+};
+
+/**
+ * Closes the overlay window.
+ */
+watchdog.BehaviorWindow.prototype.closeWindow = function() {
+  apps_dev_tool.AppsDevTool.showOverlay(null);
+};
