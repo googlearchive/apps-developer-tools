@@ -79,10 +79,10 @@ cr.define('apps_dev_tool', function() {
      * @private
      */
     handleHideSettingMenu_: function(e) {
-      // if the click happens to be on the settings button, do nothing.
+      // If the click happens to be on the settings button, do nothing.
       if (e.target && e.target.id == 'settings-button')
         return;
-      // if the click landed to the setting menu, keep the menu displayed.
+      // If the click landed to the setting menu, keep the menu displayed.
       if (!e.target ||
           (e.target.className != 'menu' &&
            e.target.className != 'menu-item')) {
