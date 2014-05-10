@@ -10,6 +10,30 @@
   height: 480px;
 }
 
+.behavior-extension-details {
+  margin-top: 15px;
+  max-width: 600px;
+}
+
+.behavior-extension-icon {
+  background-position: 26px 0;
+  background-repeat: no-repeat;
+  background-size: 48px 48px;
+  display: -webkit-box;
+  float: left;
+  min-height: 48px;
+  width: 80px;
+}
+
+.behavior-extension-title {
+  color: rgb(48, 57, 66);
+  float: left;
+  font-size: 16px;
+  font-weight: 700;
+  padding-top: 15px;
+  -webkit-padding-start: 20px;
+  -webkit-user-select: text;
+
 #close-behavior-overlay {
   background-image: -webkit-image-set(
       url(../images/search_clear_active.png) 1x,
