@@ -573,7 +573,11 @@ button[disabled]:active {
 }
 
 #settings-button {
-  background: no-repeat url(../images/settings.png);
+  background-image: -webkit-image-set(
+      url(../images/settings.png) 1x,
+      url(../images/2x/settings.png) 2x);
+  background-color: transparent;
+  background-repeat: no-repeat;
   background-position: center center;
   -webkit-appearance: none;
   border: 1px solid rgba(0,0,0,0.1);

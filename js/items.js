@@ -22,8 +22,8 @@ cr.define('apps_dev_tool', function() {
       cr.ui.decorate('tabbox', cr.ui.TabBox);
 
       // Set up showing setting menu.
-      document.querySelector('#settings-button').
-          addEventListener('click', this.handleShowSettingsMenu_.bind(this));
+      document.querySelector('#settings-button').addEventListener('click',
+          this.handleShowSettingsMenu_.bind(this));
       // Set up hiding settings menu.
       document.addEventListener('click',
           this.handleHideSettingMenu_.bind(this));
