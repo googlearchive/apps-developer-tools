@@ -6,28 +6,81 @@ goog.provide('watchdog.BehaviorWindow');
 
 goog.require('goog.bind');
 
-/**
- * @constructor Object defining core functionality for the Watchdog window.
- */
-watchdog.BehaviorWindow = function() {
+cr.define('apps_dev_tool', function() {
+  'use strict';
+
+  /** const*/ var AppsDevTool = apps_dev_tool.AppsDevTool;
+
+  /**
+   * Hides the present overlay showing.
+   */
+  var hideOverlay = function() {
+    AppsDevTool.showOverlay(null);
+  };
+
+  /**
+   * PackItemOverlay class
+   * Encapsulated handling of the 'Pack Item' overlay page.
+   * @constructor
+   */
+  function BehaviorWindow() {}
+
+  cr.addSingletonGetter(BehaviorWindow);
+
+  BehaviorWindow.prototype = {
+    initializePage: function() {
+      var overlay = $('behaviorOverlay');
+      cr.ui.overlay.setupOverlay(overlay);
+      cr.ui.overlay.globalInitialization();
+      overlay.addEventListener('cancelOverlay', hideOverlay.bind(this));
+
+      $('close-behavior-overlay').addEventListener('click', hideOverlay.bind(this));
+    },
+  };
+
+  /**
+   * Enum for tab names. Used to show and hide the different information.
+   * Only one should be shown at a time.
+   * @enum {string}
+   * @const
+   */
+  BehaviorWindow.TabIds = {
+    HISTORY_MODE: 'history-mode-tab',
+    STREAM_MODE: 'stream-mode-tab'
+  };
+
+  /**
+   * Maximum number of notable calls to display on the UI.
+   * @private {number}
+   * @const
+   */
+  BehaviorWindow.MAX_NOTABLE_ = 10;
+
+  /**
+   * Maximum line length for activity information on the UI.
+   * @private {number}
+   * @const
+   */
+  BehaviorWindow.MAX_LINE_LENGTH_ = 80;
+
   /**
    * Name of tab that is currently being displayed.
    * @private {!watchdog.BehaviorWindow.TabIds}
    */
-  this.currentTab_ = watchdog.BehaviorWindow.TabIds.NONE;
+  BehaviorWindow.currentTab_ = BehaviorWindow.TabIds.HISTORY_MODE;
 
   /**
    * Id of the currently selected extension.
    * @private {string}
    */
-  this.currentExtensionId_ = '';
+  BehaviorWindow.currentExtensionId_ = '';
 
   /**
    * Filter to use when displaying activity info. See activityLogPrivate API for
    * details of valid filters.
    * @private {!ActivityFilter}
    */
-  this.activityFilter_ = /** @type {!ActivityFilter} */ ({
+  BehaviorWindow.activityFilter_ = /** @type {!ActivityFilter} */ ({
     activityType: 'any',
     extensionId: '',
     apiCall: null,
@@ -35,46 +88,13 @@ watchdog.BehaviorWindow = function() {
     argUrl: null
   });
 
-  // Initialize the window state.
-  this.initialize();
-};
+  // Export
+  return {
+    BehaviorWindow: BehaviorWindow,
+  };
+});
 
-/**
- * Enum for tab names. Used to show and hide the different information.
- * Only one should be shown at a time.
- * @enum {string}
- * @const
- */
-watchdog.BehaviorWindow.TabIds = {
-  HISTORY_MODE: 'history-mode-tab'
-  STREAM_MODE: 'stream-mode-tab',
-};
 
-/**
- * Maximum number of notable calls to display on the UI.
- * @private {number}
- * @const
- */
-watchdog.BehaviorWindow.MAX_NOTABLE_ = 10;
 
-/**
- * Maximum line length for activity information on the UI.
- * @private {number}
- * @const
- */
-watchdog.BehaviorWindow.MAX_LINE_LENGTH_ = 80;
 
-/**
- * Initializes the window and some event handlers.
- */
-watchdog.BehaviorWindow.prototype.initialize = function() {
-  document.getElementById('close-behavior-overlay').addEventListener(
-      'click', goog.bind(this.closeWindow, this), false);
-};
 
-/**
- * Closes the overlay window.
- */
-watchdog.BehaviorWindow.prototype.closeWindow = function() {
-  apps_dev_tool.AppsDevTool.showOverlay(null);
-};
