@@ -21,6 +21,13 @@ cr.define('apps_dev_tool', function() {
     initialize: function() {
       cr.ui.decorate('tabbox', cr.ui.TabBox);
 
+      // Set up showing setting menu.
+      document.querySelector('#settings-button').addEventListener('click',
+          this.handleShowSettingsMenu_.bind(this));
+      // Set up hiding settings menu.
+      document.addEventListener('click',
+          this.handleHideSettingMenu_.bind(this));
+
       // Set up the three buttons (load unpacked, pack and update).
       document.querySelector('#apps-tab .load-unpacked').
           addEventListener('click', this.handleLoadUnpackedItem_.bind(this));
@@ -58,6 +65,32 @@ cr.define('apps_dev_tool', function() {
           AppsDevTool.showOverlay);
 
       preventDefaultOnPoundLinkClicks();  // From webui/js/util.js
+    },
+
+    /**
+     * Handles showing the settings menu.
+     * @param {!Event} e Click event.
+     * @private
+     */
+    handleShowSettingsMenu_: function(e) {
+      $('settings-menu').style.display = 'block';
+    },
+
+    /**
+     * Handles hiding the settings menu.
+     * @param {!Event} e Click event.
+     * @private
+     */
+    handleHideSettingMenu_: function(e) {
+      // If the click happens to be on the settings button, do nothing.
+      if (e.target && e.target.id == 'settings-button')
+        return;
+      // If the click landed to the setting menu, keep the menu displayed.
+      if (!e.target ||
+          (e.target.className != 'menu' &&
+           e.target.className != 'menu-item')) {
+        $('settings-menu').style.display = 'none';
+      }
     },
 
     /**
