@@ -10,3 +10,15 @@
   height: 480px;
 }
 
+#close-behavior-overlay {
+  background-image: -webkit-image-set(
+      url(../images/search_clear_active.png) 1x,
+      url(../images/2x/search_clear_active.png) 2x);
+  background-repeat: no-repeat;
+  border: none !important;
+  height: 16px;
+  position: absolute;
+  right: 5px;
+  top: 5px;
+  width: 16px;
+}
