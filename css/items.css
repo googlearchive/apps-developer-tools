@@ -117,7 +117,7 @@ tabpanel {
   font-size: 13px;
   height: 18px;
   position: absolute;
-  right: 0;
+  right: 36px;
   top: 16px;
   width: 230px;
 }
@@ -570,4 +570,61 @@ button[disabled]:active {
 
 #browse-private-key {
   margin-left: 10px;
+}
+
+#settings-button {
+  background-image: -webkit-image-set(
+      url(../images/settings.png) 1x,
+      url(../images/2x/settings.png) 2x);
+  background-color: transparent;
+  background-repeat: no-repeat;
+  background-position: center center;
+  -webkit-appearance: none;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: none;
+  padding: 0px;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  height: 36px;
+  width: 36px;
+  min-height: 26px;
+  min-width: 26px;
+  opacity: .6;
+}
+
+#settings-button:hover {
+  opacity: .8;
+}
+
+#settings-button:active {
+  opacity: 1;
+}
+
+.menu {
+  text-align: left;
+  -webkit-box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+  -webkit-transition: opacity .218s;
+  border: 1px solid rgba(0,0,0,0.1);
+  margin: 0;
+  display: block;
+  position: absolute;
+  right: 21px;
+  top: 49px;
+  z-index: 1;
+  font-size: 12px;
+  font-weight: bold;
+  background: #fff;
+  display: none;
+}
+
+.menu-item {
+  height: 20px;
+  padding: 10px;
+  color: #7f7f7f;
+  line-height: 20px;
+}
+
+.menu-item:hover {
+  color: #333;
 }

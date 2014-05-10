@@ -338,5 +338,9 @@
   "deleteButton": {
     "message": "Delete",
     "description": "Text for the button to delete the extension / app behavior history."
+  },
+  "menuClearBehaviorItem": {
+    "message": "Clear all extension/app history",
+    "description": "Text for the clear all extension/app behavior history menu item."
   }
 }

@@ -54,6 +54,10 @@ found in the LICENSE file.
     <script src="js/main.js"></script>
   </head>
   <body>
+    <div class="menu" id="settings-menu">
+      <div class="menu-item" i18n-content="menuClearBehaviorItem"></div>
+    </div>
+
     <div id="template-collection-extension-error" hidden>
       <div class="extension-error-list">
         <ul class="extension-error-list-contents"></ul>
@@ -194,6 +198,7 @@ found in the LICENSE file.
             <input id="search" type="search"
                 i18n-values=".placeholder:appsDevtoolSearch"
                 spellcheck="false">
+            <button id="settings-button" title="Settings"></button>
           </div>
           <div id="header-bottom-separator">
           </div>
