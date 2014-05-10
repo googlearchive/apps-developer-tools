@@ -29,9 +29,9 @@ cr.define('apps_dev_tool', function() {
       var overlay = $('behaviorOverlay');
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
-      $('close-behavior-overlay').addEventListener('click',
-          hideOverlay.bind(this));
-    },
+      $('close-behavior-overlay').addEventListener(
+          'click', hideOverlay.bind(this));
+    }
   };
 
   /**
@@ -86,6 +86,6 @@ cr.define('apps_dev_tool', function() {
 
   // Export
   return {
-    BehaviorWindow: BehaviorWindow,
+    BehaviorWindow: BehaviorWindow
   };
 });
