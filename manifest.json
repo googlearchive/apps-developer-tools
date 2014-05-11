@@ -12,7 +12,8 @@
   },
   "permissions": [
     "management",
-    "developerPrivate"
+    "developerPrivate",
+    "activityLogPrivate"
   ],
   "icons": {
     "16": "images/icon-16.png",
