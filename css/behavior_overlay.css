@@ -4,28 +4,30 @@
 
 .behavior-content-area {
   -webkit-box-flex: 1;
+  border: none;
   font-size: 13px;
+  height: 480px;
+  line-height: 1.54;
   margin: 0;
   padding: 0;
   position: relative;
   width: 640px;
-  height: 480px;
-  line-height: 1.54;
 }
 
 .behavior-extension-details {
-  margin-top: 15px;
+  margin-bottom: 10px;
+  margin-top: 30px;
   max-width: 600px;
 }
 
 .behavior-extension-icon {
-  background-position: 26px 0;
+  background-position: 0 0;
   background-repeat: no-repeat;
   background-size: 48px 48px;
   display: -webkit-box;
   float: left;
   min-height: 48px;
-  width: 80px;
+  width: 48px;
 }
 
 .behavior-extension-title {
@@ -36,6 +38,16 @@
   padding-top: 15px;
   -webkit-padding-start: 20px;
   -webkit-user-select: text;
+}
+
+#behavior-tab-header {
+  height: 48px;
+  width: 100%;
+}
+
+#behavior-header-bottom-separator {
+  border-bottom: 1px solid #d1d1d1;
+  width: 100%;
 }
 
 #behavior-tab-panels {
@@ -80,4 +92,3 @@
   padding-right: 3px;
   width: 5px;
 }
-

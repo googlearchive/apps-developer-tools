@@ -368,6 +368,10 @@
     "description": "Title for notable behavior section.",
     "message": "Privacy and security"
   },
+  "developerActivityHeader": {
+    "description": "Title for developer stream of events.",
+    "message": "Realtime activity stream"
+  },
   "activity_log_count": {
     "description": "The number of activity log types.",
     "message": "601"

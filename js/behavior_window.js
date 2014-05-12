@@ -83,25 +83,9 @@ cr.define('apps_dev_tool', function() {
       var overlay = $('behaviorOverlay');
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
-      this.setLocalizedAppDetails();
-    },
-
-    /**
-     * Set up event listeners and localized text elements of BehaviorOverlay.
-     */
-    setLocalizedAppDetails: function() {
-      // Initialize text elements.
-      var getLocalMsg = chrome.i18n.getMessage;
-      $('empty-history').innerText = getLocalMsg('emptyHistory');
-      $('all-behavior').innerText = getLocalMsg('allRecentHistoryHeader');
-      $('notable-behavior').innerText = getLocalMsg('notableHistoryHeader');
-
-      // TODO(spostman): Initialize more text and search elements.
-
-      // Registster event listeners.
       $('close-behavior-overlay').addEventListener(
           'click', hideOverlay.bind(this));
-    }
+    },
   };
 
   /**
