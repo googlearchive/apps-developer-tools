@@ -23,10 +23,12 @@ cr.define('apps_dev_tool', function() {
 
       // Set up showing setting menu.
       document.querySelector('#settings-button').addEventListener('click',
-          this.handleShowSettingsMenu_.bind(this));
+          this.handleSettingsButtonClick_.bind(this));
+      document.querySelector('#delete-all-behavior-item').addEventListener(
+          'click', this.handleDeleteAllBehavior_.bind(this));
       // Set up hiding settings menu.
       document.addEventListener('click',
-          this.handleHideSettingMenu_.bind(this));
+          this.handleHidingSettingsMenu_.bind(this));
 
       // Set up the three buttons (load unpacked, pack and update).
       document.querySelector('#apps-tab .load-unpacked').
@@ -58,6 +60,8 @@ cr.define('apps_dev_tool', function() {
           apps_dev_tool.PackItemOverlay.getInstance().initializePage();
       var deleteBehaviorOverlay =
           apps_dev_tool.DeleteBehaviorOverlay.getInstance().initializePage();
+      var deleteAllBehaviorOverlay =
+          apps_dev_tool.DeleteAllBehaviorOverlay.getInstance().initializePage();
       var behaviorOverlay =
           apps_dev_tool.BehaviorWindow.getInstance().initializePage();
       extensions.ExtensionErrorOverlay.getInstance().initializePage(
@@ -67,12 +71,40 @@ cr.define('apps_dev_tool', function() {
     },
 
     /**
-     * Handles showing the settings menu.
+     * Shows the settings menu.
+     * @private
+     */
+    showSettingsMenu_: function() {
+      $('settings-menu').style.display = 'block';
+    },
+
+    /**
+     * Hides the settings menu.
+     * @private
+     */
+    hideSettingsMenu_: function() {
+      $('settings-menu').style.display = 'none';
+    },
+
+    /**
+     * Returns true if the settings menu is displayed.
+     * @return {!boolean} True, if the settings menu is displayed.
+     * @private
+     */
+    isSettingsMenuShown_: function() {
+      return $('settings-menu').style.display == 'block';
+    },
+
+    /**
+     * Handles settings button click.
      * @param {!Event} e Click event.
      * @private
      */
-    handleShowSettingsMenu_: function(e) {
-      $('settings-menu').style.display = 'block';
+    handleSettingsButtonClick_: function(e) {
+      if (this.isSettingsMenuShown_())
+        this.hideSettingsMenu_();
+      else
+        this.showSettingsMenu_();
     },
 
     /**
@@ -80,16 +112,23 @@ cr.define('apps_dev_tool', function() {
      * @param {!Event} e Click event.
      * @private
      */
-    handleHideSettingMenu_: function(e) {
-      // If the click happens to be on the settings button, do nothing.
-      if (e.target && e.target.id == 'settings-button')
-        return;
-      // If the click landed to the setting menu, keep the menu displayed.
-      if (!e.target ||
-          (e.target.className != 'menu' &&
-           e.target.className != 'menu-item')) {
-        $('settings-menu').style.display = 'none';
+    handleHidingSettingsMenu_: function(e) {
+      // If the click happens to be on the settings button, do nothing, the
+      // button handler will perform the correct action.
+      if (e.target && e.target.id == 'settings-button') {
+        return
       }
+      this.hideSettingsMenu_();
+    },
+
+    /**
+     * Handles delete all extension and application behavior history menu item.
+     * @param {!Event} e Click event.
+     * @private
+     */
+    handleDeleteAllBehavior_: function(e) {
+      this.hideSettingsMenu_();
+      AppsDevTool.showOverlay($('deleteAllBehaviorOverlay'));
     },
 
     /**
