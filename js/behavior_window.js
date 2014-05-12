@@ -33,7 +33,7 @@ cr.define('apps_dev_tool', function() {
    * Hides the present overlay showing and clear all generated activity
    * lists.
    */
-  var hideOverlay = function() {
+  var hideBehaviorOverlay = function() {
     BehaviorWindow.clearSummaryViewActivities();
     BehaviorWindow.stop();
     BehaviorWindow.clearDeveloperModeViewActivities();
@@ -82,15 +82,15 @@ cr.define('apps_dev_tool', function() {
     }),
 
     initializePage: function() {
-      var overlay = $('behaviorOverlay');
+      var overlay = $('overlay');
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
 
+      // Register cancelOverlay event handler for ESC keydown event.
+      overlay.addEventListener(
+          'cancelOverlay', hideBehaviorOverlay.bind(overlay);    
       $('close-behavior-overlay').addEventListener(
-          'click', hideOverlay.bind(this));
-
-      // TODO(spostman): Register cancelOverlay event handler for ESC keydown
-      // event.
+          'click', hideBehaviorOverlay.bind(this));
 
       var setVisibleTab = BehaviorWindow.setVisibleTab.bind(BehaviorWindow);
       $('history-tab').addEventListener('click', function() {
@@ -304,11 +304,12 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.refreshVisibleTab = function() {
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
       $('history-tab-panel').className = 'current-tab';
-      $('summary-mode-tab-all').style.display = 'block';
       $('realtime-tab-panel').className = '';
+      $('summary-mode-tab-all').style.display = 'block';
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab-panel').className = 'current-tab';
+      $('history-tab-panel').className = '';
       $('dev-mode-tab-content').style.display = 'block';
       this.start();
     }
