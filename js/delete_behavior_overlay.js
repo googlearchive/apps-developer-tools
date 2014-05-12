@@ -8,13 +8,6 @@ cr.define('apps_dev_tool', function() {
 /** const */ var AppsDevTool = apps_dev_tool.AppsDevTool;
 
   /**
-   * Hides the present overlay showing.
-   */
-  var hideOverlay = function() {
-    AppsDevTool.showOverlay(null);
-  };
-
-  /**
    * DeleteBehaviorOverlay class
    * Encapsulated handling of the 'Delete Behavior History' overlay page.
    * @constructor
@@ -28,12 +21,20 @@ cr.define('apps_dev_tool', function() {
       var overlay = $('overlay');
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
-      overlay.addEventListener('cancelOverlay', hideOverlay.bind(this));
+      overlay.addEventListener('cancelOverlay', this.hideOverlay_.bind(this));
 
       $('delete-behavior-dismiss').addEventListener('click',
-          hideOverlay.bind(this));
+          this.hideOverlay_.bind(this));
       $('delete-behavior-commit').addEventListener('click',
           this.handleCommit_.bind(this));
+    },
+
+    /**
+     * Hides the present overlay showing.
+     * @private
+     */
+    hideOverlay_: function() {
+      AppsDevTool.showOverlay(null);
     },
 
     /**
@@ -42,7 +43,7 @@ cr.define('apps_dev_tool', function() {
      * @private
      */
     handleCommit_: function(e) {
-      hideOverlay();
+      this.hideOverlay_();
     },
   };
 

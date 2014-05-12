@@ -24,6 +24,8 @@ cr.define('apps_dev_tool', function() {
       // Set up showing setting menu.
       document.querySelector('#settings-button').addEventListener('click',
           this.handleShowSettingsMenu_.bind(this));
+      document.querySelector('#delete-all-behavior-item').addEventListener(
+          'click', this.handleDeleteAllBehavior_.bind(this));
       // Set up hiding settings menu.
       document.addEventListener('click',
           this.handleHideSettingMenu_.bind(this));
@@ -58,6 +60,8 @@ cr.define('apps_dev_tool', function() {
           apps_dev_tool.PackItemOverlay.getInstance().initializePage();
       var deleteBehaviorOverlay =
           apps_dev_tool.DeleteBehaviorOverlay.getInstance().initializePage();
+      var deleteallBehaviorOverlay =
+          apps_dev_tool.DeleteAllBehaviorOverlay.getInstance().initializePage();
       var behaviorOverlay =
           apps_dev_tool.BehaviorWindow.getInstance().initializePage();
       extensions.ExtensionErrorOverlay.getInstance().initializePage(
@@ -67,12 +71,28 @@ cr.define('apps_dev_tool', function() {
     },
 
     /**
+     * Shows settings menu.
+     * @private
+     */
+    showSettingsMenu_: function() {
+      $('settings-menu').style.display = 'block';
+    },
+
+    /**
+     * Hides settings menu.
+     * @private
+     */
+    hideSettingsMenu_: function() {
+      $('settings-menu').style.display = 'none';
+    },
+
+    /**
      * Handles showing the settings menu.
      * @param {!Event} e Click event.
      * @private
      */
     handleShowSettingsMenu_: function(e) {
-      $('settings-menu').style.display = 'block';
+      this.showSettingsMenu_();
     },
 
     /**
@@ -88,8 +108,18 @@ cr.define('apps_dev_tool', function() {
       if (!e.target ||
           (e.target.className != 'menu' &&
            e.target.className != 'menu-item')) {
-        $('settings-menu').style.display = 'none';
+        this.hideSettingsMenu_();
       }
+    },
+
+    /**
+     * Handles delete all extension and application behavior history menu item.
+     * @param {!Event} e Click event.
+     * @private
+     */
+    handleDeleteAllBehavior_: function(e) {
+      this.hideSettingsMenu_();
+      AppsDevTool.showOverlay($('deleteAllBehaviorOverlay'));
     },
 
     /**

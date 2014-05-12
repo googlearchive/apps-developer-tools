@@ -2198,5 +2198,21 @@
         "content": "$1"
       }
     }
+  },
+    "deleteAllBehaviorTitle": {
+    "message": "Clear all behavior history?",
+    "description": "Title of delete all behavior history dialog."
+  },
+  "deleteAllBehaviorHeading": {
+    "message": "Do you really want to delete behavior history of all extensions and applications?",
+    "description": "Heading for delete all extension/application behavior history dialog."
+  },
+  "deleteAllUrls": {
+    "message": "Only URLs visited or modified by extensions/applications",
+    "description": "Text for delete URLs radio button."
+  },
+  "deleteAllDatabase": {
+    "message": "All data including URLs and extension/application activity",
+    "description": "Text for delete all behavior data radio button."
   }
 }
