@@ -219,9 +219,7 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.deleteActivityCountList = function(listName) {
     var parentNode = document.getElementById(listName);
     if (parentNode) {
-      while (parentNode.firstChild) {
-        parentNode.removeChild(parentNode.firstChild);
-      }
+      parent.innerHTML = '';
     }
   };
   /**
