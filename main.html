@@ -18,7 +18,6 @@ found in the LICENSE file.
     <link rel="stylesheet" href="css/extension_error.css">
     <link rel="stylesheet" href="css/extension_error_overlay.css">
     <link rel="stylesheet" href="css/pack_item_overlay.css">
-    <link rel="stylesheet" href="css/delete_behavior_overlay.css">
     <link rel="stylesheet" href="css/items.css">
     <link rel="stylesheet" href="css/behavior_overlay.css">
 
@@ -50,6 +49,7 @@ found in the LICENSE file.
     <script src="js/pack_item_overlay.js"></script>
     <script src="js/behavior_window.js"></script>
     <script src="js/delete_behavior_overlay.js"></script>
+    <script src="js/delete_all_behavior_overlay.js"></script>
     <script src="js/watchdog/watchdog_activity.js"></script>
     <script src="js/watchdog/watchdog_activity_group.js"></script>
     <script src="js/watchdog/watchdog_activity_group_list.js"></script>
@@ -57,7 +57,8 @@ found in the LICENSE file.
   </head>
   <body>
     <div class="menu" id="settings-menu">
-      <div class="menu-item" i18n-content="menuClearBehaviorItem"></div>
+      <div id="delete-all-behavior-item" class="menu-item"
+           i18n-content="menuClearBehaviorItem"></div>
     </div>
 
     <div id="template-collection-extension-error" hidden>
@@ -216,14 +217,28 @@ found in the LICENSE file.
 
       <div id="deleteBehaviorOverlay" class="page">
         <h1 i18n-content="deleteBehaviorTitle"></h1>
-        <div id="cbd-content-area" class="content-area">
-          <div class="delete-behavior-heading" id="delete-behavior-heading"></div>
+        <div class="content-area">
+          <div id="delete-behavior-heading"></div>
         </div>
         <div class="action-area">
           <div class="action-area-right">
             <div class="button-strip">
               <button id="delete-behavior-dismiss" i18n-content="cancel"></button>
               <button id="delete-behavior-commit" i18n-content="deleteButton"></button>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div id="deleteAllBehaviorOverlay" class="page">
+        <h1 id="delete-all-behavior-title" i18n-content="deleteAllBehaviorTitle"></h1>
+        <div class="content-area">
+          <div i18n-content="deleteAllBehaviorHeading"></div>
+        </div>
+        <div class="action-area">
+          <div class="action-area-right">
+            <div class="button-strip">
+              <button id="delete-all-behavior-dismiss" i18n-content="cancel"></button>
+              <button id="delete-all-behavior-commit" i18n-content="deleteButton"></button>
             </div>
           </div>
         </div>
