@@ -84,32 +84,17 @@ cr.define('apps_dev_tool', function() {
       var overlay = $('behaviorOverlay');
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
-      this.setLocalizedAppDetails();
-    },
 
-    /**
-     * Set up event listeners and localized text elements of BehaviorOverlay.
-     */
-    setLocalizedAppDetails: function() {
-      // Initialize text elements.
-      var getLocalMsg = chrome.i18n.getMessage;
-      $('empty-history').innerText = getLocalMsg('emptyHistory');
-      $('all-behavior').innerText = getLocalMsg('allRecentHistoryHeader');
-      $('notable-behavior').innerText = getLocalMsg('notableHistoryHeader');
-
-      // TODO(spostman): Initialize more text and search elements.
-
-      // Register event listeners.
-      $('close-behavior-overlay').addEventListener('click', hideOverlay.bind(this));
-
+      $('close-behavior-overlay').addEventListener(
+          'click', hideOverlay.bind(this));
       var setVisibleTab = BehaviorWindow.setVisibleTab.bind(BehaviorWindow);
-      $('history-tab-menu').addEventListener('click', function() {
+      $('history-tab').addEventListener('click', function() {
           setVisibleTab(BehaviorWindow.TabIds.HISTORY_MODE);
         }, false);
-      $('realtime-tab-menu').addEventListener('click', function() {
+      $('realtime-tab').addEventListener('click', function() {
           setVisibleTab(BehaviorWindow.TabIds.STREAM_MODE);
         }, false);
-    }
+    },
   };
 
   /**
@@ -233,6 +218,7 @@ cr.define('apps_dev_tool', function() {
       parent.innerHTML = '';
     }
   };
+
   /**
    * Adds an activity to the DB summary counts list.
    * @param {!watchdog.ActivityGroup} group Group to add to the list.
@@ -421,7 +407,7 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.addToDevActivityList = function(activity) {
     var activitiesTemplate = document.querySelector(
-        '#templates > [data-name="activity-list-dev"]');
+        '#template-collection > [data-name="activity-list-dev"]');
     var el = activitiesTemplate.cloneNode(true);
     el.setAttribute('data-id', activity.getExtensionId() + '-dev');
 

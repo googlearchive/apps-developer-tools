@@ -496,7 +496,6 @@ cr.define('apps_dev_tool', function() {
     setDeleteBehaviorButton_: function(item, el) {
       var deleteBehaviorButton = el.querySelector('.delete-behavior-link');
       deleteBehaviorButton.addEventListener('click', function(e) {
-        $('delete-behavior-title').textContent = str('deleteBehaviorTitle');
         if (item.isApp) {
           $('delete-behavior-heading').textContent =
               str('deleteBehaviorAppHeading');

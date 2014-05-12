@@ -144,33 +144,34 @@ found in the LICENSE file.
           </div>
         </div>
       </div>
+
       <div class="page" id="behaviorOverlay" >
         <img id="close-behavior-overlay">
         <div class="behavior-content-area" id="behavior-content-area">
           <tabbox id="tab-box">
-            <div id="header">
-              <div id="tabs-header-container">
-                <tabs id="tabs" tabindex="0">
-                  <tab id='history-tab-menu' i18n-content="appsDevtoolHistory"></tab>
-                  <tab id='realtime-tab-menu' i18n-content="appsDevtoolRealtime"></tab>
-                </tabs>
-              </div>
-              <div id="header-bottom-separator">
-              </div>
+            <!-- Header with tab strip -->
+            <div id="behavior-tab-header">
+              <tabs id="tabs" tabindex="0">
+                <tab id='history-tab' i18n-content="appsDevtoolHistory"></tab>
+                <tab id='realtime-tab' i18n-content="appsDevtoolRealtime"></tab>
+              </tabs>
+              <div id="behavior-header-bottom-separator"></div>
             </div>
+
             <!-- App icon and title -->
             <div class="behavior-extension-details" id="behavior-extension-details">
               <div class="behavior-extension-icon" id="behavior-extension-icon"></div>
               <div class="behavior-extension-title" id="behavior-extension-title"></div>
             </div>
+
             <tabpanels id="behavior-tab-panels">
               <!-- History Tab -->
-              <tabpanel id="history-tab">
+              <tabpanel id="history-tab-panel">
                 <!-- Notable behavior -->
                 <!-- TODO(spostman): replace all maia css styles. -->
                 <div class="maia-cols hidden" id="summary-mode-tab-notable">
                   <div class="maia-col-2 left-col">
-                    <h2 id="notable-behavior"></h2>
+                    <h2 i18n-content="notableHistoryHeader"></h2>
                   </div>
                   <div class="maia-col-8">
                     <div class="activity-list-wrapper">
@@ -181,21 +182,21 @@ found in the LICENSE file.
                 <!-- All behavior tab -->
                 <div class="maia-cols hidden" id="summary-mode-tab-all">
                   <div class="maia-col-2 left-col">
-                    <h2 id="all-behavior"></h2>
+                    <h2 i18n-content="allRecentHistoryHeader"></h2>
                   </div>
                   <div class="maia-col-8">
                     <div class="activity-list-wrapper">
                       <div id="activity-list-all" class="item-list-count"></div>
-                      <div id="empty-history"></div>
+                      <div id="empty-history" i18n-content="emptyHistory"></div>
                     </div>
                  </div>
                </div>
               </tabpanel>
               <!-- Realtime Tab -->
-              <tabpanel id="realtime-tab">
+              <tabpanel id="realtime-tab-panel">
                 <div class="maia-cols hidden" id="dev-mode-tab-content">
                   <div class="maia-col-2 left-col">
-                    <h2 id="developer-activity-header"></h2>
+                    <h2 i18n-content="developerActivityHeader"></h2>
                     <div class="controls">
                       <!-- TODO(spostman): add pause/start buttons. -->
                     </div>
@@ -211,8 +212,9 @@ found in the LICENSE file.
           </tabbox>
         </div>
       </div>
+
       <div id="deleteBehaviorOverlay" class="page">
-        <h1 id="delete-behavior-title"></h1>
+        <h1 i18n-content="deleteBehaviorTitle"></h1>
         <div id="cbd-content-area" class="content-area">
           <div class="delete-behavior-heading" id="delete-behavior-heading"></div>
         </div>
@@ -313,6 +315,22 @@ found in the LICENSE file.
     </div>
   </div>
   <div id="template-collection" hidden>
+    <div class="activity-list-dev" data-name="activity-list-dev">
+      <div id="time-dev" class="activity-time"></div>
+      <div id="activity-toggle-dev">
+          <img src="images/arrow_more.png" id="item-arrow" alt="toggle">
+      </div>
+      <div class="activity-dev">
+        <div id="action-dev"></div>
+        <div class="activity-pageURL">
+          <a id="pageURL-dev" target="_blank"></a>
+        </div>
+        <div id="detail" class="item-detail">
+          <ol id="args-dev" class="args-list"></ol>
+          <ul id="webrequest-details"></ul>
+        </div>
+      </div>
+    </div>
     <div class="activity-list-dev" data-name="activity-list-dev">
       <div id="time-dev" class="activity-time"></div>
       <div id="activity-toggle-dev">
