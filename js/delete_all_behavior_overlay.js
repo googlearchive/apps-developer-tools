@@ -43,11 +43,7 @@ cr.define('apps_dev_tool', function() {
      * @private
      */
     handleCommit_: function(e) {
-      if ($('delete-all-urls-radio').checked) {
-        chrome.activityLogPrivate.deleteUrls([]);
-      } else if ($('delete-database-radio').checked) {
-        chrome.activityLogPrivate.deleteDatabase();
-      }
+      chrome.activityLogPrivate.deleteDatabase();
       this.hideOverlay_();
     },
   };
