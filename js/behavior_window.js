@@ -30,6 +30,20 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
+   * Listens on the activity log api and adds activities.
+   * @param {!ExtensionActivity} activity An activity from the
+   *     activityLogPrivate api.
+   */
+  BehaviorWindow.onExtensionActivity = function(activity) {
+    if (activity.extensionId == this.instance_.currentExtensionId_) {
+      var act = new watchdog.Activity(activity);
+      if (act.passesFilter(BehaviorWindow.instance_.activityFilter_)) {
+        BehaviorWindow.addToDevActivityList(act);
+      }
+    }
+  };
+
+  /**
    * Hides the present overlay showing and clear all generated activity
    * lists.
    */
@@ -69,6 +83,14 @@ cr.define('apps_dev_tool', function() {
     currentTab_: BehaviorWindow.TabIds.NOSELECTION_MODE,
 
     /**
+     * Listener on the chrome.activityLogPrivate.onExtensionActivity event.
+     * We need to keep track of it so the correct listener is removed when the
+     * stop button is pressed.
+     * @private {Function}
+     */
+    activityListener_: BehaviorWindow.onExtensionActivity.bind(BehaviorWindow),
+
+    /**
      * Filter to use when displaying activity info. See activityLogPrivate API
      * for details of valid filters.
      * @private {!ActivityFilter}
@@ -88,7 +110,7 @@ cr.define('apps_dev_tool', function() {
 
       // Register cancelOverlay event handler for ESC keydown event.
       overlay.addEventListener(
-          'cancelOverlay', hideBehaviorOverlay.bind(overlay);    
+          'cancelOverlay', hideBehaviorOverlay.bind(overlay));
       $('close-behavior-overlay').addEventListener(
           'click', hideBehaviorOverlay.bind(this));
 
@@ -172,17 +194,16 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Cleans the history tab.
+   * Clear the history tab.
    */
   BehaviorWindow.clearSummaryViewActivities = function() {
-    // Clear the history tab
     this.clearActivityCountList('activity-list-notable');
     this.clearActivityCountList('activity-list-all');
     $('empty-history').style.display = 'none';
   };
 
   /**
-   * Clear the realtime tab
+   * Clear the realtime tab.
    */
   BehaviorWindow.clearDeveloperModeViewActivities = function() {
     this.clearActivityCountList('activity-list-dev');
@@ -366,9 +387,8 @@ cr.define('apps_dev_tool', function() {
       return;
     }
 
-    var activityListener = this.onExtensionActivity.bind(BehaviorWindow);
     chrome.activityLogPrivate.onExtensionActivity.addListener(
-      activityListener);
+        this.instance_.activityListener_);
     this.updateDevModeControls(true);
 };
 
@@ -376,9 +396,8 @@ cr.define('apps_dev_tool', function() {
    * Stops listening on the activity log.
    */
   BehaviorWindow.stop = function() {
-    var activityListener = this.onExtensionActivity.bind(BehaviorWindow);
     chrome.activityLogPrivate.onExtensionActivity.removeListener(
-        activityListener);
+        this.instance_.activityListener_);
     this.updateDevModeControls(false);
   };
 
@@ -394,20 +413,6 @@ cr.define('apps_dev_tool', function() {
     } else {
       // $('start').style.display = 'block';
       // $('stop').style.display = 'none';
-    }
-  };
-
-  /**
-   * Listens on the activity log api and adds activities.
-   * @param {!ExtensionActivity} activity An activity from the
-   *     activityLogPrivate api.
-   */
-  BehaviorWindow.onExtensionActivity = function(activity) {
-    if (activity.extensionId == this.instance_.currentExtensionId_) {
-      var act = new watchdog.Activity(activity);
-      if (act.passesFilter(this.instance_.activityFilter_)) {
-        this.addToDevActivityList(act);
-      }
     }
   };
 
