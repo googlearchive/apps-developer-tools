@@ -61,7 +61,7 @@ cr.define('apps_dev_tool', function() {
 
     /**
      * Name of tab that is currently being displayed.
-     * @private {!watchdog.BehaviorWindow.TabIds}
+     * @private {!apps_dev_tool.BehaviorWindow.TabIds}
      */
     currentTab_: BehaviorWindow.TabIds.NOSELECTION_MODE,
 
@@ -121,13 +121,13 @@ cr.define('apps_dev_tool', function() {
       return;
     }
     var callback = this.addToSummaryModeLists.bind(this);
-    watchdog.ActivityGroupList.getFilteredExtensionActivities(
+    apps_dev_tool.ActivityGroupList.getFilteredExtensionActivities(
         this.instance_.activityFilter_, callback);
   };
 
   /**
    * Adds activities from the result set to the summary mode lists.
-   * @param {!watchdog.ActivityGroupList} activityList
+   * @param {!apps_dev_tool.ActivityGroupList} activityList
    */
   BehaviorWindow.addToSummaryModeLists = function(activityList) {
       if (!activityList) {
@@ -179,7 +179,7 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Adds an activity to the notable activity list.
-   * @param {!watchdog.ActivityGroup} group Activity group to add to the
+   * @param {!apps_dev_tool.ActivityGroup} group Activity group to add to the
    *     list.
    */
   BehaviorWindow.addToNotableActivityList = function(group) {
@@ -188,7 +188,7 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Adds an activity to the full activity list.
-   * @param {!watchdog.ActivityGroup} group Activity group to add to list.
+   * @param {!apps_dev_tool.ActivityGroup} group Activity group to add to list.
    */
   BehaviorWindow.addToAllActivityList = function(group) {
    this.addActivityToSummaryCountList(group, 'activity-list-all');
@@ -207,7 +207,7 @@ cr.define('apps_dev_tool', function() {
   };
   /**
    * Adds an activity to the DB summary counts list.
-   * @param {!watchdog.ActivityGroup} group Group to add to the list.
+   * @param {!apps_dev_tool.ActivityGroup} group Group to add to the list.
    * @param {string} listName Name of the list to add this to. Should be the
    *     name of an existing div that can contain activity count info.
    */
@@ -294,7 +294,7 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Makes the tab visible and hides all others.
-   * @param {watchdog.Watchdog.TabIds} tabId Name of the tab to show.
+   * @param {apps_dev_tool.Watchdog.TabIds} tabId Name of the tab to show.
    */
   BehaviorWindow.setVisibleTab = function(tabId) {
     if (this.instance_.currentTab_ == tabId) {
