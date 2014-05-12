@@ -390,7 +390,7 @@ cr.define('apps_dev_tool', function() {
     chrome.activityLogPrivate.onExtensionActivity.addListener(
         this.instance_.activityListener_);
     this.updateDevModeControls(true);
-};
+  };
 
   /**
    * Stops listening on the activity log.
