@@ -370,7 +370,7 @@
   },
   "activity_log_count": {
     "description": "The number of activity log types.",
-    "message": "597"
+    "message": "601"
   },
   "chrome_alarms_clear": {
     "message": "Cleared alarms"
@@ -2166,5 +2166,37 @@
   },
   "webrequest_response_cookie_modifications": {
     "message": "Modified web page cookies"
+  },
+  "eventTemplate": {
+    "message": "Notified of $event$",
+    "placeholders": {
+      "event": {
+        "content": "$1"
+      }
+    }
+  },
+  "filterActivitiesTxt": {
+    "description": "Text for displaying the activity filter options.",
+    "message": "Filter activity stream"
+  },
+  "genericModified": {
+    "description": "Used for setters and other things that change a website",
+    "message": "Modified a website"
+  },
+  "invokedTemplate": {
+    "message": "Invoked $api_call$",
+    "placeholders": {
+      "api_call": {
+        "content": "$1"
+      }
+    }
+  },
+  "modifiedTemplate": {
+    "message": "Modified $property$",
+    "placeholders": {
+      "property": {
+        "content": "$1"
+      }
+    }
   }
 }
