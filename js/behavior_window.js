@@ -37,7 +37,6 @@ cr.define('apps_dev_tool', function() {
     BehaviorWindow.clearSummaryViewActivities();
     BehaviorWindow.stop();
     BehaviorWindow.clearDeveloperModeViewActivities();
-    console.log( "You called me!" );
     AppsDevTool.showOverlay(null);
   };
 
@@ -64,7 +63,7 @@ cr.define('apps_dev_tool', function() {
     currentExtensionId_: '',
 
     /**
-     * Name of tab that is currently being displayed.this.stop
+     * Name of tab that is currently being displayed.
      * @private {!watchdog.BehaviorWindow.TabIds}
      */
     currentTab_: BehaviorWindow.TabIds.NOSELECTION_MODE,
@@ -100,7 +99,7 @@ cr.define('apps_dev_tool', function() {
       $('realtime-tab').addEventListener('click', function() {
           setVisibleTab(BehaviorWindow.TabIds.STREAM_MODE);
         }, false);
-    },
+    }
   };
 
   /**
@@ -332,7 +331,7 @@ cr.define('apps_dev_tool', function() {
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab-panel').className = '';
-      $('dev-mode-tab-content').style.display = 'none';     
+      $('dev-mode-tab-content').style.display = 'none';
       this.stop();
     }
     // Now set up the new tab.
