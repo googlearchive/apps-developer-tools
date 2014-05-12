@@ -178,12 +178,12 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.clearSummaryViewActivities = function() {
     // Clear the history tab
-    this.deleteActivityCountList('activity-list-notable');
-    this.deleteActivityCountList('activity-list-all');
+    this.clearActivityCountList('activity-list-notable');
+    this.clearActivityCountList('activity-list-all');
     $('empty-history').style.display = 'none';
 
     // Clear the realtime tab
-    this.deleteActivityCountList('activity-list-dev');
+    this.clearActivityCountList('activity-list-dev');
   };
 
   /**
@@ -216,7 +216,7 @@ cr.define('apps_dev_tool', function() {
    * @param {string} listName Name of the list to delete. Should be the name
    *     of an existing div that can contain activity count info.
    */
-  BehaviorWindow.deleteActivityCountList = function(listName) {
+  BehaviorWindow.clearActivityCountList = function(listName) {
     var parentNode = document.getElementById(listName);
     if (parentNode) {
       parent.innerHTML = '';
