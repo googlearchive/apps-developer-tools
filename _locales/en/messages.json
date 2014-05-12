@@ -366,7 +366,7 @@
   },
   "notableHistoryHeader": {
     "description": "Title for notable behavior section.",
-    "message": "Security and Privacy"
+    "message": "Privacy and security"
   },
   "activity_log_count": {
     "description": "The number of activity log types.",

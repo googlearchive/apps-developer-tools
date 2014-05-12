@@ -385,7 +385,7 @@ cr.define('apps_dev_tool', function() {
     setBehaviorLink_: function(item, el) {
       var behavior = el.querySelector('.behavior-link');
       var callback = apps_dev_tool.BehaviorWindow.showOverlay.bind(
-          apps_dev_tool.BehaviorWindow, item); // From behavor_overlay.js
+          apps_dev_tool.BehaviorWindow, item); // From behavor_window.js
       behavior.addEventListener('click', callback);
     },
 
