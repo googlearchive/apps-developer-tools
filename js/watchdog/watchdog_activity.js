@@ -1,7 +1,5 @@
 goog.provide('watchdog.Activity');
 
-goog.require('goog.array');
-
 /**
  * @constructor Constructor for watchdog.Activity class.
  * @param {!ExtensionActivity} activity Extension activity object.
@@ -421,20 +419,20 @@ watchdog.Activity.prototype.isNotable = function() {
     if (this.activity_.other.domVerb == 'setter') {
       return true;
     } else if (this.activity_.other.domVerb == 'method' &&
-               goog.array.contains(watchdog.Activity.NOTABLE_DOM_API_METHODS_,
-                                   this.activity_.apiCall)) {
+               watchdog.Activity.NOTABLE_DOM_API_METHODS_.indexOf(
+                   this.activity_.apiCall) >= 0) {
       return true;
     } else if (this.activity_.other.domVerb == 'method' &&
-               goog.array.contains(watchdog.Activity.DOM_API_METHODS_SETTERS_,
-                                   this.activity_.apiCall)) {
+               watchdog.Activity.DOM_API_METHODS_SETTERS_.indexOf(
+                   this.activity_.apiCall) >= 0) {
       return true;
     }
   }
 
   // Most instrusive Chrome apis.
   if (this.activity_.activityType.substring(0, 3) == 'api' &&
-      goog.array.contains(watchdog.Activity.NOTABLE_CHROME_API_METHODS_,
-                          this.activity_.apiCall)) {
+      watchdog.Activity.NOTABLE_CHROME_API_METHODS_.indexOf(
+          this.activity_.apiCall) >= 0) {
     return true;
   }
 
@@ -459,8 +457,7 @@ watchdog.Activity.prototype.isUnimportant = function() {
   var apiCall = this.activity_.apiCall.replace(/\/[0-9]+$/, '');
 
   if (this.activity_.activityType.substring(0, 3) == 'api' &&
-      goog.array.contains(watchdog.Activity.UNIMPORTANT_CHROME_API_METHODS_,
-                          apiCall)) {
+      watchdog.Activity.UNIMPORTANT_CHROME_API_METHODS_.indexOf(apiCall) >= 0) {
     return true;
   }
 

@@ -82,7 +82,7 @@ watchdog.ActivityGroupList.getFilteredExtensionActivities = function(
     filter, callback) {
   chrome.activityLogPrivate.getExtensionActivities(filter, function(result) {
     var activityList = new watchdog.ActivityGroupList();
-    goog.array.forEach(result.activities, function(activity) {
+    result.activities.forEach(function(activity) {
       activityList.add(activity);
     });
     callback(activityList);

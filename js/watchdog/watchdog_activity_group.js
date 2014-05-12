@@ -74,7 +74,7 @@ watchdog.ActivityGroup.prototype.add = function(activity) {
   // Content scripts don't have an api call but they do have the list of script
   // names in the args. Add those to the counts instead.
   if (activity.getActivityType() == 'content_script') {
-    goog.array.forEach(activity.getArgs(), function(arg) {
+    activity.getArgs().forEach(function(arg) {
       this.updateActivityCounts(arg, activity.getCount());
     }, this);
   }
