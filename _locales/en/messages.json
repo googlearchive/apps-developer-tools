@@ -339,8 +339,1864 @@
     "message": "Delete",
     "description": "Text for the button to delete the extension / app behavior history."
   },
+  "countHistoryMultiple": {
+    "description": "How often an API call is present in history (>1).",
+    "message": "$count$ times",
+    "placeholders": {
+      "count": {
+        "content": "$1"
+      }
+    }
+  },
+  "emptyHistory": {
+    "description": "No history to display.",
+    "message": "No recent history."
+  },
+  "countHistoryOne": {
+    "description": "How often an API call is present in history (1).",
+    "message": "once"
+  },
   "menuClearBehaviorItem": {
     "message": "Clear all extension/app history",
     "description": "Text for the clear all extension/app behavior history menu item."
+  },
+  "allRecentHistoryHeader": {
+    "description": "Title for all recent history section.",
+    "message": "All recent history"
+  },
+  "notableHistoryHeader": {
+    "description": "Title for notable behavior section.",
+    "message": "Privacy and security"
+  },
+  "activity_log_count": {
+    "description": "The number of activity log types.",
+    "message": "601"
+  },
+  "chrome_alarms_clear": {
+    "message": "Cleared alarms"
+  },
+  "chrome_alarms_clearAll": {
+    "message": "Cleared alarms"
+  },
+  "chrome_alarms_create": {
+    "message": "Created alarms"
+  },
+  "chrome_alarms_get": {
+    "message": "Accessed alarms"
+  },
+  "chrome_alarms_getAll": {
+    "message": "Accessed alarms"
+  },
+  "chrome_alarms_onAlarm": {
+    "message": "Started monitoring alarms"
+  },
+  "chrome_app_runtime_onLaunched": {
+    "message": "Started monitoring app launches"
+  },
+  "chrome_app_runtime_onRestarted": {
+    "message": "Started monitoring app restarts"
+  },
+  "chrome_app_window_create": {
+    "message": "Created window"
+  },
+  "chrome_app_window_current": {
+    "message": "Accessed current window"
+  },
+  "chrome_app_window_onBoundsChanged": {
+    "message": "Started monitoring changes to windows"
+  },
+  "chrome_app_window_onClosed": {
+    "message": "Started monitoring changes to windows"
+  },
+  "chrome_app_window_onFullscreened": {
+    "message": "Started monitoring changes to windows"
+  },
+  "chrome_app_window_onMaximized": {
+    "message": "Started monitoring changes to windows"
+  },
+  "chrome_app_window_onMinimized": {
+    "message": "Started monitoring changes to windows"
+  },
+  "chrome_app_window_onRestored": {
+    "message": "Started monitoring changes to windows"
+  },
+  "chrome_audio_getInfo": {
+    "message": "Accessed audio settings"
+  },
+  "chrome_audio_onDeviceChanged": {
+    "message": "Started monitoring audio device changes"
+  },
+  "chrome_audio_setActiveDevices": {
+    "message": "Modified audio settings"
+  },
+  "chrome_audio_setProperties": {
+    "message": "Modified audio settings"
+  },
+  "chrome_bluetooth_addProfile": {
+    "message": "Added Bluetooth profile"
+  },
+  "chrome_bluetooth_connect": {
+    "message": "Connected Bluetooth device"
+  },
+  "chrome_bluetooth_disconnect": {
+    "message": "Disconnected Bluetooth device"
+  },
+  "chrome_bluetooth_getAdapterState": {
+    "message": "Accessed Bluetooth device"
+  },
+  "chrome_bluetooth_getDevices": {
+    "message": "Accessed Bluetooth device"
+  },
+  "chrome_bluetooth_getLocalOutOfBandPairingData": {
+    "message": "Accessed Bluetooth information"
+  },
+  "chrome_bluetooth_getProfiles": {
+    "message": "Accessed Bluetooth device"
+  },
+  "chrome_bluetooth_getServices": {
+    "message": "Accessed Bluetooth device"
+  },
+  "chrome_bluetooth_onAdapterStateChanged": {
+    "message": "Started monitoring bluetooth adapter changes"
+  },
+  "chrome_bluetooth_onConnection": {
+    "message": "Started monitoring bluetooth connections"
+  },
+  "chrome_bluetooth_read": {
+    "message": "Read from a Bluetooth device"
+  },
+  "chrome_bluetooth_removeProfile": {
+    "message": "Removed Bluetooth profile"
+  },
+  "chrome_bluetooth_setOutOfBandPairingData": {
+    "message": "Modified Bluetooth information"
+  },
+  "chrome_bluetooth_startDiscovery": {
+    "message": "Started looking for nearby Bluetooth devices"
+  },
+  "chrome_bluetooth_stopDiscovery": {
+    "message": "Stopped looking for nearby Bluetooth devices"
+  },
+  "chrome_bluetooth_write": {
+    "message": "Wrote to Bluetooth device"
+  },
+  "chrome_bookmarks_create": {
+    "message": "Added a new browser bookmark"
+  },
+  "chrome_bookmarks_get": {
+    "message": "Examined your browser bookmarks"
+  },
+  "chrome_bookmarks_getChildren": {
+    "message": "Examined your browser bookmarks"
+  },
+  "chrome_bookmarks_getRecent": {
+    "message": "Examined your browser bookmarks"
+  },
+  "chrome_bookmarks_getSubTree": {
+    "message": "Examined your browser bookmarks"
+  },
+  "chrome_bookmarks_getTree": {
+    "message": "Examined your browser bookmarks"
+  },
+  "chrome_bookmarks_move": {
+    "message": "Moved your browser bookmarks"
+  },
+  "chrome_bookmarks_onChanged": {
+    "message": "Started monitoring changes to your bookmarks"
+  },
+  "chrome_bookmarks_onChildrenReordered": {
+    "message": "Started monitoring changes to your bookmarks"
+  },
+  "chrome_bookmarks_onCreated": {
+    "message": "Started monitoring changes to your bookmarks"
+  },
+  "chrome_bookmarks_onImportBegan": {
+    "message": "Started monitoring changes to your bookmarks"
+  },
+  "chrome_bookmarks_onImportEnded": {
+    "message": "Started monitoring changes to your bookmarks"
+  },
+  "chrome_bookmarks_onMoved": {
+    "message": "Started monitoring changes to your bookmarks"
+  },
+  "chrome_bookmarks_onRemoved": {
+    "message": "Started monitoring changes to your bookmarks"
+  },
+  "chrome_bookmarks_remove": {
+    "message": "Deleted browser bookmarks"
+  },
+  "chrome_bookmarks_removeTree": {
+    "message": "Removed browser bookmarks"
+  },
+  "chrome_bookmarks_search": {
+    "message": "Searched through your browser bookmarks"
+  },
+  "chrome_bookmarks_update": {
+    "message": "Updated or added browser bookmarks"
+  },
+  "chrome_browserAction_disable": {
+    "message": "Removed its icon from the browser toolbar"
+  },
+  "chrome_browserAction_enable": {
+    "message": "Added its icon to the browser toolbar"
+  },
+  "chrome_browserAction_getBadgeBackgroundColor": {
+    "message": "Checked the state of its icon in the browser toolbar"
+  },
+  "chrome_browserAction_getBadgeText": {
+    "message": "Checked the state of its icon in the browser toolbar"
+  },
+  "chrome_browserAction_getPopup": {
+    "message": "Checked the state of its icon in the browser toolbar"
+  },
+  "chrome_browserAction_getTitle": {
+    "message": "Checked the state of its icon in the browser toolbar"
+  },
+  "chrome_browserAction_onClicked": {
+    "message": "Started monitoring clicks of its icon in the browser toolbar"
+  },
+  "chrome_browserAction_setBadgeBackgroundColor": {
+    "message": "Updated its icon in the browser toolbar"
+  },
+  "chrome_browserAction_setBadgeText": {
+    "message": "Updated its icon in the browser toolbar"
+  },
+  "chrome_browserAction_setIcon": {
+    "message": "Updated its icon in the browser toolbar"
+  },
+  "chrome_browserAction_setPopup": {
+    "message": "Updated its icon in the browser toolbar"
+  },
+  "chrome_browserAction_setTitle": {
+    "message": "Updated its icon in the browser toolbar"
+  },
+  "chrome_browsingData_remove": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeAppcache": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeCache": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeCookies": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeDownloads": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeFileSystems": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeFormData": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeHistory": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeIndexedDB": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeLocalStorage": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removePasswords": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removePluginData": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_removeWebSQL": {
+    "message": "Deleted your browsing data"
+  },
+  "chrome_browsingData_settings": {
+    "message": "Read your browsing data settings"
+  },
+  "chrome_commands_getAll": {
+    "message": "Read your keyboard shortcuts"
+  },
+  "chrome_commands_onCommand": {
+    "message": "Started monitoring keyboard shortcut usage"
+  },
+  "chrome_contextMenus_create": {
+    "message": "Created a context menu"
+  },
+  "chrome_contextMenus_onClicked": {
+    "message": "Started monitoring clicks on context menus"
+  },
+  "chrome_contextMenus_remove": {
+    "message": "Deleted a context menu"
+  },
+  "chrome_contextMenus_removeAll": {
+    "message": "Deleted a context menu"
+  },
+  "chrome_contextMenus_update": {
+    "message": "Updated a context menu"
+  },
+  "chrome_cookies_get": {
+    "message": "Read your browser cookies"
+  },
+  "chrome_cookies_getAll": {
+    "message": "Read your browser cookies"
+  },
+  "chrome_cookies_getAllCookieStores": {
+    "message": "Read your browser cookies"
+  },
+  "chrome_cookies_onChanged": {
+    "message": "Started monitoring changes to your browser cookies"
+  },
+  "chrome_cookies_remove": {
+    "message": "Deleted your browser cookies"
+  },
+  "chrome_cookies_set": {
+    "message": "Changed your browser cookies"
+  },
+  "chrome_debugger_attach": {
+    "message": "Attached debugger"
+  },
+  "chrome_debugger_detach": {
+    "message": "Detached debugger"
+  },
+  "chrome_debugger_getTargets": {
+    "message": "Accessed debugger information"
+  },
+  "chrome_debugger_onDetach": {
+    "message": "Started monitoring when the debugger is detached"
+  },
+  "chrome_debugger_onEvent": {
+    "message": "Started monitoring debugger events"
+  },
+  "chrome_debugger_sendCommand": {
+    "message": "Sent command to debugger"
+  },
+  "chrome_declarativeContent_onPageChanged": {
+    "message": "Started monitoring changes to web page content"
+  },
+  "chrome_declarativeWebRequest_onMessage": {
+    "message": "Intercepted messages from another extension or app"
+  },
+  "chrome_declarativeWebRequest_onRequest": {
+    "message": "Intercepted a web page request"
+  },
+  "chrome_desktopCapture_cancelChooseDesktopMedia": {
+    "message": "Cancelled desktop capture"
+  },
+  "chrome_desktopCapture_chooseDesktopMedia": {
+    "message": "Showed desktop capture UI"
+  },
+  "chrome_devtools_inspectedWindow_eval": {
+    "message": "Ran JavaScript in a window"
+  },
+  "chrome_devtools_inspectedWindow_getResources": {
+    "message": "Accessed inspected window information"
+  },
+  "chrome_devtools_inspectedWindow_onResourceAdded": {
+    "message": "Started monitoring resources for inspected windows"
+  },
+  "chrome_devtools_inspectedWindow_onResourceContentCommitted": {
+    "message": "Started monitoring resources for inspected windows"
+  },
+  "chrome_devtools_inspectedWindow_reload": {
+    "message": "Reloaded inspected window"
+  },
+  "chrome_devtools_network_getHAR": {
+    "message": "Accessed your network"
+  },
+  "chrome_devtools_network_onNavigated": {
+    "message": "Started monitoring windows navigating new pages"
+  },
+  "chrome_devtools_network_onRequestFinished": {
+    "message": "Notified network requests were finished"
+  },
+  "chrome_devtools_panels_create": {
+    "message": "Created devtool panels"
+  },
+  "chrome_devtools_panels_setOpenResourceHandler": {
+    "message": "Modified devtool panels"
+  },
+  "chrome_downloads_acceptDanger": {
+    "message": "Downloaded a potentially dangerous file"
+  },
+  "chrome_downloads_cancel": {
+    "message": "Cancelled downloads"
+  },
+  "chrome_downloads_download": {
+    "message": "Downloaded a file"
+  },
+  "chrome_downloads_drag": {
+    "message": "Dragged downloads"
+  },
+  "chrome_downloads_erase": {
+    "message": "Erased a file from your download history"
+  },
+  "chrome_downloads_getFileIcon": {
+    "message": "Accessed one of your downloaded files"
+  },
+  "chrome_downloads_onChanged": {
+    "message": "Started monitoring changes to your downloads"
+  },
+  "chrome_downloads_onCreated": {
+    "message": "Started monitoring changes to your downloads"
+  },
+  "chrome_downloads_onDeterminingFilename": {
+    "message": "Started monitoring changes to your downloads"
+  },
+  "chrome_downloads_onErased": {
+    "message": "Started monitoring changes to your downloads"
+  },
+  "chrome_downloads_open": {
+    "message": "Opened a downloaded file"
+  },
+  "chrome_downloads_pause": {
+    "message": "Paused downloads"
+  },
+  "chrome_downloads_removeFile": {
+    "message": "Removed a downloaded file"
+  },
+  "chrome_downloads_resume": {
+    "message": "Resumed downloads"
+  },
+  "chrome_downloads_search": {
+    "message": "Searched your download history"
+  },
+  "chrome_downloads_setShelfEnabled": {
+    "message": "Modified your download settings"
+  },
+  "chrome_downloads_show": {
+    "message": "Displayed a downloaded file in the file browser"
+  },
+  "chrome_downloads_showDefaultFolder": {
+    "message": "Displayed the contents of the Downloads folder"
+  },
+  "chrome_experimental_devtools_audits_addCategory": {
+    "message": "Modified devtool audit information"
+  },
+  "chrome_experimental_devtools_console_addMessage": {
+    "message": "Modified devtool console information"
+  },
+  "chrome_experimental_devtools_console_getMessages": {
+    "message": "Accessed devtool console information"
+  },
+  "chrome_experimental_devtools_console_onMessageAdded": {
+    "message": "Started monitoring changes to devtool console information"
+  },
+  "chrome_experimental_discovery_clearAllSuggestions": {
+    "message": "Cleared all suggestions from recommended pane"
+  },
+  "chrome_experimental_discovery_removeSuggestion": {
+    "message": "Remove suggestions from recommended pane"
+  },
+  "chrome_experimental_discovery_suggest": {
+    "message": "Modified suggestions in recommended pane"
+  },
+  "chrome_experimental_history_getMostVisited": {
+    "message": "Read your browsing history"
+  },
+  "chrome_experimental_identity_getAuthToken": {
+    "message": "Read your authenication tokens"
+  },
+  "chrome_experimental_identity_launchWebAuthFlow": {
+    "message": "Launched authenication flow"
+  },
+  "chrome_extension_getBackgroundPage": {
+    "message": "Accessed its own extension details"
+  },
+  "chrome_extension_getURL": {
+    "message": "Accessed its own extension details"
+  },
+  "chrome_extension_getViews": {
+    "message": "Accessed its own extension details"
+  },
+  "chrome_extension_isAllowedFileSchemeAccess": {
+    "message": "Accessed its own extension details"
+  },
+  "chrome_extension_isAllowedIncognitoAccess": {
+    "message": "Accessed its own extension details"
+  },
+  "chrome_extension_setUpdateUrlData": {
+    "message": "Set a new URL for updating itself"
+  },
+  "chrome_fileBrowserHandler_onExecute": {
+    "message": "Started monitoring file browser actions"
+  },
+  "chrome_fileBrowserHandler_selectFile": {
+    "message": "Asked you to choose a file"
+  },
+  "chrome_fileSystem_chooseEntry": {
+    "message": "Asked you to choose a file"
+  },
+  "chrome_fileSystem_getDisplayPath": {
+    "message": "Formatted a file path name"
+  },
+  "chrome_fileSystem_getWritableEntry": {
+    "message": "Got information about a file on your computer"
+  },
+  "chrome_fileSystem_isRestorable": {
+    "message": "Got information about a file on your computer"
+  },
+  "chrome_fileSystem_isWritableEntry": {
+    "message": "Got information about a file on your computern"
+  },
+  "chrome_fileSystem_restoreEntry": {
+    "message": "Restored file system entry"
+  },
+  "chrome_fileSystem_retainEntry": {
+    "message": "Retained file system entry"
+  },
+  "chrome_fontSettings_clearDefaultFixedFontSize": {
+    "message": "Cleared your font settings"
+  },
+  "chrome_fontSettings_clearDefaultFontSize": {
+    "message": "Cleared your font settings"
+  },
+  "chrome_fontSettings_clearFont": {
+    "message": "Cleared your font settings"
+  },
+  "chrome_fontSettings_clearMinimumFontSize": {
+    "message": "Cleared your font settings"
+  },
+  "chrome_fontSettings_getDefaultFixedFontSize": {
+    "message": "Read your font settings"
+  },
+  "chrome_fontSettings_getDefaultFontSize": {
+    "message": "Read your font settings"
+  },
+  "chrome_fontSettings_getFont": {
+    "message": "Read your font settings"
+  },
+  "chrome_fontSettings_getFontList": {
+    "message": "Read your font settings"
+  },
+  "chrome_fontSettings_getMinimumFontSize": {
+    "message": "Read your font settings"
+  },
+  "chrome_fontSettings_onDefaultFixedFontSizeChanged": {
+    "message": "Started monitoring changes to font settings"
+  },
+  "chrome_fontSettings_onDefaultFontSizeChanged": {
+    "message": "Started monitoring changes to font settings"
+  },
+  "chrome_fontSettings_onFontChanged": {
+    "message": "Started monitoring changes to font settings"
+  },
+  "chrome_fontSettings_onMinimumFontSizeChanged": {
+    "message": "Started monitoring changes to font settings"
+  },
+  "chrome_fontSettings_setDefaultFixedFontSize": {
+    "message": "Changed your font settings"
+  },
+  "chrome_fontSettings_setDefaultFontSize": {
+    "message": "Changed your font settings"
+  },
+  "chrome_fontSettings_setFont": {
+    "message": "Changed your font settings"
+  },
+  "chrome_fontSettings_setMinimumFontSize": {
+    "message": "Changed your font settings"
+  },
+  "chrome_history_addUrl": {
+    "message": "Added URL to your browsing history"
+  },
+  "chrome_history_deleteAll": {
+    "message": "Deleted all your browsing history"
+  },
+  "chrome_history_deleteRange": {
+    "message": "Deleted your browsing history"
+  },
+  "chrome_history_deleteUrl": {
+    "message": "Deleted your browsing history"
+  },
+  "chrome_history_getVisits": {
+    "message": "Read your browsing history"
+  },
+  "chrome_history_onVisitRemoved": {
+    "message": "Started monitoring changes to your browsing history"
+  },
+  "chrome_history_onVisited": {
+    "message": "Started monitoring visits to specific web pages"
+  },
+  "chrome_history_search": {
+    "message": "Searched your browsing history"
+  },
+  "chrome_i18n_getAcceptLanguages": {
+    "message": "Used an internationalization support tool"
+  },
+  "chrome_i18n_getMessage": {
+    "message": "Used an internationalization support tool"
+  },
+  "chrome_identity_getAuthToken": {
+    "message": "Accessed your authenication tokens"
+  },
+  "chrome_identity_launchWebAuthFlow": {
+    "message": "Launched authenication flow"
+  },
+  "chrome_identity_onSignInChanged": {
+    "message": "Started monitoring changes to your sign in state"
+  },
+  "chrome_identity_removeCachedAuthToken": {
+    "message": "Removed your authenication token"
+  },
+  "chrome_idle_onStateChanged": {
+    "message": "Started monitoring changes to your computer being locked or idle"
+  },
+  "chrome_idle_queryState": {
+    "message": "Checked if your machine was locked or idle"
+  },
+  "chrome_idle_setDetectionInterval": {
+    "message": "Updated settings for checking if your machine is idle"
+  },
+  "chrome_infobars_show": {
+    "message": "chrome.infobars.show"
+  },
+  "chrome_input_ime_clearComposition": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_commitText": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_deleteSurroundingText": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_keyEventHandled": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_onActivate": {
+    "message": "Started monitoring when input editors become activated"
+  },
+  "chrome_input_ime_onBlur": {
+    "message": "Started monitoring changes to focus of input editors"
+  },
+  "chrome_input_ime_onCandidateClicked": {
+    "message": "Started monitoring input editors it owns"
+  },
+  "chrome_input_ime_onDeactivated": {
+    "message": "Started monitoring when input editors become deactivated"
+  },
+  "chrome_input_ime_onFocus": {
+    "message": "Started monitoring changes to focus of input editors"
+  },
+  "chrome_input_ime_onInputContextUpdate": {
+    "message": "Started monitoring changes to input contexts"
+  },
+  "chrome_input_ime_onKeyEvent": {
+    "message": "Started monitoring your keyboard presses"
+  },
+  "chrome_input_ime_onMenuItemActivated": {
+    "message": "Started monitoring your menu item selections"
+  },
+  "chrome_input_ime_onReset": {
+    "message": "Notified text entry to input editor has completed"
+  },
+  "chrome_input_ime_onSurroundingTextChanged": {
+    "message": "Started monitoring changes to text in input editors"
+  },
+  "chrome_input_ime_setCandidateWindowProperties": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_setCandidates": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_setComposition": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_setCursorPosition": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_setMenuItems": {
+    "message": "Modified input editor"
+  },
+  "chrome_input_ime_updateMenuItems": {
+    "message": "Modified input editor"
+  },
+  "chrome_location_clearWatch": {
+    "message": "Stopped monitoring the location of your computer"
+  },
+  "chrome_location_onLocationError": {
+    "message": "Started monitoring errors in detecting the physical location of your computer"
+  },
+  "chrome_location_onLocationUpdate": {
+    "message": "Started monitoring changes to the physical location of your computer"
+  },
+  "chrome_location_watchLocation": {
+    "message": "Started monitoring the physical location of your computer"
+  },
+  "chrome_management_get": {
+    "message": "Accessed list of installed extensions"
+  },
+  "chrome_management_getAll": {
+    "message": "Accessed list of installed extensions"
+  },
+  "chrome_management_getPermissionWarningsById": {
+    "message": "Accessed list of installed extensions"
+  },
+  "chrome_management_getPermissionWarningsByManifest": {
+    "message": "Accessed list of installed extensions"
+  },
+  "chrome_management_launchApp": {
+    "message": "Launched another Chrome app"
+  },
+  "chrome_management_onDisabled": {
+    "message": "Started monitoring changes to the enabled state of your extensions and apps"
+  },
+  "chrome_management_onEnabled": {
+    "message": "Started monitoring changes to the enabled state of your extensions and apps"
+  },
+  "chrome_management_onInstalled": {
+    "message": "Started monitoring changes to the install state of your extensions and apps"
+  },
+  "chrome_management_onUninstalled": {
+    "message": "Started monitoring changes to the install state of your extensions and apps"
+  },
+  "chrome_management_setEnabled": {
+    "message": "Enabled or disabled another Chrome extension or app"
+  },
+  "chrome_management_uninstall": {
+    "message": "Uninstalled another Chrome extension or app"
+  },
+  "chrome_management_uninstallSelf": {
+    "message": "Uninstalled itself"
+  },
+  "chrome_mediaGalleries_getMediaFileSystemMetadata": {
+    "message": "Accessed media galleries"
+  },
+  "chrome_mediaGalleries_getMediaFileSystems": {
+    "message": "Accessed media galleries"
+  },
+  "chrome_notifications_clear": {
+    "message": "Cleared notifications"
+  },
+  "chrome_notifications_create": {
+    "message": "Created a new notification"
+  },
+  "chrome_notifications_getAll": {
+    "message": "Got the list of notifications"
+  },
+  "chrome_notifications_getPermissionLevel": {
+    "message": "Checked if notifications were enabled"
+  },
+  "chrome_notifications_onButtonClicked": {
+    "message": "Started monitored your mouse clicks on notifications"
+  },
+  "chrome_notifications_onClicked": {
+    "message": "Started monitoring your mouse clicks on notifications"
+  },
+  "chrome_notifications_onClosed": {
+    "message": "Started monitoring notifications being closed"
+  },
+  "chrome_notifications_onPermissionLevelChanged": {
+    "message": "Started monitoring youe changes to notification settings"
+  },
+  "chrome_notifications_update": {
+    "message": "Updated notifications"
+  },
+  "chrome_omnibox_onInputCancelled": {
+    "message": "Started monitoring your input to the omnibox"
+  },
+  "chrome_omnibox_onInputChanged": {
+    "message": "Started monitoring your input to the omnibox"
+  },
+  "chrome_omnibox_onInputEntered": {
+    "message": "Started monitoring your input to the omnibox"
+  },
+  "chrome_omnibox_onInputStarted": {
+    "message": "Started monitoring your input to the omnibox"
+  },
+  "chrome_omnibox_setDefaultSuggestion": {
+    "message": "Added a default suggestion to the omnibox"
+  },
+  "chrome_pageAction_getPopup": {
+    "message": "Accessed its page action"
+  },
+  "chrome_pageAction_getTitle": {
+    "message": "Accessed its page action"
+  },
+  "chrome_pageAction_hide": {
+    "message": "Hid its page action"
+  },
+  "chrome_pageAction_onClicked": {
+    "message": "Started monitoring your clicks on page actions"
+  },
+  "chrome_pageAction_setIcon": {
+    "message": "Modified its page action"
+  },
+  "chrome_pageAction_setPopup": {
+    "message": "Modified its page action"
+  },
+  "chrome_pageAction_setTitle": {
+    "message": "Modified its page action"
+  },
+  "chrome_pageAction_show": {
+    "message": "Showed page actions"
+  },
+  "chrome_pageCapture_saveAsMHTML": {
+    "message": "Saved a web page as MHTML"
+  },
+  "chrome_permissions_contains": {
+    "message": "Accessed its permission list"
+  },
+  "chrome_permissions_getAll": {
+    "message": "Accessed its permission list"
+  },
+  "chrome_permissions_onAdded": {
+    "message": "Started monitoring changes to its permissions"
+  },
+  "chrome_permissions_onRemoved": {
+    "message": "Started monitoring changes to its permissions"
+  },
+  "chrome_permissions_remove": {
+    "message": "Removed permissions"
+  },
+  "chrome_permissions_request": {
+    "message": "Requested more permissions"
+  },
+  "chrome_power_releaseKeepAwake": {
+    "message": "Stopped keeping your computer awake"
+  },
+  "chrome_power_requestKeepAwake": {
+    "message": "Kept your computer awake"
+  },
+  "chrome_processes_getProcessIdForTab": {
+    "message": "Accessed information about a tab's running processes"
+  },
+  "chrome_processes_getProcessInfo": {
+    "message": "Accessed information about Chrome's running processes"
+  },
+  "chrome_processes_onCreated": {
+    "message": "Started monitoring changes to the state of Chrome's running processes"
+  },
+  "chrome_processes_onExited": {
+    "message": "Started monitoring changes to the state of Chrome's running processes"
+  },
+  "chrome_processes_onUnresponsive": {
+    "message": "Started monitoring changes to the state of Chrome's running processes"
+  },
+  "chrome_processes_onUpdated": {
+    "message": "Started monitoring changes to the state of Chrome's running processes"
+  },
+  "chrome_processes_onUpdatedWithMemory": {
+    "message": "Started monitoring changes to the state of Chrome's running processes"
+  },
+  "chrome_processes_terminate": {
+    "message": "Force-closed a Chrome process"
+  },
+  "chrome_proxy_onProxyError": {
+    "message": "Started monitoring proxy errors"
+  },
+  "chrome_pushMessaging_getChannelId": {
+    "message": "Accessed Google Cloud Messaging service"
+  },
+  "chrome_pushMessaging_onMessage": {
+    "message": "Started monitoring messages from Google Cloud Message service"
+  },
+  "chrome_runtime_connect": {
+    "message": "Sent a message"
+  },
+  "chrome_runtime_connectNative": {
+    "message": "Sent a message to another application on your computer"
+  },
+  "chrome_runtime_getBackgroundPage": {
+    "message": "Accessed its background pages"
+  },
+  "chrome_runtime_getManifest": {
+    "message": "Accessed its manifest information"
+  },
+  "chrome_runtime_getPackageDirectoryEntry": {
+    "message": "Accessed extension information"
+  },
+  "chrome_runtime_getPlatformInfo": {
+    "message": "Accessed information about your computer"
+  },
+  "chrome_runtime_getURL": {
+    "message": "Accessed extension information"
+  },
+  "chrome_runtime_onConnect": {
+    "message": "Notified of connections from other extensions or content scripts"
+  },
+  "chrome_runtime_onConnectExternal": {
+    "message": "Notified of connections from other extensions or content scripts"
+  },
+  "chrome_runtime_onInstalled": {
+    "message": "Notified of updates to itself or to Chrome"
+  },
+  "chrome_runtime_onMessage": {
+    "message": "Notified of messages from other extensions or content scripts"
+  },
+  "chrome_runtime_onMessageExternal": {
+    "message": "Notified of messages from other extensions or content scripts"
+  },
+  "chrome_runtime_onRestartRequired": {
+    "message": "Notified it must restart"
+  },
+  "chrome_runtime_onStartup": {
+    "message": "Notified you have started your browser and you have the extension installed"
+  },
+  "chrome_runtime_onSuspend": {
+    "message": "Notified it is being unloaded"
+  },
+  "chrome_runtime_onSuspendCanceled": {
+    "message": "Notified its unload was cancelled"
+  },
+  "chrome_runtime_onUpdateAvailable": {
+    "message": "Notified an updated version of itself is available"
+  },
+  "chrome_runtime_reload": {
+    "message": "Reloaded itself"
+  },
+  "chrome_runtime_requestUpdateCheck": {
+    "message": "Checked for updates"
+  },
+  "chrome_runtime_restart": {
+    "message": "Restarted your device"
+  },
+  "chrome_runtime_sendMessage": {
+    "message": "Sent a message"
+  },
+  "chrome_runtime_sendNativeMessage": {
+    "message": "Sent a message to another application on your computer"
+  },
+  "chrome_runtime_setUninstallUrl": {
+    "message": "Set a website that should be opened if the extension is uninstalled"
+  },
+  "chrome_scriptBadge_getAttention": {
+    "message": "Accessed its script badge"
+  },
+  "chrome_scriptBadge_getPopup": {
+    "message": "Accessed its script badge"
+  },
+  "chrome_scriptBadge_onClicked": {
+    "message": "Started monitoring for clicks on its script badge"
+  },
+  "chrome_scriptBadge_setPopup": {
+    "message": "Modified its script badge"
+  },
+  "chrome_serial_close": {
+    "message": "Closed serial port"
+  },
+  "chrome_serial_flush": {
+    "message": "Wrote to a device connected to your computer's serial port"
+  },
+  "chrome_serial_getControlSignals": {
+    "message": "Got information about your computer's serial ports"
+  },
+  "chrome_serial_getPorts": {
+    "message": "Got information about your computer's serial ports"
+  },
+  "chrome_serial_open": {
+    "message": "Connected to a device on a serial port"
+  },
+  "chrome_serial_read": {
+    "message": "Read from a device connected to your computer's serial port"
+  },
+  "chrome_serial_setControlSignals": {
+    "message": "Changed the settings of a serial port"
+  },
+  "chrome_serial_write": {
+    "message": "Wrote to a device connected to your computer's serial port"
+  },
+  "chrome_sessions_getDevices": {
+    "message": "Got the list of devices that you use to sync Chrome"
+  },
+  "chrome_sessions_getRecentlyClosed": {
+    "message": "Got information about a recently closed browsing session"
+  },
+  "chrome_sessions_restore": {
+    "message": "Restored a recent browsing session"
+  },
+  "chrome_signedInDevices_get": {
+    "message": "Got the list of devices that are signed in to Chrome with the same account"
+  },
+  "chrome_signedInDevices_onDeviceInfoChange": {
+    "message": "Notified of changes to the devices signed in to Chrome"
+  },
+  "chrome_socket_accept": {
+    "message": "Accepted an incoming network connection"
+  },
+  "chrome_socket_bind": {
+    "message": "Started a new connection to the network"
+  },
+  "chrome_socket_connect": {
+    "message": "Closed the extension's network connection"
+  },
+  "chrome_socket_create": {
+    "message": "Closed the extension's network connection"
+  },
+  "chrome_socket_destroy": {
+    "message": "Closed the extension's network connection"
+  },
+  "chrome_socket_disconnect": {
+    "message": "Disconnected network connections"
+  },
+  "chrome_socket_getInfo": {
+    "message": "Read the extension's network settings"
+  },
+  "chrome_socket_getJoinedGroups": {
+    "message": "Read the extension's network settings"
+  },
+  "chrome_socket_getNetworkList": {
+    "message": "Got information about the local network"
+  },
+  "chrome_socket_joinGroup": {
+    "message": "Changed the extension's network settings"
+  },
+  "chrome_socket_leaveGroup": {
+    "message": "Changed the extension's network settings"
+  },
+  "chrome_socket_listen": {
+    "message": "Started listening for data from a server"
+  },
+  "chrome_socket_read": {
+    "message": "Received data from a server"
+  },
+  "chrome_socket_recvFrom": {
+    "message": "Received data from a server"
+  },
+  "chrome_socket_sendTo": {
+    "message": "Sent data to a server"
+  },
+  "chrome_socket_setKeepAlive": {
+    "message": "Changed the extension's network settings"
+  },
+  "chrome_socket_setMulticastLoopbackMode": {
+    "message": "Changed the extension's network settings"
+  },
+  "chrome_socket_setMulticastTimeToLive": {
+    "message": "Changed the extension's network settings"
+  },
+  "chrome_socket_setNoDelay": {
+    "message": "Changed the extension's network settings"
+  },
+  "chrome_socket_write": {
+    "message": "Sent data to a server"
+  },
+  "chrome_storage_get": {
+    "message": "Retrieved data it has stored"
+  },
+  "chrome_storage_onChanged": {
+    "message": "Started monitoring changes to data in local storage"
+  },
+  "chrome_storage_set": {
+    "message": "Saved data to its local storage"
+  },
+  "chrome_syncFileSystem_getConflictResolutionPolicy": {
+    "message": "Accessed Google Drive information"
+  },
+  "chrome_syncFileSystem_getFileStatus": {
+    "message": "Accessed Google Drive information"
+  },
+  "chrome_syncFileSystem_getFileStatuses": {
+    "message": "Accessed Google Drive information"
+  },
+  "chrome_syncFileSystem_getServiceStatus": {
+    "message": "Accessed Google Drive information"
+  },
+  "chrome_syncFileSystem_getUsageAndQuota": {
+    "message": "Accessed Google Drive settings"
+  },
+  "chrome_syncFileSystem_onFileStatusChanged": {
+    "message": "Started monitoring updates to your files in Google Drive"
+  },
+  "chrome_syncFileSystem_onServiceStatusChanged": {
+    "message": "Started monitoring status of your connection to Google Drive"
+  },
+  "chrome_syncFileSystem_requestFileSystem": {
+    "message": "Accessed files in Google Drive"
+  },
+  "chrome_syncFileSystem_setConflictResolutionPolicy": {
+    "message": "Modified Google Drive settings"
+  },
+  "chrome_system_cpu_getInfo": {
+    "message": "Got hardware information (CPU)"
+  },
+  "chrome_system_display_getInfo": {
+    "message": "Read display settings"
+  },
+  "chrome_system_display_onDisplayChanged": {
+    "message": "Started monitoring changes to display settings"
+  },
+  "chrome_system_display_setDisplayProperties": {
+    "message": "Changed display settings"
+  },
+  "chrome_system_memory_getInfo": {
+    "message": "Got hardware information (memory)"
+  },
+  "chrome_system_storage_ejectDevice": {
+    "message": "Ejected your removable storage devices"
+  },
+  "chrome_system_storage_getAvailableCapacity": {
+    "message": "Got hardware information (storage capacity)"
+  },
+  "chrome_system_storage_getInfo": {
+    "message": "Got a list of your removable storage devices"
+  },
+  "chrome_system_storage_onAttached": {
+    "message": "Notified removable storage devices were attached to your computer"
+  },
+  "chrome_system_storage_onDetached": {
+    "message": "Notified removable storage devices were detached from your computer"
+  },
+  "chrome_tabCapture_capture": {
+    "message": "Took a screenshot of a tab"
+  },
+  "chrome_tabCapture_getCapturedTabs": {
+    "message": "Took a screenshot of a tab"
+  },
+  "chrome_tabCapture_onStatusChanged": {
+    "message": "Notified a screenshot of a tab began, completed or had an error"
+  },
+  "chrome_tabs_captureVisibleTab": {
+    "message": "Took a screenshot of a tab"
+  },
+  "chrome_tabs_connect": {
+    "message": "Connected tabs"
+  },
+  "chrome_tabs_create": {
+    "message": "Created tabs"
+  },
+  "chrome_tabs_detectLanguage": {
+    "message": "Detected language of tabs"
+  },
+  "chrome_tabs_duplicate": {
+    "message": "Duplicated tabs"
+  },
+  "chrome_tabs_executeScript": {
+    "message": "Executed a script"
+  },
+  "chrome_tabs_get": {
+    "message": "Got a list of open tab(s)"
+  },
+  "chrome_tabs_getCurrent": {
+    "message": "Viewed your current open tab"
+  },
+  "chrome_tabs_highlight": {
+    "message": "Highlighted a tab"
+  },
+  "chrome_tabs_insertCSS": {
+    "message": "Changed the way a website looks"
+  },
+  "chrome_tabs_move": {
+    "message": "Moved your open tab(s)"
+  },
+  "chrome_tabs_onActivated": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_onAttached": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_onCreated": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_onDetached": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_onHighlighted": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_onMoved": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_onRemoved": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_onReplaced": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_onUpdated": {
+    "message": "Started monitoring changes to your tabs"
+  },
+  "chrome_tabs_query": {
+    "message": "Searched through your open tab(s)"
+  },
+  "chrome_tabs_reload": {
+    "message": "Reloaded your tab(s)"
+  },
+  "chrome_tabs_remove": {
+    "message": "Closed your tab(s)"
+  },
+  "chrome_tabs_sendMessage": {
+    "message": "Sent a message"
+  },
+  "chrome_tabs_update": {
+    "message": "Updated tabs"
+  },
+  "chrome_topSites_get": {
+    "message": "Read your browsing history"
+  },
+  "chrome_ttsEngine_onPause": {
+    "message": "Started monitoring changes to text to speech engine"
+  },
+  "chrome_ttsEngine_onResume": {
+    "message": "Started monitoring changes to text to speech engine"
+  },
+  "chrome_ttsEngine_onSpeak": {
+    "message": "Started monitoring changes to text to speech engine"
+  },
+  "chrome_ttsEngine_onStop": {
+    "message": "Started monitoring changes to textHeader to speech engine"
+  },
+  "chrome_tts_getVoices": {
+    "message": "Accessed text to speech"
+  },
+  "chrome_tts_isSpeaking": {
+    "message": "Accessed text to speech"
+  },
+  "chrome_tts_pause": {
+    "message": "Paused text to speech"
+  },
+  "chrome_tts_resume": {
+    "message": "Resumed text to speech"
+  },
+  "chrome_tts_speak": {
+    "message": "Speak text to speech"
+  },
+  "chrome_tts_stop": {
+    "message": "Stopped text to speech"
+  },
+  "chrome_usb_bulkTransfer": {
+    "message": "Read or modified data on your USB device"
+  },
+  "chrome_usb_claimInterface": {
+    "message": "Connected to a USB device"
+  },
+  "chrome_usb_closeDevice": {
+    "message": "Close the connection to a USB device"
+  },
+  "chrome_usb_controlTransfer": {
+    "message": "Read or modified data on a USB device"
+  },
+  "chrome_usb_findDevices": {
+    "message": "Searched for connected USB devices"
+  },
+  "chrome_usb_getDevices": {
+    "message": "Asked for a list of your USB devices"
+  },
+  "chrome_usb_interruptTransfer": {
+    "message": "Interrupted a USB file transfer"
+  },
+  "chrome_usb_isochronousTransfer": {
+    "message": "Read or modified data on your USB devices"
+  },
+  "chrome_usb_listInterfaces": {
+    "message": "Listed your USB devices"
+  },
+  "chrome_usb_openDevice": {
+    "message": "Opened your USB devices"
+  },
+  "chrome_usb_releaseInterface": {
+    "message": "Stopped interacting with your USB devices"
+  },
+  "chrome_usb_requestAccess": {
+    "message": "Requested access to your USB devices"
+  },
+  "chrome_usb_resetDevice": {
+    "message": "Reset your USB devices"
+  },
+  "chrome_usb_setInterfaceAlternateSetting": {
+    "message": "Modified USB settings"
+  },
+  "chrome_webNavigation_getAllFrames": {
+    "message": "Read information about a website"
+  },
+  "chrome_webNavigation_getFrame": {
+    "message": "Read information about a website"
+  },
+  "chrome_webNavigation_onBeforeNavigate": {
+    "message": "Started monitoring navigation to web pages"
+  },
+  "chrome_webNavigation_onCommitted": {
+    "message": "Started monitoring navigation to web pages"
+  },
+  "chrome_webNavigation_onCompleted": {
+    "message": "Started monitoring navigation to web pages"
+  },
+  "chrome_webNavigation_onCreatedNavigationTarget": {
+    "message": "Started monitoring navigation to web pages"
+  },
+  "chrome_webNavigation_onDOMContentLoaded": {
+    "message": "Started monitoring navigation to web pages"
+  },
+  "chrome_webNavigation_onErrorOccurred": {
+    "message": "Started monitoring navigation to web pages"
+  },
+  "chrome_webNavigation_onHistoryStateUpdated": {
+    "message": "Started monitoring navigation to web pages"
+  },
+  "chrome_webNavigation_onReferenceFragmentUpdated": {
+    "message": "Started monitoring navigation to web pages"
+  },
+  "chrome_webNavigation_onTabReplaced": {
+    "message": "Started monitoring when contents of tabs are replaced"
+  },
+  "chrome_webRequest_handlerBehaviorChanged": {
+    "message": "Updated webrequest handler"
+  },
+  "chrome_webRequest_onAuthRequired": {
+    "message": "Intercepted authentication request"
+  },
+  "chrome_webRequest_onBeforeRedirect": {
+    "message": "Notified of web page redirect"
+  },
+  "chrome_webRequest_onBeforeRequest": {
+    "message": "Intercepted web page request"
+  },
+  "chrome_webRequest_onBeforeSendHeaders": {
+    "message": "Intercepted web page request"
+  },
+  "chrome_webRequest_onCompleted": {
+    "message": "Notified that web page was loaded"
+  },
+  "chrome_webRequest_onErrorOccurred": {
+    "message": "Notified of web page retrieval error"
+  },
+  "chrome_webRequest_onHeadersReceived": {
+    "message": "Intercepted web page response"
+  },
+  "chrome_webRequest_onResponseStarted": {
+    "message": "Notified of web page response"
+  },
+  "chrome_webRequest_onSendHeaders": {
+    "message": "Notified of web page request"
+  },
+  "chrome_windows_create": {
+    "message": "Created a new browser window"
+  },
+  "chrome_windows_get": {
+    "message": "Examined an open browser window"
+  },
+  "chrome_windows_getAll": {
+    "message": "Asked for the list of open browser windows"
+  },
+  "chrome_windows_getCurrent": {
+    "message": "Examined an open browser window"
+  },
+  "chrome_windows_getLastFocused": {
+    "message": "Examined an open browser window"
+  },
+  "chrome_windows_onCreated": {
+    "message": "Started monitoring when new windows are created"
+  },
+  "chrome_windows_onFocusChanged": {
+    "message": "Started monitoring changes to which window has the focus"
+  },
+  "chrome_windows_onRemoved": {
+    "message": "Started monitoring when windows are removed"
+  },
+  "chrome_windows_remove": {
+    "message": "Closed a browser window"
+  },
+  "chrome_windows_update": {
+    "message": "Navigated or resized a browser window"
+  },
+  "dom_Document_createElement": {
+    "message": "Added a new element to a website"
+  },
+  "dom_Document_createElementNS": {
+    "message": "Added a new element to a website"
+  },
+  "dom_Document_importNode": {
+    "message": "Modified a website"
+  },
+  "dom_Document_location": {
+    "message": "Navigated a tab to a new URL"
+  },
+  "dom_Document_onclick": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_Document_ondblclick": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_Document_ondrag": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_ondragend": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_ondragenter": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_ondragexit": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_ondragleave": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_ondragover": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_ondragstart": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_ondrop": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_oninput": {
+    "message": "Started monitoring your interaction with a web form"
+  },
+  "dom_Document_onkeydown": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_Document_onkeypress": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_Document_onkeyup": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_Document_onmousedown": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_Document_onmouseenter": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_onmouseleave": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_onmousemove": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_onmouseout": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_onmouseover": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_onmouseup": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_Document_onmousewheel": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Document_onwheel": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Element_innerHTML": {
+    "message": "Modified a website"
+  },
+  "dom_Element_onwheel": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Element_webkitRequestFullScreen": {
+    "message": "Went fullscreen"
+  },
+  "dom_Element_webkitRequestFullscreen": {
+    "message": "Went fullscreen"
+  },
+  "dom_Geolocation_getCurrentPosition": {
+    "message": "Read your current physical location"
+  },
+  "dom_Geolocation_watchPosition": {
+    "message": "Started monitoring your physical location"
+  },
+  "dom_HTMLButtonElement_formAction": {
+    "message": "Accessed page elements"
+  },
+  "dom_HTMLCanvasElement_getContext": {
+    "message": "Accessed page elements"
+  },
+  "dom_HTMLDocument_write": {
+    "message": "Modified a website"
+  },
+  "dom_HTMLDocument_writeln": {
+    "message": "Modified a website"
+  },
+  "dom_HTMLElement_innerHTML": {
+    "message": "Modified a website"
+  },
+  "dom_HTMLElement_onclick": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_HTMLElement_ondblclick": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_HTMLElement_ondrag": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_ondragend": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_ondragenter": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_ondragexit": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_ondragleave": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_ondragover": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_ondragstart": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_ondrop": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_oninput": {
+    "message": "Started monitoring your interaction with a web form"
+  },
+  "dom_HTMLElement_onkeydown": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_HTMLElement_onkeypress": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_HTMLElement_onkeyup": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_HTMLElement_onmousedown": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_HTMLElement_onmouseenter": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_onmouseleave": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_onmousemove": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_onmouseout": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_onmouseover": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_onmouseup": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_HTMLElement_onmousewheel": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLElement_onwheel": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_HTMLEmbedElement_src": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLFormElement_action": {
+    "message": "Accessed information about how form details would be processed"
+  },
+  "dom_HTMLFormElement_submit": {
+    "message": "Send form information to a server"
+  },
+  "dom_HTMLFrameElement_src": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLHtmlElement_manifest": {
+    "message": "Accessed HTML element"
+  },
+  "dom_HTMLIFrameElement_src": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLImageElement_longDesc": {
+    "message": "Accessed description for an image"
+  },
+  "dom_HTMLImageElement_lowsrc": {
+    "message": "Read the 'src' property of an image"
+  },
+  "dom_HTMLImageElement_src": {
+    "message": "Read the 'src' property of an image"
+  },
+  "dom_HTMLInputElement_formAction": {
+    "message": "Accessed information about how form details would be processed"
+  },
+  "dom_HTMLInputElement_src": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLLinkElement_href": {
+    "message": "Accessed the target web page for a link on the page"
+  },
+  "dom_HTMLMediaElement_currentSrc": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLMediaElement_src": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLModElement_cite": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLObjectElement_data": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLQuoteElement_cite": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLScriptElement_src": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLSourceElement_src": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLTrackElement_src": {
+    "message": "Read the 'src' property of an element on the web page"
+  },
+  "dom_HTMLVideoElement_poster": {
+    "message": "Accessed information about an image on the page"
+  },
+  "dom_HTMLVideoElement_webkitEnterFullScreen": {
+    "message": "Went fullscreen to play a video"
+  },
+  "dom_HTMLVideoElement_webkitEnterFullscreen": {
+    "message": "Went fullscreen to play a video"
+  },
+  "dom_Location_assign": {
+    "message": "Navigated a tab to a new URL"
+  },
+  "dom_Location_replace": {
+    "message": "Navigated a tab to a new URL"
+  },
+  "dom_Node_appendChild": {
+    "message": "Modified a website"
+  },
+  "dom_Node_insertBefore": {
+    "message": "Modified a website"
+  },
+  "dom_Node_replaceChild": {
+    "message": "Modified a website"
+  },
+  "dom_NotificationCenter_createNotification": {
+    "message": "Made a new notification"
+  },
+  "dom_SVGElement_onclick": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_SVGElement_ondblclick": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_SVGElement_ondrag": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_ondragend": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_ondragenter": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_ondragexit": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_ondragleave": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_ondragover": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_ondragstart": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_ondrop": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_oninput": {
+    "message": "Started monitoring your interaction with a web form"
+  },
+  "dom_SVGElement_onkeydown": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_SVGElement_onkeypress": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_SVGElement_onkeyup": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_SVGElement_onmousedown": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_SVGElement_onmouseenter": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_onmouseleave": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_onmousemove": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_onmouseout": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_onmouseover": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_onmouseup": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_SVGElement_onmousewheel": {
+    "message": "Started monitoring your mouse wheel movements"
+  },
+  "dom_ShadowRoot_innerHTML": {
+    "message": "Modified a website"
+  },
+  "dom_Storage_clear": {
+    "message": "Cleared a website's local storage"
+  },
+  "dom_Storage_getItem": {
+    "message": "Read a website's local storage"
+  },
+  "dom_Storage_removeItem": {
+    "message": "Removed an entry from a website's local storage"
+  },
+  "dom_Storage_setItem": {
+    "message": "Added an entry to a website's local storage"
+  },
+  "dom_WindowNotifications_webkitNotifications": {
+    "message": "Checked to see if your browser supports notifications"
+  },
+  "dom_WindowWebDatabase_openDatabase": {
+    "message": "Opened a website's SQL database"
+  },
+  "dom_Window_applicationCache": {
+    "message": "Accessed application cache"
+  },
+  "dom_Window_localStorage": {
+    "message": "Read a website's local storage"
+  },  "emptyHistory": {
+    "description": "No history to display for an extension.",
+    "message": "No recent history."
+  },
+
+  "dom_Window_location": {
+    "message": "Navigated a tab to a new URL"
+  },
+  "dom_Window_navigator": {
+    "message": "Read information about a browser window"
+  },
+  "dom_Window_onclick": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondblclick": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondrag": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondragend": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondragenter": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondragexit": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondragleave": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondragover": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondragstart": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_ondrop": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_oninput": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_Window_onkeydown": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_Window_onkeypress": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_Window_onkeyup": {
+    "message": "Started monitoring what you type"
+  },
+  "dom_Window_onmousedown": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_Window_onmouseenter": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_Window_onmouseleave": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_onmousemove": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_onmouseout": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_onmouseover": {
+    "message": "Started monitoring your mouse movements"
+  },
+  "dom_Window_onmouseup": {
+    "message": "Started monitoring your mouse clicks"
+  },
+  "dom_Window_onmousewheel": {
+    "message": "Started monitoring your mouse wheel movements"
+  },
+  "dom_Window_onwheel": {
+    "message": "Started monitoring your mouse wheel movements"
+  },
+  "dom_Window_sessionStorage": {
+    "message": "Read from the website's storage"
+  },
+  "dom_XMLHttpRequest_open": {
+    "message": "Sent a message to a web server"
+  },
+  "dom_XMLHttpRequest_setRequestHeader": {
+    "message": "Sent a message to a web server"
+  },
+  "contentScript": {
+    "message": "Loaded content script"
+  },
+  "webrequest_added_request_headers": {
+    "message": "Changed a request for a web page"
+  },
+  "webrequest_auth_credentials": {
+    "message": "Added a username/password to a request for a web page"
+  },
+  "webrequest_cancel": {
+    "message": "Stopped a web page from loading"
+  },
+  "webrequest_deleted_request_headers": {
+    "message": "Changed a request for a web page"
+  },
+  "webrequest_deleted_response_headers": {
+    "message": "Modified web page details before it was displayed"
+  },
+  "webrequest_modified_request_headers": {
+    "message": "Changed a request for a web page"
+  },
+  "webrequest_new_url": {
+    "message": "Redirected a request to a new web page"
+  },
+  "webrequest_none": {
+    "message": "Inspected a web page request"
+  },
+  "webrequest_response_cookie_modifications": {
+    "message": "Modified web page cookies"
+  },
+  "eventTemplate": {
+    "message": "Notified of $event$",
+    "placeholders": {
+      "event": {
+        "content": "$1"
+      }
+    }
+  },
+  "filterActivitiesTxt": {
+    "description": "Text for displaying the activity filter options.",
+    "message": "Filter activity stream"
+  },
+  "genericModified": {
+    "description": "Used for setters and other things that change a website",
+    "message": "Modified a website"
+  },
+  "invokedTemplate": {
+    "message": "Invoked $api_call$",
+    "placeholders": {
+      "api_call": {
+        "content": "$1"
+      }
+    }
+  },
+  "modifiedTemplate": {
+    "message": "Modified $property$",
+    "placeholders": {
+      "property": {
+        "content": "$1"
+      }
+    }
   }
 }

@@ -1,7 +1,6 @@
 <!DOCTYPE html>
 <html>
 <!--
-
 Copyright (c) 2013 The Chromium Authors. All rights reserved.
 Use of this source code is governed by a BSD-style license that can be
 found in the LICENSE file.
@@ -52,6 +51,8 @@ found in the LICENSE file.
     <script src="js/behavior_window.js"></script>
     <script src="js/delete_behavior_overlay.js"></script>
     <script src="js/watchdog/watchdog_activity.js"></script>
+    <script src="js/watchdog/watchdog_activity_group.js"></script>
+    <script src="js/watchdog/watchdog_activity_group_list.js"></script>
     <script src="js/main.js"></script>
   </head>
   <body>
@@ -162,12 +163,49 @@ found in the LICENSE file.
               <div class="behavior-extension-icon" id="behavior-extension-icon"></div>
               <div class="behavior-extension-title" id="behavior-extension-title"></div>
             </div>
-            <tabpanels id="tab-panels">
+            <tabpanels id="behavior-tab-panels">
               <!-- History Tab -->
               <tabpanel id="history-tab">
+                <!-- Notable behavior -->
+                <!-- TODO(spostman): replace all maia css styles. -->
+                <div class="maia-cols hidden" id="summary-mode-tab-notable">
+                  <div class="maia-col-2 left-col">
+                    <h2 id="notable-behavior"></h2>
+                  </div>
+                  <div class="maia-col-8">
+                    <div class="activity-list-wrapper">
+                      <div id="activity-list-notable" class="item-list-count"></div>
+                    </div>
+                  </div>
+                </div>
+                <!-- All behavior tab -->
+                <div class="maia-cols hidden" id="summary-mode-tab-all">
+                  <div class="maia-col-2 left-col">
+                    <h2 id="all-behavior"></h2>
+                  </div>
+                  <div class="maia-col-8">
+                    <div class="activity-list-wrapper">
+                      <div id="activity-list-all" class="item-list-count"></div>
+                      <div id="empty-history"></div>
+                    </div>
+                 </div>
+               </div>
               </tabpanel>
               <!-- Realtime Tab -->
               <tabpanel id="realtime-tab">
+                <div class="maia-cols hidden" id="dev-mode-tab-content">
+                  <div class="maia-col-2 left-col">
+                    <h2 id="developer-activity-header"></h2>
+                    <div class="controls">
+                      <!-- TODO(spostman): add pause/start buttons. -->
+                    </div>
+                 </div>
+                 <div class="maia-col-8">
+                   <div class="activity-list-wrapper">
+                     <div id="activity-list-dev" class="activity-list-dev"></div>
+                   </div>
+                </div>
+              </div>
               </tabpanel>
             </tabpanels>
           </tabbox>
@@ -275,6 +313,48 @@ found in the LICENSE file.
     </div>
   </div>
   <div id="template-collection" hidden>
+    <div class="activity-list-dev" data-name="activity-list-dev">
+      <div id="time-dev" class="activity-time"></div>
+      <div id="activity-toggle-dev">
+          <img src="images/arrow_more.png" id="item-arrow" alt="toggle">
+      </div>
+      <div class="activity-dev">
+        <div id="action-dev"></div>
+        <div class="activity-pageURL">
+          <a id="pageURL-dev" target="_blank"></a>
+        </div>
+        <div id="detail" class="item-detail">
+          <ol id="args-dev" class="args-list"></ol>
+          <ul id="webrequest-details"></ul>
+        </div>
+      </div>
+    </div>
+    <div data-name="activity-list-count" class="item-list-count">
+      <div id="item-toggle">
+        <img src="images/arrow_more.png" id="item-arrow" alt="toggle">
+      </div>
+      <div id="action" class="activity-action"></div>
+      <div class="activity-count">
+        &nbsp;<span id="count"></span>
+      </div>
+      <div class="activity-pageURL-indented">
+        <a id="pageURL-dev" target="_blank"></a>
+      </div>
+      <div id="detail" class="item-detail">
+        <ul id="detail-list"></ul>
+      </div>
+    </div>
+
+    <div data-name="report-list-item" class="item-list-count">
+      <div id="item-toggle">
+        <img src="images/arrow_more.png" id="item-arrow" alt="toggle">
+      </div>
+      <div id="header"></div>
+      <div id="detail" class="item-detail">
+        <ul id="detail-list"></ul>
+      </div>
+    </div>
+
     <div class="extension-list-item-wrapper">
       <div class="extension-list-item">
         <div class="extension-details">
