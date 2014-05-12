@@ -36,6 +36,8 @@ cr.define('apps_dev_tool', function() {
   var hideOverlay = function() {
     BehaviorWindow.clearSummaryViewActivities();
     BehaviorWindow.stop();
+    BehaviorWindow.clearDeveloperModeViewActivities();
+    console.log( "You called me!" );
     AppsDevTool.showOverlay(null);
   };
 
@@ -87,6 +89,10 @@ cr.define('apps_dev_tool', function() {
 
       $('close-behavior-overlay').addEventListener(
           'click', hideOverlay.bind(this));
+
+      // TODO(spostman): Register cancelOverlay event handler for ESC keydown
+      // event.
+
       var setVisibleTab = BehaviorWindow.setVisibleTab.bind(BehaviorWindow);
       $('history-tab').addEventListener('click', function() {
           setVisibleTab(BehaviorWindow.TabIds.HISTORY_MODE);
@@ -167,15 +173,19 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Cleans the details from the summary mode view.
+   * Cleans the history tab.
    */
   BehaviorWindow.clearSummaryViewActivities = function() {
     // Clear the history tab
     this.clearActivityCountList('activity-list-notable');
     this.clearActivityCountList('activity-list-all');
     $('empty-history').style.display = 'none';
+  };
 
-    // Clear the realtime tab
+  /**
+   * Clear the realtime tab
+   */
+  BehaviorWindow.clearDeveloperModeViewActivities = function() {
     this.clearActivityCountList('activity-list-dev');
   };
 
@@ -294,13 +304,13 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.refreshVisibleTab = function() {
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
-      $('history-tab').className = 'current-tab';
+      $('history-tab-panel').className = 'current-tab';
       $('summary-mode-tab-all').style.display = 'block';
+      $('realtime-tab-panel').className = '';
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
-      $('realtime-tab').className = 'current-tab';
+      $('realtime-tab-panel').className = 'current-tab';
       $('dev-mode-tab-content').style.display = 'block';
-      // TODO(spostman): Implement start.
       this.start();
     }
     this.refreshActivityList();
@@ -316,14 +326,13 @@ cr.define('apps_dev_tool', function() {
     }
     // Clean up the state from the last tab.
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
-      $('history-tab').className = '';
+      $('history-tab-panel').className = '';
       $('summary-mode-tab-notable').style.display = 'none';
       $('summary-mode-tab-all').style.display = 'none';
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
-      $('realtime-tab').className = '';
-      $('dev-mode-tab-content').style.display = 'none';
-      // TODO(spostman): Implement stop.
+      $('realtime-tab-panel').className = '';
+      $('dev-mode-tab-content').style.display = 'none';     
       this.stop();
     }
     // Now set up the new tab.
@@ -357,7 +366,7 @@ cr.define('apps_dev_tool', function() {
       return;
     }
 
-    var activityListener = this.onExtensionActivity.bind(this);
+    var activityListener = this.onExtensionActivity.bind(BehaviorWindow);
     chrome.activityLogPrivate.onExtensionActivity.addListener(
       activityListener);
     this.updateDevModeControls(true);
@@ -367,7 +376,7 @@ cr.define('apps_dev_tool', function() {
    * Stops listening on the activity log.
    */
   BehaviorWindow.stop = function() {
-    var activityListener = this.onExtensionActivity.bind(this);
+    var activityListener = this.onExtensionActivity.bind(BehaviorWindow);
     chrome.activityLogPrivate.onExtensionActivity.removeListener(
         activityListener);
     this.updateDevModeControls(false);
@@ -379,18 +388,19 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.updateDevModeControls = function(running) {
     if (running) {
-//      $('start').style.display = 'none';
-//      $('stop').style.display = 'block';
+      // TODO(spostman): implement stop and clear buttons.
+      // $('start').style.display = 'none';
+      // $('stop').style.display = 'block';
     } else {
-//      $('start').style.display = 'block';
-//      $('stop').style.display = 'none';
+      // $('start').style.display = 'block';
+      // $('stop').style.display = 'none';
     }
   };
 
   /**
    * Listens on the activity log api and adds activities.
-   * @param {!ExtensionActivity} activity An activity from the activityLogPrivate
-   *     api.
+   * @param {!ExtensionActivity} activity An activity from the
+   *     activityLogPrivate api.
    */
   BehaviorWindow.onExtensionActivity = function(activity) {
     if (activity.extensionId == this.instance_.currentExtensionId_) {
@@ -413,15 +423,16 @@ cr.define('apps_dev_tool', function() {
 
     document.getElementById('activity-list-dev').appendChild(el);
     el.querySelector('#time-dev').innerText = activity.getTime();
-    el.querySelector('#action-dev').innerText = activity.getDevModeActionString();
+    el.querySelector('#action-dev').innerText =
+        activity.getDevModeActionString();
 
     // Set the page URL and make it link to the URL.
     var pageLink = el.querySelector('#pageURL-dev');
     var pageUrl = activity.getPageUrl();
     pageLink.href = pageUrl;
 
-    if (pageUrl.length > watchdog.Watchdog.MAX_LINE_LENGTH_) {
-      pageUrl = pageUrl.substring(0, watchdog.Watchdog.MAX_LINE_LENGTH_) + '...';
+    if (pageUrl.length > this.instance_.MAX_LINE_LENGTH_) {
+      pageUrl = pageUrl.substring(0, this.instance_.MAX_LINE_LENGTH_) + '...';
     }
     pageLink.innerText = pageUrl;
 
@@ -455,16 +466,17 @@ cr.define('apps_dev_tool', function() {
       el.querySelector('#detail').style.display = 'none';
       el.querySelector('#activity-toggle-dev').addEventListener(
           'click', function() {
-            watchdog.Watchdog.toggleDetailVisibility(el);
+            BehaviorWindow.toggleDetailVisibility(el);
           }, false);
       el.querySelector('#action-dev').addEventListener(
           'click', function() {
-            watchdog.Watchdog.toggleDetailVisibility(el);
+            BehaviorWindow.toggleDetailVisibility(el);
           }, false);
     } else {
       el.querySelector('#item-arrow').style.visibility = 'hidden';
     }
   };
+
   // Export
   return {
     BehaviorWindow: BehaviorWindow
