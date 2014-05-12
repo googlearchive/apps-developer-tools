@@ -35,6 +35,7 @@ cr.define('apps_dev_tool', function() {
    */
   var hideOverlay = function() {
     BehaviorWindow.clearSummaryViewActivities();
+    BehaviorWindow.stop();
     AppsDevTool.showOverlay(null);
   };
 
@@ -61,7 +62,7 @@ cr.define('apps_dev_tool', function() {
     currentExtensionId_: '',
 
     /**
-     * Name of tab that is currently being displayed.
+     * Name of tab that is currently being displayed.this.stop
      * @private {!watchdog.BehaviorWindow.TabIds}
      */
     currentTab_: BehaviorWindow.TabIds.NOSELECTION_MODE,
@@ -98,9 +99,16 @@ cr.define('apps_dev_tool', function() {
 
       // TODO(spostman): Initialize more text and search elements.
 
-      // Registster event listeners.
-      $('close-behavior-overlay').addEventListener(
-          'click', hideOverlay.bind(this));
+      // Register event listeners.
+      $('close-behavior-overlay').addEventListener('click', hideOverlay.bind(this));
+
+      var setVisibleTab = BehaviorWindow.setVisibleTab.bind(BehaviorWindow);
+      $('history-tab-menu').addEventListener('click', function() {
+          setVisibleTab(BehaviorWindow.TabIds.HISTORY_MODE);
+        }, false);
+      $('realtime-tab-menu').addEventListener('click', function() {
+          setVisibleTab(BehaviorWindow.TabIds.STREAM_MODE);
+        }, false);
     }
   };
 
@@ -219,6 +227,9 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.clearActivityCountList = function(listName) {
     var parentNode = document.getElementById(listName);
     if (parentNode) {
+      while (parentNode.firstChild) {
+        parentNode.removeChild(parentNode.firstChild);
+      }
       parent.innerHTML = '';
     }
   };
@@ -304,7 +315,7 @@ cr.define('apps_dev_tool', function() {
       $('realtime-tab').className = 'current-tab';
       $('dev-mode-tab-content').style.display = 'block';
       // TODO(spostman): Implement start.
-      // this.start();
+      this.start();
     }
     this.refreshActivityList();
   };
@@ -327,7 +338,7 @@ cr.define('apps_dev_tool', function() {
       $('realtime-tab').className = '';
       $('dev-mode-tab-content').style.display = 'none';
       // TODO(spostman): Implement stop.
-      // this.stop();
+      this.stop();
     }
     // Now set up the new tab.
     this.instance_.currentTab_ = tabId;
@@ -351,6 +362,123 @@ cr.define('apps_dev_tool', function() {
           'countHistoryMultiple', [count]) + ')';
   };
 
+  /**
+   * Starts the reamtime mode listening for activity.
+   */
+  BehaviorWindow.start = function() {
+    // Don't bother adding a listener if there is no extension selected.
+    if (!this.instance_.currentExtensionId_) {
+      return;
+    }
+
+    var activityListener = this.onExtensionActivity.bind(this);
+    chrome.activityLogPrivate.onExtensionActivity.addListener(
+      activityListener);
+    this.updateDevModeControls(true);
+};
+
+  /**
+   * Stops listening on the activity log.
+   */
+  BehaviorWindow.stop = function() {
+    var activityListener = this.onExtensionActivity.bind(this);
+    chrome.activityLogPrivate.onExtensionActivity.removeListener(
+        activityListener);
+    this.updateDevModeControls(false);
+  };
+
+  /**
+   * Updates which buttons are visible in developer mode.
+   * @param {boolean} running True if it is listening for activity.
+   */
+  BehaviorWindow.updateDevModeControls = function(running) {
+    if (running) {
+//      $('start').style.display = 'none';
+//      $('stop').style.display = 'block';
+    } else {
+//      $('start').style.display = 'block';
+//      $('stop').style.display = 'none';
+    }
+  };
+
+  /**
+   * Listens on the activity log api and adds activities.
+   * @param {!ExtensionActivity} activity An activity from the activityLogPrivate
+   *     api.
+   */
+  BehaviorWindow.onExtensionActivity = function(activity) {
+    if (activity.extensionId == this.instance_.currentExtensionId_) {
+      var act = new watchdog.Activity(activity);
+      if (act.passesFilter(this.instance_.activityFilter_)) {
+        this.addToDevActivityList(act);
+      }
+    }
+  };
+
+  /**
+   * Adds an activity to the developer mode activity list.
+   * @param {!watchdog.Activity} activity Activity to add to the list.
+   */
+  BehaviorWindow.addToDevActivityList = function(activity) {
+    var activitiesTemplate = document.querySelector(
+        '#templates > [data-name="activity-list-dev"]');
+    var el = activitiesTemplate.cloneNode(true);
+    el.setAttribute('data-id', activity.getExtensionId() + '-dev');
+
+    document.getElementById('activity-list-dev').appendChild(el);
+    el.querySelector('#time-dev').innerText = activity.getTime();
+    el.querySelector('#action-dev').innerText = activity.getDevModeActionString();
+
+    // Set the page URL and make it link to the URL.
+    var pageLink = el.querySelector('#pageURL-dev');
+    var pageUrl = activity.getPageUrl();
+    pageLink.href = pageUrl;
+
+    if (pageUrl.length > watchdog.Watchdog.MAX_LINE_LENGTH_) {
+      pageUrl = pageUrl.substring(0, watchdog.Watchdog.MAX_LINE_LENGTH_) + '...';
+    }
+    pageLink.innerText = pageUrl;
+
+    // Add the list of arguments. If there are arguments default them to hidden
+    // and add the listener on the arrow so they can be expanded.
+    var showToggle = false;
+    var argsList = el.querySelector('#args-dev');
+    var args = activity.getArgs();
+    args.forEach(function(arg) {
+      var listItem = document.createElement('li');
+      listItem.appendChild(document.createTextNode(JSON.stringify(arg)));
+      argsList.appendChild(listItem);
+      showToggle = true;
+    });
+
+    var webRequestDetails = activity.getWebRequest();
+    if (webRequestDetails != null) {
+      var webRequestList = el.querySelector('#webrequest-details');
+      for (var key in webRequestDetails) {
+        if (webRequestDetails.hasOwnProperty(key)) {
+          var listItem = document.createElement('li');
+          listItem.appendChild(document.createTextNode(
+              key + ': ' + JSON.stringify(webRequestDetails[key])));
+          webRequestList.appendChild(listItem);
+          showToggle = true;
+        }
+      }
+    }
+
+    if (showToggle) {
+      el.querySelector('#detail').style.display = 'none';
+      el.querySelector('#activity-toggle-dev').addEventListener(
+          'click', function() {
+            watchdog.Watchdog.toggleDetailVisibility(el);
+          }, false);
+      el.querySelector('#action-dev').addEventListener(
+          'click', function() {
+            watchdog.Watchdog.toggleDetailVisibility(el);
+          }, false);
+    } else {
+      el.querySelector('#item-arrow').style.visibility = 'hidden';
+    }
+  };
   // Export
   return {
     BehaviorWindow: BehaviorWindow
