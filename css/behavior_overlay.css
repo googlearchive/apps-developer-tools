@@ -4,10 +4,13 @@
 
 .behavior-content-area {
   -webkit-box-flex: 1;
-  padding: 6px 17px 6px;
+  font-size: 13px;
+  margin: 0;
+  padding: 0;
   position: relative;
   width: 640px;
   height: 480px;
+  line-height: 1.54;
 }
 
 .behavior-extension-details {
@@ -35,6 +38,11 @@
   -webkit-user-select: text;
 }
 
+#behavior-tab-panels {
+  box-shadow: none;
+  overflow-y: scroll;
+}
+
 #close-behavior-overlay {
   background-image: -webkit-image-set(
       url(../images/search_clear_active.png) 1x,
@@ -47,3 +55,29 @@
   top: 5px;
   width: 16px;
 }
+
+.activity-action {
+  float: left; 
+}
+
+.activity-count {
+  color: gray;
+  margin-left: 5px;
+}
+
+.item-list-count {
+  margin-bottom: 3px;
+}
+
+#item-toggle {
+  cursor: pointer;
+  float: left;
+  font-weight: bold;
+}
+
+#item-arrow {
+  height: 8px;
+  padding-right: 3px;
+  width: 5px;
+}
+

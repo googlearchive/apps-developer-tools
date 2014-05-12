@@ -9,13 +9,6 @@ cr.define('apps_dev_tool', function() {
   /** const*/ var AppsDevTool = apps_dev_tool.AppsDevTool;
 
   /**
-   * Hides the present overlay showing.
-   */
-  var hideOverlay = function() {
-    AppsDevTool.showOverlay(null);
-  };
-
-  /**
    * BehaviorWindow class
    * Encapsulated handling of the 'Behavior' overlay page.
    * @constructor
@@ -23,11 +16,6 @@ cr.define('apps_dev_tool', function() {
   function BehaviorWindow() {}
 
   cr.addSingletonGetter(BehaviorWindow);
-
-  //TODO(sonpostman): delete this one!
-  BehaviorWindow.popDebugPoint = function () {
-    console.log("hello debug!");
-  };
 
   /**
    * Enum for tab names. Used to show and hide the different information.
@@ -38,6 +26,15 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.TabIds = {
     HISTORY_MODE: 'history-mode-tab',
     STREAM_MODE: 'stream-mode-tab'
+  };
+
+  /**
+   * Hides the present overlay showing.
+   */
+  var hideOverlay = function() {
+    // delete all generated activity lists.
+    BehaviorWindow.clearSummaryViewActivities();
+    AppsDevTool.showOverlay(null);
   };
 
 
@@ -66,7 +63,7 @@ cr.define('apps_dev_tool', function() {
      * Name of tab that is currently being displayed.
      * @private {!watchdog.BehaviorWindow.TabIds}
      */
-    currentTab_: BehaviorWindow.TabIds.HISTORY_MODE,
+    currentTab_: '',
   
     /**
      * Filter to use when displaying activity info. See activityLogPrivate API
@@ -85,6 +82,22 @@ cr.define('apps_dev_tool', function() {
       var overlay = $('behaviorOverlay');
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
+      this.setLocalizedAppDetails();
+    },
+
+    /**
+     * Set up event listeners and localized text elements of BehaviorOverlay.
+     */
+    setLocalizedAppDetails: function() {
+      // initialize text elements.
+      var getLocalMsg = chrome.i18n.getMessage;
+      $('empty-history').innerText = getLocalMsg('emptyHistory');  
+      $('all-behavior').innerText = getLocalMsg('allRecentHistoryHeader');
+      $('notable-behavior').innerText = getLocalMsg('notableHistoryHeader');  
+
+      // TODO(spostman): initialize more text and search elements.
+
+      // registster event listeners.
       $('close-behavior-overlay').addEventListener(
           'click', hideOverlay.bind(this));
     }
@@ -96,13 +109,17 @@ cr.define('apps_dev_tool', function() {
    * @param {!Object} item A dictionary of item metadata. (from items_lists.js)
    */
   BehaviorWindow.showOverlay = function (item) {
+    // update the selected extenion icon and title.
     $('behavior-extension-icon').style.backgroundImage = 'url(' + item.icon_url + ')';
     $('behavior-extension-title').textContent = item.name;    
-    this.instance_.currentExtensionId_ = item.id;
 
-    AppsDevTool.showOverlay($('behaviorOverlay'));
+    // set the filter to point at the newly selected extension.
+    this.instance_.currentExtensionId_ = item.id;
+    this.instance_.activityFilter_.extensionId = this.instance_.currentExtensionId_;
+
     // Shows the history tab page initially.
-    BehaviorWindow.setVisibleTab(BehaviorWindow.TabIds.HISTORY_MODE);    
+    this.setVisibleTab(BehaviorWindow.TabIds.HISTORY_MODE);    
+    AppsDevTool.showOverlay($('behaviorOverlay'));
   }
 
   /**
@@ -110,11 +127,11 @@ cr.define('apps_dev_tool', function() {
    * Notable activities are also displayed in a different list.
    */
   BehaviorWindow.refreshActivityList = function() {
-    BehaviorWindow.clearSummaryViewActivities();
+    this.clearSummaryViewActivities();
     if (this.instance_.currentTab_ != BehaviorWindow.TabIds.HISTORY_MODE || !this.instance_.currentExtensionId_) {
       return;
     }
-    var callback = BehaviorWindow.addToSummaryModeLists.bind(this);
+    var callback = this.addToSummaryModeLists.bind(this);
     watchdog.ActivityGroupList.getFilteredExtensionActivities(
         this.instance_.activityFilter_, callback);
   };
@@ -124,9 +141,13 @@ cr.define('apps_dev_tool', function() {
    * @param {!watchdog.ActivityGroupList} activityList
    */
   BehaviorWindow.addToSummaryModeLists = function(activityList) {
+      if (!activityList) {
+        return;
+      }
+
       var numNotable = 0; 
       var numRegular = 0;
-      goog.array.forEach(activityList.getActivityGroups(), function(group) {
+      activityList.getActivityGroups().forEach( function(group) {
         if (numNotable < this.instance_.MAX_NOTABLE_ && group.isNotable()) {
           this.addToNotableActivityList(group);
           numNotable++;
@@ -151,8 +172,13 @@ cr.define('apps_dev_tool', function() {
    * Cleans the details from the summary mode view.
    */
   BehaviorWindow.clearSummaryViewActivities = function() {
-    $('activity-list-notable').innerText = '';
-    $('activity-list-all').innerText = '';
+    // clear the history tab
+    this.deleteActivityCountList('activity-list-notable');
+    this.deleteActivityCountList('activity-list-all');
+
+    // clear the realtime tab
+    this.deleteActivityCountList('activity-list-dev');
+
     $('empty-history').style.display = 'none';
   };
   
@@ -170,7 +196,7 @@ cr.define('apps_dev_tool', function() {
    *     list.
    */
   BehaviorWindow.addToNotableActivityList = function(group) {
-   BehaviorWindow.addActivityToSummaryCountList(group, 'activity-list-notable');
+   this.addActivityToSummaryCountList(group, 'activity-list-notable');
   };
 
   /**
@@ -178,9 +204,22 @@ cr.define('apps_dev_tool', function() {
    * @param {!watchdog.ActivityGroup} group Activity group to add to list.
    */
   BehaviorWindow.addToAllActivityList = function(group) {
-   BehaviorWindow.addActivityToSummaryCountList(group, 'activity-list-all');
+   this.addActivityToSummaryCountList(group, 'activity-list-all');
   };
 
+  /**
+   * Delete all generated activity children templates of a given listName
+   * @param {string} listName Name of the list to delete. Should be the name
+   *     of an existing div that can contain activity count info.
+   */
+  BehaviorWindow.deleteActivityCountList = function(listName) {
+    var parentNode = document.getElementById(listName);
+    if (parentNode) {
+      while(parentNode.firstChild) {
+        parentNode.removeChild( parentNode.firstChild );
+      }
+    }
+  }
   /**
    * Adds an activity to the DB summary counts list.
    * @param {!watchdog.ActivityGroup} group Group to add to the list.
@@ -256,21 +295,14 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.refreshVisibleTab = function() {
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
       $('history-tab').className = 'current-tab';
-//      $('extension-selector-box').style.display = 'block';
-//      if ($('extension-selector').selectedIndex > 0) {
-//        $('loaded-extension-info').style.display = 'block';
-//        $('summary-mode-tab-all').style.display = 'block';
-//      }
-//      setLocalizedElementTxt('search-link', 'searchThroughHistoryTxt');
-//      $('action-type-txt').style.display = 'none';
-//      $('arg-url-txt').style.display = 'none';
-//      $('activity-type-block').style.display = 'none';
-//      $('arg-url-block').style.display = 'none';
+      $('summary-mode-tab-all').style.display = 'block';
     } else if (this.instance_.currentTab_ == BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab').className = 'current-tab';
-    }
- 
-    BehaviorWindow.refreshActivityList();
+      $('dev-mode-tab-content').style.display = 'block';
+      // TODO(spostman): implement the following function.
+      // this.start();
+    } 
+    this.refreshActivityList();
   };  
 
   /**
@@ -278,23 +310,23 @@ cr.define('apps_dev_tool', function() {
    * @param {watchdog.Watchdog.TabIds} tabId Name of the tab to show.
    */
   BehaviorWindow.setVisibleTab = function(tabId) {
-//    TODO(sonpostman): remove the following.
-//    if (this.instance_.currentTab_ == tabId) {
-//      return;
-//    }
+    if (this.instance_.currentTab_ == tabId) {
+      return;
+    }
     // Clean up the state from the last tab.
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
       $('history-tab').className = '';
-//      $('summary-mode-tab-notable').style.display = 'none';
-//      $('summary-mode-tab-all').style.display = 'none';
+      $('summary-mode-tab-notable').style.display = 'none';
+      $('summary-mode-tab-all').style.display = 'none';
     } else if (this.instance_.currentTab_ == BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab').className = '';
-//      $('dev-mode-tab-content').style.display = 'none';
-      //this.stop();
+      $('dev-mode-tab-content').style.display = 'none';
+      // TODO(spostman): implement the following function.
+      // this.stop();
     }
     // Now set up the new tab.
-    this.instance_currentTab_ = tabId;
-    BehaviorWindow.refreshVisibleTab();
+    this.instance_.currentTab_ = tabId;
+    this.refreshVisibleTab();
   };
 
   /**
@@ -312,8 +344,6 @@ cr.define('apps_dev_tool', function() {
     else
       return '(' + chrome.i18n.getMessage('countHistoryMultiple', [count]) + ')';
   };
-
-
 
   // Export
   return {

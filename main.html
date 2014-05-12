@@ -164,7 +164,7 @@ found in the LICENSE file.
               <div class="behavior-extension-icon" id="behavior-extension-icon"></div>
               <div class="behavior-extension-title" id="behavior-extension-title"></div>
             </div>
-            <tabpanels id="tab-panels">
+            <tabpanels id="behavior-tab-panels">
               <!-- History Tab -->
               <tabpanel id="history-tab">
 
@@ -197,6 +197,25 @@ found in the LICENSE file.
               </tabpanel>
               <!-- Realtime Tab -->
               <tabpanel id="realtime-tab">
+
+    <div class="maia-cols hidden" id="dev-mode-tab-content">
+      <div class="maia-col-2 left-col">
+        <h2 id="developer-activity-header"></h2>
+        <div class="controls">
+          <img src="images/run.png" class="control" id="start"
+               alt="Start">
+          <img src="images/pause.png" class="control" id="stop"
+               alt="Stop">
+          <img src="images/clear.png" class="control" id="clear"
+               alt="Clear">
+        </div>
+      </div>
+      <div class="maia-col-8">
+        <div class="activity-list-wrapper">
+          <div id="activity-list-dev" class="activity-list-dev"></div>
+        </div>
+      </div>
+    </div>
               </tabpanel>
             </tabpanels>
           </tabbox>
