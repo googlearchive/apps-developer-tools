@@ -19,6 +19,16 @@ cr.define('apps_dev_tool', function() {
      * Perform initial setup.
      */
     initialize: function() {
+      // Initialize overlays, set the default cancel overlay handler. Note,
+      // other cancel overlay handlers may be added by specific overlays at
+      // their initialization.
+      var overlay = $('overlay');
+      cr.ui.overlay.globalInitialization();
+      cr.ui.overlay.setupOverlay(overlay);
+      overlay.addEventListener('cancelOverlay', function() {
+        AppsDevTool.showOverlay(null);
+      });
+
       cr.ui.decorate('tabbox', cr.ui.TabBox);
 
       // Set up showing setting menu.
