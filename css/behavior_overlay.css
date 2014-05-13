@@ -1,6 +1,15 @@
-/* Copyright (c) 2013 The Chromium Authors. All rights reserved.
+/* Copyright 2014 The Chromium Authors. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be
  * found in the LICENSE file. */
+
+.activity-action {
+  float: left; 
+}
+
+.activity-count {
+  color: gray;
+  margin-left: 5px;
+}
 
 .behavior-content-area {
   -webkit-box-flex: 1;
@@ -51,7 +60,7 @@
   width: 100%;
 }
 
-#behaviorOverlay {
+#behavior-overlay {
   padding-top: 8px !important;
 }
 
@@ -75,13 +84,10 @@
   z-index: 1;
 }
 
-.activity-action {
-  float: left; 
-}
-
-.activity-count {
-  color: gray;
-  margin-left: 5px;
+#item-arrow {
+  height: 8px;
+  padding-right: 3px;
+  width: 5px;
 }
 
 .item-list-count {
@@ -92,10 +98,4 @@
   cursor: pointer;
   float: left;
   font-weight: bold;
-}
-
-#item-arrow {
-  height: 8px;
-  padding-right: 3px;
-  width: 5px;
 }
