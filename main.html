@@ -21,15 +21,6 @@ found in the LICENSE file.
     <link rel="stylesheet" href="css/items.css">
     <link rel="stylesheet" href="css/behavior_overlay.css">
 
-    <!-- The Closure library.  Scripts must be loaded in dependency order. -->
-    <script src="js/closure.js"></script>
-    <script src="third_party/closure/goog/base.js"></script>
-    <script src="third_party/closure/goog/dom/nodetype.js"></script>
-    <script src="third_party/closure/goog/debug/error.js"></script>
-    <script src="third_party/closure/goog/string/string.js"></script>
-    <script src="third_party/closure/goog/asserts/asserts.js"></script>
-    <script src="third_party/closure/goog/array/array.js"></script>
-
     <script src="js/chromium_compatibility.js"></script>
     <script src="js/chromium/assert.js"></script>
     <script src="js/chromium/cr.js"></script>
@@ -44,13 +35,13 @@ found in the LICENSE file.
     <script src="js/chromium/extension_error_overlay.js"></script>
     <script src="js/chromium/extension_error.js"></script>
     <script src="js/main_scripts.js"></script>
+    <script src="js/activity.js"></script>
+    <script src="js/activity_group.js"></script>
+    <script src="js/activity_group_list.js"></script>
     <script src="js/items.js"></script>
     <script src="js/items_list.js"></script>
     <script src="js/misc_overlays.js"></script>
     <script src="js/behavior_window.js"></script>
-    <script src="js/watchdog/watchdog_activity.js"></script>
-    <script src="js/watchdog/watchdog_activity_group.js"></script>
-    <script src="js/watchdog/watchdog_activity_group_list.js"></script>
     <script src="js/main.js"></script>
   </head>
   <body>
@@ -148,12 +139,11 @@ found in the LICENSE file.
         <div id="close-behavior-overlay"></div>
         <div class="behavior-content-area" id="behavior-content-area">
           <tabbox id="tab-box">
-
             <!-- Header with tab strip -->
             <div id="behavior-tab-header">
               <tabs id="tabs" tabindex="0">
-                <tab i18n-content="appsDevtoolHistory"></tab>
-                <tab i18n-content="appsDevtoolRealtime"></tab>
+                <tab id='history-tab' i18n-content="appsDevtoolHistory"></tab>
+                <tab id='realtime-tab' i18n-content="appsDevtoolRealtime"></tab>
               </tabs>
               <button id="delete-behavior-button" title="Clear behavior"></button>
               <div id="behavior-header-bottom-separator"></div>
@@ -163,11 +153,18 @@ found in the LICENSE file.
             <div class="behavior-extension-details" id="behavior-extension-details">
               <div class="behavior-extension-icon" id="behavior-extension-icon"></div>
               <div class="behavior-extension-title" id="behavior-extension-title"></div>
+                    <div class="behavior-controls">
+                      <div class="button-strip">
+                        <button id="realtime-start" style="display:none" i18n-content="btnStart"></button>
+                        <button id="realtime-pause" style="display:none" i18n-content="btnPause"></button>
+                        <button id="realtime-clear" style="display:none" i18n-content="btnClear"></button>
+                      </div>
+                    </div>
             </div>
 
             <tabpanels id="behavior-tab-panels">
               <!-- History Tab -->
-              <tabpanel id="history-tab">
+              <tabpanel id="history-tab-panel">
                 <!-- Notable behavior -->
                 <!-- TODO(spostman): replace all maia css styles. -->
                 <div class="maia-cols hidden" id="summary-mode-tab-notable">
@@ -194,13 +191,10 @@ found in the LICENSE file.
                </div>
               </tabpanel>
               <!-- Realtime Tab -->
-              <tabpanel id="realtime-tab">
+              <tabpanel id="realtime-tab-panel">
                 <div class="maia-cols hidden" id="dev-mode-tab-content">
                   <div class="maia-col-2 left-col">
                     <h2 i18n-content="developerActivityHeader"></h2>
-                    <div class="controls">
-                      <!-- TODO(spostman): add pause/start buttons. -->
-                    </div>
                  </div>
                  <div class="maia-col-8">
                    <div class="activity-list-wrapper">
@@ -334,6 +328,22 @@ found in the LICENSE file.
     </div>
   </div>
   <div id="template-collection" hidden>
+    <div class="activity-list-dev" data-name="activity-list-dev">
+      <div id="time-dev" class="activity-time"></div>
+      <div id="activity-toggle-dev">
+          <img src="images/arrow_more.png" id="item-arrow" alt="toggle">
+      </div>
+      <div class="activity-dev">
+        <div id="action-dev"></div>
+        <div class="activity-pageURL">
+          <a id="pageURL-dev" target="_blank"></a>
+        </div>
+        <div id="detail" class="item-detail">
+          <ol id="args-dev" class="args-list"></ol>
+          <ul id="webrequest-details"></ul>
+        </div>
+      </div>
+    </div>
     <div class="activity-list-dev" data-name="activity-list-dev">
       <div id="time-dev" class="activity-time"></div>
       <div id="activity-toggle-dev">

@@ -24,6 +24,11 @@
   z-index: 0;
 }
 
+.behavior-controls {
+  float: right;
+  display: inline-block;
+}
+
 .behavior-extension-details {
   margin-bottom: 10px;
   margin-top: 30px;
@@ -92,6 +97,36 @@
 
 .item-list-count {
   margin-bottom: 3px;
+}
+.activity-pageURL {
+  clear: left;
+}
+
+.activity-pageURL-indented {
+  clear: left;
+  margin-left: 9px;
+}
+
+.activity-time {
+  float: left;
+  font-size: 13px;
+  font-weight: 500;
+  padding-right: 20px;
+}
+
+.activity-pageURL {
+  clear: left;
+}
+
+.activity-pageURL-indented {
+  clear: left;
+  margin-left: 9px;
+}
+
+#activity-toggle-dev {
+  cursor: pointer;
+  float: left;
+  font-weight: bold;
 }
 
 #item-toggle {

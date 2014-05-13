@@ -1,7 +1,6 @@
 // Copyright 2014 The Chromium Authors. All rights reserved.
 // Use of this source code is governed by a BSD-style license that can be
 // found in the LICENSE file.
-goog.require('goog.bind');
 
 cr.define('apps_dev_tool', function() {
   'use strict';
@@ -33,8 +32,10 @@ cr.define('apps_dev_tool', function() {
    * Hides the present overlay showing and clear all generated activity
    * lists.
    */
-  var hideOverlay = function() {
-    BehaviorWindow.clearSummaryViewActivities();
+  var hideBehaviorOverlay = function() {
+    BehaviorWindow.clearHistoryTab();
+    BehaviorWindow.stop();
+    BehaviorWindow.clearRealtimeTab();
     AppsDevTool.showOverlay(null);
   };
 
@@ -68,9 +69,17 @@ cr.define('apps_dev_tool', function() {
 
     /**
      * Name of tab that is currently being displayed.
-     * @private {!watchdog.BehaviorWindow.TabIds}
+     * @private {!apps_dev_tool.BehaviorWindow.TabIds}
      */
     currentTab_: BehaviorWindow.TabIds.NOSELECTION_MODE,
+
+    /**
+     * Listener on the chrome.activityLogPrivate.onExtensionActivity event.
+     * We need to keep track of it so the correct listener is removed when the
+     * stop button is pressed.
+     * @private {Function}
+     */
+    activityListener_: null,
 
     /**
      * Filter to use when displaying activity info. See activityLogPrivate API
@@ -86,13 +95,33 @@ cr.define('apps_dev_tool', function() {
     }),
 
     initializePage: function() {
-      var overlay = $('behaviorOverlay');
+      var overlay = $('overlay');
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
+      overlay.addEventListener(
+          'cancelOverlay', hideBehaviorOverlay.bind(overlay));
+
       $('close-behavior-overlay').addEventListener(
-          'click', hideOverlay.bind(this));
+          'click', hideBehaviorOverlay.bind(this));
       $('delete-behavior-button').addEventListener(
           'click', BehaviorWindow.showDeleteBehaviorOverlay.bind(this));
+
+      var setVisibleTab = BehaviorWindow.setVisibleTab.bind(BehaviorWindow);
+      $('history-tab').addEventListener('click', function() {
+          setVisibleTab(BehaviorWindow.TabIds.HISTORY_MODE);
+        }, false);
+      $('realtime-tab').addEventListener('click', function() {
+          setVisibleTab(BehaviorWindow.TabIds.STREAM_MODE);
+        }, false);
+
+      // Register event handler for realtime panel buttons.
+      var start = BehaviorWindow.start.bind(BehaviorWindow);
+      $('realtime-start').addEventListener('click', start, false);
+      var pause = BehaviorWindow.stop.bind(BehaviorWindow);
+      $('realtime-pause').addEventListener('click', pause, false);
+      var clear = BehaviorWindow.clearDeveloperModeViewActivities.bind(
+          BehaviorWindow);
+      $('realtime-clear').addEventListener('click', clear, false);
     },
   };
 
@@ -131,13 +160,13 @@ cr.define('apps_dev_tool', function() {
       return;
     }
     var callback = this.addToSummaryModeLists.bind(this);
-    watchdog.ActivityGroupList.getFilteredExtensionActivities(
+    apps_dev_tool.ActivityGroupList.getFilteredExtensionActivities(
         this.instance_.activityFilter_, callback);
   };
 
   /**
    * Adds activities from the result set to the summary mode lists.
-   * @param {!watchdog.ActivityGroupList} activityList
+   * @param {!apps_dev_tool.ActivityGroupList} activityList
    */
   BehaviorWindow.addToSummaryModeLists = function(activityList) {
       if (!activityList) {
@@ -167,15 +196,50 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Cleans the details from the summary mode view.
+   * Listens on the activity log api and adds activities.
+   * @param {!ExtensionActivity} activity An activity from the
+   *     activityLogPrivate api.
+   */
+  BehaviorWindow.onExtensionActivity = function(activity) {
+    if (activity.extensionId == this.instance_.currentExtensionId_) {
+      var act = new apps_dev_tool.Activity(activity);
+      if (act.passesFilter(BehaviorWindow.instance_.activityFilter_)) {
+        BehaviorWindow.addToDevActivityList(act);
+      }
+    }
+  };
+
+  /**
+   * Clear the buttons and activities of the history tab.
+   */
+  BehaviorWindow.clearHistoryTab = function() {
+    this.clearSummaryViewActivities();
+    // TODO(spostman): Hide the clear button in the history tab.
+  };
+
+  /**
+   * Clear the buttons and activities of the realtime tab.
+   */
+  BehaviorWindow.clearRealtimeTab = function() {
+    this.clearDeveloperModeViewActivities();
+    $('realtime-start').style.display = 'none';
+    $('realtime-pause').style.display = 'none';
+    $('realtime-clear').style.display = 'none';
+  };
+
+  /**
+   * Clear the history activities.
    */
   BehaviorWindow.clearSummaryViewActivities = function() {
-    // Clear the history tab
     this.clearActivityCountList('activity-list-notable');
     this.clearActivityCountList('activity-list-all');
     $('empty-history').style.display = 'none';
+  };
 
-    // Clear the realtime tab
+  /**
+   * Clear the realtime activities.
+   */
+  BehaviorWindow.clearDeveloperModeViewActivities = function() {
     this.clearActivityCountList('activity-list-dev');
   };
 
@@ -189,7 +253,7 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Adds an activity to the notable activity list.
-   * @param {!watchdog.ActivityGroup} group Activity group to add to the
+   * @param {!apps_dev_tool.ActivityGroup} group Activity group to add to the
    *     list.
    */
   BehaviorWindow.addToNotableActivityList = function(group) {
@@ -198,7 +262,7 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Adds an activity to the full activity list.
-   * @param {!watchdog.ActivityGroup} group Activity group to add to list.
+   * @param {!apps_dev_tool.ActivityGroup} group Activity group to add to list.
    */
   BehaviorWindow.addToAllActivityList = function(group) {
    this.addActivityToSummaryCountList(group, 'activity-list-all');
@@ -215,9 +279,10 @@ cr.define('apps_dev_tool', function() {
       parentNode.innerHTML = '';
     }
   };
+
   /**
    * Adds an activity to the DB summary counts list.
-   * @param {!watchdog.ActivityGroup} group Group to add to the list.
+   * @param {!apps_dev_tool.ActivityGroup} group Group to add to the list.
    * @param {string} listName Name of the list to add this to. Should be the
    *     name of an existing div that can contain activity count info.
    */
@@ -290,21 +355,24 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.refreshVisibleTab = function() {
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
-      $('history-tab').className = 'current-tab';
+      $('history-tab-panel').className = 'current-tab';
+      $('history-tab-panel').selected = 'selected';
+      $('realtime-tab-panel').className = '';
       $('summary-mode-tab-all').style.display = 'block';
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
-      $('realtime-tab').className = 'current-tab';
+      $('realtime-tab-panel').className = 'current-tab';
+      $('realtime-tab-panel').selected = 'selected';
+      $('history-tab-panel').className = '';
       $('dev-mode-tab-content').style.display = 'block';
-      // TODO(spostman): Implement start.
-      // this.start();
+      this.start();
     }
     this.refreshActivityList();
   };
 
   /**
    * Makes the tab visible and hides all others.
-   * @param {watchdog.Watchdog.TabIds} tabId Name of the tab to show.
+   * @param {apps_dev_tool.Watchdog.TabIds} tabId Name of the tab to show.
    */
   BehaviorWindow.setVisibleTab = function(tabId) {
     if (this.instance_.currentTab_ == tabId) {
@@ -312,15 +380,20 @@ cr.define('apps_dev_tool', function() {
     }
     // Clean up the state from the last tab.
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
-      $('history-tab').className = '';
-      $('summary-mode-tab-notable').style.display = 'none';
+      $('history-tab-panel').className = '';
       $('summary-mode-tab-all').style.display = 'none';
+      $('summary-mode-tab-notable').style.display = 'none';
+
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
-      $('realtime-tab').className = '';
+      $('realtime-tab-panel').className = '';
       $('dev-mode-tab-content').style.display = 'none';
-      // TODO(spostman): Implement stop.
-      // this.stop();
+      // Stop activity log listener.
+      this.stop();
+      // Clear the realtime panel buttons.
+      $('realtime-start').style.display = 'none';
+      $('realtime-pause').style.display = 'none';
+      $('realtime-clear').style.display = 'none';
     }
     // Now set up the new tab.
     this.instance_.currentTab_ = tabId;
@@ -345,6 +418,114 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
+   * Starts the reamtime mode listening for activity.
+   */
+  BehaviorWindow.start = function() {
+    // Don't bother adding a listener if there is no extension selected.
+    if (!this.instance_.currentExtensionId_) {
+      return;
+    }
+
+    if (!this.instance_.activityListener_) {
+      this.instance_.activityListener_ = this.onExtensionActivity.bind(this);
+    }
+    this.updateDevModeControls(true);
+    chrome.activityLogPrivate.onExtensionActivity.addListener(
+        this.instance_.activityListener_);
+  };
+
+  /**
+   * Stops listening on the activity log.
+   */
+  BehaviorWindow.stop = function() {
+    chrome.activityLogPrivate.onExtensionActivity.removeListener(
+        this.instance_.activityListener_);
+    this.updateDevModeControls(false);
+  };
+
+  /**
+   * Updates which buttons are visible in developer mode.
+   * @param {boolean} running True if it is listening for activity.
+   */
+  BehaviorWindow.updateDevModeControls = function(running) {
+    if (running) {
+       $('realtime-start').style.display = 'none';
+       $('realtime-pause').style.display = 'block';
+       $('realtime-clear').style.display = 'block';
+    } else {
+       $('realtime-pause').style.display = 'none';
+       $('realtime-start').style.display = 'block';
+       $('realtime-clear').style.display = 'block';
+    }
+  };
+
+  /**
+   * Adds an activity to the developer mode activity list.
+   * @param {!watchdog.Activity} activity Activity to add to the list.
+   */
+  BehaviorWindow.addToDevActivityList = function(activity) {
+    var activitiesTemplate = document.querySelector(
+        '#template-collection > [data-name="activity-list-dev"]');
+    var el = activitiesTemplate.cloneNode(true);
+    el.setAttribute('data-id', activity.getExtensionId() + '-dev');
+
+    document.getElementById('activity-list-dev').appendChild(el);
+    el.querySelector('#time-dev').innerText = activity.getTime();
+    el.querySelector('#action-dev').innerText =
+        activity.getDevModeActionString();
+
+    // Set the page URL and make it link to the URL.
+    var pageLink = el.querySelector('#pageURL-dev');
+    var pageUrl = activity.getPageUrl();
+    pageLink.href = pageUrl;
+
+    if (pageUrl.length > this.instance_.MAX_LINE_LENGTH_) {
+      pageUrl = pageUrl.substring(0, this.instance_.MAX_LINE_LENGTH_) + '...';
+    }
+    pageLink.innerText = pageUrl;
+
+    // Add the list of arguments. If there are arguments default them to hidden
+    // and add the listener on the arrow so they can be expanded.
+    var showToggle = false;
+    var argsList = el.querySelector('#args-dev');
+    var args = activity.getArgs();
+    args.forEach(function(arg) {
+      var listItem = document.createElement('li');
+      listItem.appendChild(document.createTextNode(JSON.stringify(arg)));
+      argsList.appendChild(listItem);
+      showToggle = true;
+    });
+
+    var webRequestDetails = activity.getWebRequest();
+    if (webRequestDetails != null) {
+      var webRequestList = el.querySelector('#webrequest-details');
+      for (var key in webRequestDetails) {
+        if (webRequestDetails.hasOwnProperty(key)) {
+          var listItem = document.createElement('li');
+          listItem.appendChild(document.createTextNode(
+              key + ': ' + JSON.stringify(webRequestDetails[key])));
+          webRequestList.appendChild(listItem);
+          showToggle = true;
+        }
+      }
+    }
+
+    if (showToggle) {
+      el.querySelector('#detail').style.display = 'none';
+      el.querySelector('#activity-toggle-dev').addEventListener(
+          'click', function() {
+            BehaviorWindow.toggleDetailVisibility(el);
+          }, false);
+      el.querySelector('#action-dev').addEventListener(
+          'click', function() {
+            BehaviorWindow.toggleDetailVisibility(el);
+          }, false);
+    } else {
+      el.querySelector('#item-arrow').style.visibility = 'hidden';
+    }
+  };
+
+  /*
    * Shows the delete behavior overlay which deletes behavior history for
    * the current extension or application.
    */
@@ -384,7 +565,6 @@ cr.define('apps_dev_tool', function() {
             recursiveDelete();
         });
     };
-
     recursiveDelete();
   };
 
