@@ -61,6 +61,12 @@ cr.define('apps_dev_tool', function() {
     currentExtensionId_: '',
 
     /**
+     * Name of the currently selected extension.
+     * @private {string}
+     */
+    currentExtensionName_: '',
+
+    /**
      * Name of tab that is currently being displayed.
      * @private {!watchdog.BehaviorWindow.TabIds}
      */
@@ -103,7 +109,7 @@ cr.define('apps_dev_tool', function() {
 
     // Set the filter to point at the newly selected extension.
     this.instance_.currentExtensionId_ = item.id;
-    this.instance_.isApp = item.isApp;
+    this.instance_.currentExtensionName_ = item.name;
     this.instance_.activityFilter_.extensionId =
         this.instance_.currentExtensionId_;
 
@@ -343,13 +349,8 @@ cr.define('apps_dev_tool', function() {
    * the current extension or application.
    */
   BehaviorWindow.showDeleteBehaviorOverlay = function() {
-    if (this.isApp) {
-      $('delete-behavior-heading').textContent =
-          chrome.i18n.getMessage('deleteBehaviorAppHeading');
-    } else {
-      $('delete-behavior-heading').textContent =
-          chrome.i18n.getMessage('deleteBehaviorExtensionHeading');
-    }
+    $('delete-behavior-extension-id').textContent =
+        this.currentExtensionName_ + '?';
     AppsDevTool.showOverlay($('deleteBehaviorOverlay'));
   };
 

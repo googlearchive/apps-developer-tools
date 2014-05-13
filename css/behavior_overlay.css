@@ -132,3 +132,7 @@
 #delete-behavior-button:active {
   opacity: 1;
 }
+
+#delete-behavior-extension-id {
+  font-weight: bold;
+}

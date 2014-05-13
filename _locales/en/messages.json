@@ -323,8 +323,8 @@
     "message": "Clear behavior history?",
     "description": "Title of delete behavior history dialog."
   },
-  "deleteBehaviorAppHeading": {
-    "message": "Do you really want to delete all application behavior history?",
+  "deleteBehaviorHeading": {
+    "message": "Do you really want to delete all behavior history for",
     "description": "Heading for delete application behavior history dialog."
   },
   "deleteBehaviorExtensionHeading": {
