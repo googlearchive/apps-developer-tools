@@ -85,6 +85,8 @@ cr.define('apps_dev_tool', function() {
       cr.ui.overlay.globalInitialization();
       $('close-behavior-overlay').addEventListener(
           'click', hideOverlay.bind(this));
+      $('delete-behavior-button').addEventListener(
+          'click', BehaviorWindow.showDeleteBehaviorOverlay.bind(this));
     },
   };
 
@@ -101,6 +103,7 @@ cr.define('apps_dev_tool', function() {
 
     // Set the filter to point at the newly selected extension.
     this.instance_.currentExtensionId_ = item.id;
+    this.instance_.isApp = item.isApp;
     this.instance_.activityFilter_.extensionId =
         this.instance_.currentExtensionId_;
 
@@ -203,7 +206,7 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.clearActivityCountList = function(listName) {
     var parentNode = document.getElementById(listName);
     if (parentNode) {
-      parent.innerHTML = '';
+      parentNode.innerHTML = '';
     }
   };
   /**
@@ -333,6 +336,55 @@ cr.define('apps_dev_tool', function() {
     else
       return '(' + chrome.i18n.getMessage(
           'countHistoryMultiple', [count]) + ')';
+  };
+
+  /**
+   * Shows the delete behavior overlay which deletes behavior history for
+   * the current extension or application.
+   */
+  BehaviorWindow.showDeleteBehaviorOverlay = function() {
+    if (this.isApp) {
+      $('delete-behavior-heading').textContent =
+          chrome.i18n.getMessage('deleteBehaviorAppHeading');
+    } else {
+      $('delete-behavior-heading').textContent =
+          chrome.i18n.getMessage('deleteBehaviorExtensionHeading');
+    }
+    AppsDevTool.showOverlay($('deleteBehaviorOverlay'));
+  };
+
+  /**
+   * Deletes behavior history of the current extension/app.
+   * @param {Function=} callback Function to call when deletion is done.
+   */
+  BehaviorWindow.deleteExtensionBehaviorHistory = function(callback) {
+    var filter = {
+      extensionId: this.instance_.currentExtensionId_,
+      activityType: 'any'
+    };
+
+    // activityLogPrivate.getExtensionActivities returns maximum 300 activities.
+    // This limit is hard-coded in Chrome. Thus, we can delete 300 activities at
+    // most at a time.
+    var recursiveDelete = function() {
+      chrome.activityLogPrivate.getExtensionActivities(
+        filter, function(activitySet) {
+            var activityIds = [];
+            for (var i = 0; i < activitySet.activities.length; i++) {
+              activityIds.push(activitySet.activities[i].activityId);
+            }
+            if (!activityIds.length) {
+              BehaviorWindow.refreshVisibleTab();
+              if (callback)
+                callback();
+              return;
+            }
+            chrome.activityLogPrivate.deleteActivities(activityIds);
+            recursiveDelete();
+        });
+    };
+
+    recursiveDelete();
   };
 
   // Export

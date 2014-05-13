@@ -39,11 +39,12 @@ cr.define('apps_dev_tool', function() {
 
     /**
      * Handles a click on the delete behavior history.
-     * @param {Event} e The click event.
      * @private
      */
-    handleCommit_: function(e) {
-      this.hideOverlay_();
+    handleCommit_: function() {
+      apps_dev_tool.BehaviorWindow.deleteExtensionBehaviorHistory(function() {
+        AppsDevTool.showOverlay($('behaviorOverlay'));
+      });
     },
   };
 
