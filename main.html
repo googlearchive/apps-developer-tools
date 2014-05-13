@@ -166,42 +166,29 @@ found in the LICENSE file.
               <!-- History Tab -->
               <tabpanel id="history-tab-panel">
                 <!-- Notable behavior -->
-                <!-- TODO(spostman): replace all maia css styles. -->
-                <div class="maia-cols hidden" id="summary-mode-tab-notable">
-                  <div class="maia-col-2 left-col">
-                    <h2 i18n-content="notableHistoryHeader"></h2>
-                  </div>
-                  <div class="maia-col-8">
-                    <div class="activity-list-wrapper">
-                      <div id="activity-list-notable" class="item-list-count"></div>
-                    </div>
+                <div class="hidden" id="summary-mode-tab-notable">
+                  <div><h2 i18n-content="notableHistoryHeader"></h2></div>
+                  <div class="activity-list-wrapper">
+                    <div id="activity-list-notable" class="item-list-count"></div>
                   </div>
                 </div>
                 <!-- All behavior tab -->
-                <div class="maia-cols hidden" id="summary-mode-tab-all">
-                  <div class="maia-col-2 left-col">
-                    <h2 i18n-content="allRecentHistoryHeader"></h2>
+                <div class="hidden" id="summary-mode-tab-all">
+                  <div><h2 i18n-content="allRecentHistoryHeader"></h2></div>
+                  <div class="activity-list-wrapper">
+                    <div id="activity-list-all" class="item-list-count"></div>
+                    <div id="empty-history" i18n-content="emptyHistory"></div>
                   </div>
-                  <div class="maia-col-8">
-                    <div class="activity-list-wrapper">
-                      <div id="activity-list-all" class="item-list-count"></div>
-                      <div id="empty-history" i18n-content="emptyHistory"></div>
-                    </div>
-                 </div>
                </div>
               </tabpanel>
               <!-- Realtime Tab -->
               <tabpanel id="realtime-tab-panel">
-                <div class="maia-cols hidden" id="dev-mode-tab-content">
-                  <div class="maia-col-2 left-col">
-                    <h2 i18n-content="developerActivityHeader"></h2>
-                 </div>
-                 <div class="maia-col-8">
-                   <div class="activity-list-wrapper">
-                     <div id="activity-list-dev" class="activity-list-dev"></div>
-                   </div>
+                <div class="hidden" id="dev-mode-tab-content">
+                  <div><h2 i18n-content="developerActivityHeader"></h2></div>
+                  <div class="activity-list-wrapper">
+                    <div id="activity-list-dev" class="activity-list-dev"></div>
+                  </div>
                 </div>
-              </div>
               </tabpanel>
             </tabpanels>
           </tabbox>
