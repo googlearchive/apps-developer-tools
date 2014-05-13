@@ -115,7 +115,7 @@ cr.define('apps_dev_tool', function() {
         }, false);
 
       // Register event handler for realtime panel buttons.
-      var start = BehaviorWindow.start.bind(BehaviorWindow); 
+      var start = BehaviorWindow.start.bind(BehaviorWindow);
       $('realtime-start').addEventListener('click', start, false);
       var pause = BehaviorWindow.stop.bind(BehaviorWindow);
       $('realtime-pause').addEventListener('click', pause, false);
@@ -221,7 +221,7 @@ cr.define('apps_dev_tool', function() {
    * Clear the buttons and activities of the realtime tab.
    */
   BehaviorWindow.clearRealtimeTab = function() {
-    this.clearDeveloperModeViewActivities();    
+    this.clearDeveloperModeViewActivities();
     $('realtime-start').style.display = 'none';
     $('realtime-pause').style.display = 'none';
     $('realtime-clear').style.display = 'none';
@@ -388,7 +388,7 @@ cr.define('apps_dev_tool', function() {
                BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab-panel').className = '';
       $('dev-mode-tab-content').style.display = 'none';
-      // Stop activity log listener. 
+      // Stop activity log listener.
       this.stop();
       // Clear the realtime panel buttons.
       $('realtime-start').style.display = 'none';
