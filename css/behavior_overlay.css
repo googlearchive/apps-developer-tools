@@ -8,6 +8,7 @@
 
 .activity-count {
   color: gray;
+  float: left;
   margin-left: 5px;
 }
 
@@ -139,4 +140,33 @@
   cursor: pointer;
   float: left;
   font-weight: bold;
+}
+
+#delete-activity-button {
+  background-color: transparent;
+  background-image: -webkit-image-set(
+      url(../images/delete.png) 1x,
+      url(../images/2x/delete.png) 2x);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 16px 16px;
+  border: none;
+  box-shadow: none;
+  height: 16px;
+  left: 3px;
+  min-height: 16px;
+  min-width: 16px;
+  opacity: .6;
+  padding: 0px;
+  position: relative;
+  top: 3px;
+  width: 16px;
+}
+
+#delete-activity-button:hover {
+    opacity: .8;
+}
+
+#delete-activity-button:active {
+  opacity: 1;
 }

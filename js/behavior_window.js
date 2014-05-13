@@ -293,6 +293,9 @@ cr.define('apps_dev_tool', function() {
     el.querySelector('#count').innerText = this.countText(
         group.getTotalCount());
     el.querySelector('#action').innerText = group.getName();
+    var deleteButton = el.querySelector('#delete-activity-button');
+    deleteButton.addEventListener(
+        'click', BehaviorWindow.deleteBehaviorGroup.bind(this, group));
 
     // Set the page URL and make it link to the URL.
     var pageLink = el.querySelector('#pageURL-dev');
@@ -564,6 +567,19 @@ cr.define('apps_dev_tool', function() {
         });
     };
     recursiveDelete();
+  };
+
+  /**
+   * Deletes activities that represent a behavior group from the database.
+   * @param {!apps_dev_tool.ActivityGroup} group Group of activities to remove
+   *    from the database.
+   */
+  BehaviorWindow.deleteBehaviorGroup = function(group) {
+    var activityIds = group.getActivityIds();
+    if (!activityIds.length)
+      return;
+    chrome.activityLogPrivate.deleteActivities(activityIds);
+    BehaviorWindow.refreshActivityList();
   };
 
   /**

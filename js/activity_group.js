@@ -42,6 +42,13 @@ cr.define('apps_dev_tool', function() {
      * @private {!Object.<string, number>}
      */
     this.activityCounts_ = {};
+
+    /**
+     * List of activity IDs of this group. Activity IDs are used for
+     * deletion of the corresponding activities from the database.
+     * @private {!Array.<!string>}
+     */
+    this.activityIds_ = [];
   };
 
   /**
@@ -63,6 +70,8 @@ cr.define('apps_dev_tool', function() {
    */
   ActivityGroup.prototype.add = function(activity) {
     this.totalCount_ += activity.getCount();
+
+    this.activityIds_.push(activity.getActivityId());
 
     if (activity.isNotable())
       this.isNotable_ = true;
@@ -121,6 +130,14 @@ cr.define('apps_dev_tool', function() {
    */
   ActivityGroup.prototype.getUrl = function() {
     return this.url_;
+  };
+
+  /**
+   * Gets the activity IDs of this group..
+   * @return {!Array.<!string>}
+   */
+  ActivityGroup.prototype.getActivityIds = function() {
+    return this.activityIds_;
   };
 
   // Export
