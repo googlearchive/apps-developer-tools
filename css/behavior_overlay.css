@@ -64,6 +64,10 @@
   padding-top: 8px !important;
 }
 
+#behaviorOverlay .button-strip button {
+  min-width: 40px;
+}
+
 #behavior-tab-panels {
   box-shadow: none;
   overflow-y: scroll;
