@@ -11,6 +11,28 @@
   margin-left: 5px;
 }
 
+.activity-pageURL {
+  clear: left;
+}
+
+.activity-pageURL-indented {
+  clear: left;
+  margin-left: 9px;
+}
+
+.activity-time {
+  float: left;
+  font-size: 13px;
+  font-weight: 500;
+  padding-right: 20px;
+}
+
+#activity-toggle-dev {
+  cursor: pointer;
+  float: left;
+  font-weight: bold;
+}
+
 .behavior-content-area {
   -webkit-box-flex: 1;
   border: none;
@@ -61,13 +83,13 @@
   width: 100%;
 }
 
+#behavior-overlay {
+  padding-top: 8px !important;
+}
+
 #behavior-tab-header {
   height: 58px;
   width: 100%;
-}
-
-#behavior-overlay {
-  padding-top: 8px !important;
 }
 
 #behavior-tab-panels {
@@ -91,52 +113,6 @@
   z-index: 1;
 }
 
-#item-arrow {
-  height: 8px;
-  padding-right: 3px;
-  width: 5px;
-}
-
-.item-list-count {
-  margin-bottom: 3px;
-}
-.activity-pageURL {
-  clear: left;
-}
-
-.activity-pageURL-indented {
-  clear: left;
-  margin-left: 9px;
-}
-
-.activity-time {
-  float: left;
-  font-size: 13px;
-  font-weight: 500;
-  padding-right: 20px;
-}
-
-.activity-pageURL {
-  clear: left;
-}
-
-.activity-pageURL-indented {
-  clear: left;
-  margin-left: 9px;
-}
-
-#activity-toggle-dev {
-  cursor: pointer;
-  float: left;
-  font-weight: bold;
-}
-
-#item-toggle {
-  cursor: pointer;
-  float: left;
-  font-weight: bold;
-}
-
 #delete-behavior-button:hover {
   opacity: .8;
 }
@@ -146,5 +122,21 @@
 }
 
 #delete-behavior-extension-id {
+  font-weight: bold;
+}
+
+#item-arrow {
+  height: 8px;
+  padding-right: 3px;
+  width: 5px;
+}
+
+.item-list-count {
+  margin-bottom: 3px;
+}
+
+#item-toggle {
+  cursor: pointer;
+  float: left;
   font-weight: bold;
 }
