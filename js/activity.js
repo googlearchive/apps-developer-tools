@@ -388,6 +388,14 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
+   * Returns ID of the activity.
+   * @return {string} Activity ID.
+   */
+  Activity.prototype.getActivityId = function() {
+    return this.activity_.activityId || '';
+  };
+
+  /**
    * Gets a description the type of activity suitable for developer mode.
    * @return {string} Description of activity.
    */
@@ -549,6 +557,8 @@ cr.define('apps_dev_tool', function() {
     if (this.getDateAndTime())
       ret.push(this.getDateAndTime());
     ret.push(this.activity_.extensionId);
+    if (this.activity_.activityId)
+      ret.push(this.activity_.activityId);
     if (this.activity_.activityType)
       ret.push(this.activity_.activityType);
     if (this.activity_.apiCall)
