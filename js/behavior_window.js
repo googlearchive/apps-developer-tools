@@ -116,18 +116,12 @@ cr.define('apps_dev_tool', function() {
 
       // Register event handler for realtime panel buttons.
       var start = BehaviorWindow.start.bind(BehaviorWindow); 
-      $('realtime-start').addEventListener('click', function() {
-          start();
-        }, false);
-      var pause = BehaviorWindow.stop.bind(BehaviorWindow); 
-      $('realtime-pause').addEventListener('click', function() {
-          pause();
-        }, false);
+      $('realtime-start').addEventListener('click', start, false);
+      var pause = BehaviorWindow.stop.bind(BehaviorWindow);
+      $('realtime-pause').addEventListener('click', pause, false);
       var clear = BehaviorWindow.clearDeveloperModeViewActivities.bind(
           BehaviorWindow);
-      $('realtime-clear').addEventListener('click', function() {
-          clear();
-        }, false);
+      $('realtime-clear').addEventListener('click', clear, false);
     },
   };
 
