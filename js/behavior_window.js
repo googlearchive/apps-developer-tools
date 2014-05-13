@@ -211,7 +211,7 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.clearHistoryTab = function() {
     this.clearSummaryViewActivities();
-    // TODO(spostman): Hide the clear button in the history tab.
+    $('delete-behavior-button').style.display = 'none';
   };
 
   /**
@@ -356,6 +356,7 @@ cr.define('apps_dev_tool', function() {
       $('history-tab-panel').selected = 'selected';
       $('realtime-tab-panel').className = '';
       $('summary-mode-tab-all').style.display = 'block';
+      $('delete-behavior-button').style.display = 'block';
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab-panel').className = 'current-tab';
@@ -380,7 +381,7 @@ cr.define('apps_dev_tool', function() {
       $('history-tab-panel').className = '';
       $('summary-mode-tab-all').style.display = 'none';
       $('summary-mode-tab-notable').style.display = 'none';
-
+      $('delete-behavior-button').style.display = 'none';
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab-panel').className = '';

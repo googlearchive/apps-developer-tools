@@ -27,12 +27,13 @@
 .behavior-controls {
   float: right;
   display: inline-block;
+  padding-top: 8px;
 }
 
 .behavior-extension-details {
   margin-bottom: 10px;
   margin-top: 30px;
-  max-width: 600px;
+  width: 100%;
 }
 
 .behavior-extension-icon {
@@ -133,26 +134,6 @@
   cursor: pointer;
   float: left;
   font-weight: bold;
-}
-
-#delete-behavior-button {
-  background-color: transparent;
-  background-image: -webkit-image-set(
-      url(../images/delete.png) 1x,
-      url(../images/2x/delete.png) 2x);
-  background-position: center center;
-  background-repeat: no-repeat;
-  border: 1px solid rgba(0,0,0,0.1);
-  box-shadow: none;
-  height: 36px;
-  min-height: 26px;
-  min-width: 26px;
-  opacity: .6;
-  padding: 0px;
-  position: absolute;
-  right: 0;
-  top: 11px;
-  width: 36px;
 }
 
 #delete-behavior-button:hover {

@@ -145,7 +145,6 @@ found in the LICENSE file.
                 <tab id='history-tab' i18n-content="appsDevtoolHistory"></tab>
                 <tab id='realtime-tab' i18n-content="appsDevtoolRealtime"></tab>
               </tabs>
-              <button id="delete-behavior-button" title="Clear behavior"></button>
               <div id="behavior-header-bottom-separator"></div>
             </div>
 
@@ -153,13 +152,14 @@ found in the LICENSE file.
             <div class="behavior-extension-details" id="behavior-extension-details">
               <div class="behavior-extension-icon" id="behavior-extension-icon"></div>
               <div class="behavior-extension-title" id="behavior-extension-title"></div>
-                    <div class="behavior-controls">
-                      <div class="button-strip">
-                        <button id="realtime-start" style="display:none" i18n-content="btnStart"></button>
-                        <button id="realtime-pause" style="display:none" i18n-content="btnPause"></button>
-                        <button id="realtime-clear" style="display:none" i18n-content="btnClear"></button>
-                      </div>
-                    </div>
+              <div class="behavior-controls">
+                <div class="button-strip">
+                  <button id="delete-behavior-button" class="custom-appearance" style="display:none" i18n-content="clearHistory"></button>
+                  <button id="realtime-start" class="custom-appearance" style="display:none" i18n-content="btnStart"></button>
+                  <button id="realtime-pause" class="custom-appearance" style="display:none" i18n-content="btnPause"></button>
+                  <button id="realtime-clear" class="custom-appearance" style="display:none" i18n-content="btnClear"></button>
+                </div>
+              </div>
             </div>
 
             <tabpanels id="behavior-tab-panels">
