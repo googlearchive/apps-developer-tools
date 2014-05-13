@@ -143,7 +143,7 @@ cr.define('apps_dev_tool', function() {
     this.instance_.currentTab_ = BehaviorWindow.TabIds.NOSELECTION_MODE;
     // Shows the history tab page initially.
     this.setVisibleTab(BehaviorWindow.TabIds.HISTORY_MODE);
-    AppsDevTool.showOverlay($('behaviorOverlay'));
+    AppsDevTool.showOverlay($('behavior-overlay'));
   };
 
   /**

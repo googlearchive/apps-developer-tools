@@ -183,7 +183,7 @@ cr.define('apps_dev_tool', function() {
      * @private
      */
     handleCancel_: function() {
-      AppsDevTool.showOverlay($('behaviorOverlay'));
+      AppsDevTool.showOverlay($('behavior-overlay'));
     },
 
     /**
@@ -192,7 +192,7 @@ cr.define('apps_dev_tool', function() {
      */
     handleCommit_: function() {
       apps_dev_tool.BehaviorWindow.deleteExtensionBehaviorHistory(function() {
-        AppsDevTool.showOverlay($('behaviorOverlay'));
+        AppsDevTool.showOverlay($('behavior-overlay'));
       });
     },
   };
