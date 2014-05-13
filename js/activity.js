@@ -7,12 +7,13 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * @constructor Constructor for Activity class.
-   * @param {!ExtensionActivity} activity Extension activity object.
+   * @param {!activityLogPrivate.ExtensionActivity} activity Extension activity
+   * object.
    */
   var Activity = function(activity) {
     /**
      * ExtensionActivity object, encapsulates logic for an activity.
-     * @private {!ExtensionActivity}
+     * @private {!activityLogPrivate.ExtensionActivity}
      */
     this.activity_ = activity;
   };
@@ -471,7 +472,8 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Decides if the activity passes the filter.
-   * @param {ActivityFilter} filter Filter to check the activity against.
+   * @param {activityLogPrivate.ActivityFilter} filter Filter to check the
+   * activity against.
    * @return {boolean} True if activity passes, false otherwise.
    */
   Activity.prototype.passesFilter = function(filter) {
@@ -522,7 +524,7 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Returns a raw activity object which is the ExtensionActivity object.
-   * @return {!ExtensionActivity} A raw activity object.
+   * @return {!activityLogPrivate.ExtensionActivity} A raw activity object.
    */
   Activity.prototype.getRawActivity = function() {
     return this.activity_;
@@ -531,8 +533,8 @@ cr.define('apps_dev_tool', function() {
   /**
    * Helper method that assists JSON.stringify in converting activity to JSON
    * string.
-   * @return {!ExtensionActivity} Object that should be converted to JSON
-   *     string.
+   * @return {!activityLogPrivate.ExtensionActivity} Object that should be
+   * converted to JSON string.
    */
   Activity.prototype.toJSON = function() {
     return this.getRawActivity();
