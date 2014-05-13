@@ -156,15 +156,16 @@
   left: 3px;
   min-height: 16px;
   min-width: 16px;
-  opacity: .6;
-  padding: 0px;
+  opacity: .15;
+  padding-left: 8px;
   position: relative;
   top: 3px;
   width: 16px;
 }
 
 #delete-activity-button:hover {
-    opacity: .8;
+  cursor: pointer;
+  opacity: .8;
 }
 
 #delete-activity-button:active {
