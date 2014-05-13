@@ -3,7 +3,7 @@
  * found in the LICENSE file. */
 
 .activity-action {
-  float: left; 
+  float: left;
 }
 
 .activity-count {
@@ -60,7 +60,7 @@
   width: 100%;
 }
 
-#behavior-overlay {
+#behaviorOverlay {
   padding-top: 8px !important;
 }
 

@@ -34,7 +34,7 @@ cr.define('apps_dev_tool', function() {
      * @private
      */
     hideOverlay_: function() {
-      AppsDevTool.showOverlay(null);
+      AppsDevTool.showOverlay($('behaviorOverlay'));
     },
 
     /**
