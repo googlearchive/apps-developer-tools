@@ -388,6 +388,14 @@ cr.define('apps_dev_tool', function() {
     recursiveDelete();
   };
 
+  /**
+   * Deletes behavior database and thus behavior history of all extensions and
+   * applications.
+   */
+  BehaviorWindow.deleteAllExtensionBehaviorHistory = function() {
+    chrome.activityLogPrivate.deleteDatabase();
+  };
+
   // Export
   return {
     BehaviorWindow: BehaviorWindow

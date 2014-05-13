@@ -17,7 +17,7 @@ found in the LICENSE file.
     <link rel="stylesheet" href="css/chromium/extension_error_overlay.css">
     <link rel="stylesheet" href="css/extension_error.css">
     <link rel="stylesheet" href="css/extension_error_overlay.css">
-    <link rel="stylesheet" href="css/pack_item_overlay.css">
+    <link rel="stylesheet" href="css/misc_overlays.css">
     <link rel="stylesheet" href="css/items.css">
     <link rel="stylesheet" href="css/behavior_overlay.css">
 
@@ -46,10 +46,8 @@ found in the LICENSE file.
     <script src="js/main_scripts.js"></script>
     <script src="js/items.js"></script>
     <script src="js/items_list.js"></script>
-    <script src="js/pack_item_overlay.js"></script>
+    <script src="js/misc_overlays.js"></script>
     <script src="js/behavior_window.js"></script>
-    <script src="js/delete_behavior_overlay.js"></script>
-    <script src="js/delete_all_behavior_overlay.js"></script>
     <script src="js/watchdog/watchdog_activity.js"></script>
     <script src="js/watchdog/watchdog_activity_group.js"></script>
     <script src="js/watchdog/watchdog_activity_group_list.js"></script>
@@ -122,7 +120,7 @@ found in the LICENSE file.
       <div id="packItemOverlay" class="page">
         <h1 id="pack-title"></h1>
         <div id="cbd-content-area" class="content-area">
-          <div class="pack-item-heading" id="pack-heading"></div>
+          <div class="overlay-item-heading" id="pack-heading"></div>
           <input class="pack-item-text-area" id="item-root-dir" type="hidden">
           <div class="pack-item-text-boxes">
             <div id="item-private-key-label">
@@ -219,8 +217,8 @@ found in the LICENSE file.
       <div id="deleteBehaviorOverlay" class="page">
         <h1 i18n-content="deleteBehaviorTitle"></h1>
         <div class="content-area">
-          <div>
-            <span id="delete-behavior-heading" i18n-content="deleteBehaviorHeading"></span>
+          <div class="overlay-item-heading">
+            <span i18n-content="deleteBehaviorHeading"></span>
             <span id="delete-behavior-extension-id"></span>
           </div>
         </div>
@@ -233,10 +231,11 @@ found in the LICENSE file.
           </div>
         </div>
       </div>
+
       <div id="deleteAllBehaviorOverlay" class="page">
         <h1 id="delete-all-behavior-title" i18n-content="deleteAllBehaviorTitle"></h1>
         <div class="content-area">
-          <div i18n-content="deleteAllBehaviorHeading"></div>
+          <div class="overlay-item-heading" i18n-content="deleteAllBehaviorHeading"></div>
         </div>
         <div class="action-area">
           <div class="action-area-right">
