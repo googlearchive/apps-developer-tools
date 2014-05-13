@@ -1,6 +1,15 @@
-/* Copyright (c) 2013 The Chromium Authors. All rights reserved.
+/* Copyright 2014 The Chromium Authors. All rights reserved.
  * Use of this source code is governed by a BSD-style license that can be
  * found in the LICENSE file. */
+
+.activity-action {
+  float: left;
+}
+
+.activity-count {
+  color: gray;
+  margin-left: 5px;
+}
 
 .behavior-content-area {
   -webkit-box-flex: 1;
@@ -75,13 +84,10 @@
   z-index: 1;
 }
 
-.activity-action {
-  float: left; 
-}
-
-.activity-count {
-  color: gray;
-  margin-left: 5px;
+#item-arrow {
+  height: 8px;
+  padding-right: 3px;
+  width: 5px;
 }
 
 .item-list-count {
@@ -124,8 +130,39 @@
   font-weight: bold;
 }
 
-#item-arrow {
-  height: 8px;
-  padding-right: 3px;
-  width: 5px;
+#delete-behavior-heading #delete-all-behavior-heading {
+  padding-bottom: 5px;
+  width: 520px;
+}
+
+#delete-behavior-button {
+  background-color: transparent;
+  background-image: -webkit-image-set(
+      url(../images/delete.png) 1x,
+      url(../images/2x/delete.png) 2x);
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: none;
+  height: 36px;
+  min-height: 26px;
+  min-width: 26px;
+  opacity: .6;
+  padding: 0px;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  width: 36px;
+}
+
+#delete-behavior-button:hover {
+  opacity: .8;
+}
+
+#delete-behavior-button:active {
+  opacity: 1;
+}
+
+#delete-behavior-extension-id {
+  font-weight: bold;
 }

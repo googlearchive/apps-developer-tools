@@ -9,7 +9,10 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * DeleteAllBehaviorOverlay class
-   * Encapsulated handling of the 'Delete All Behavior History' overlay page.
+   * Encapsulated handling of the delete ALL behavior history overlay page and
+   * functionality that implements deletion of behavior history for ALL
+   * extensions and applications. This overlay is invoked by the item in the
+   * settings menu, and it returns to the main window when it finishes.
    * @constructor
    */
   function DeleteAllBehaviorOverlay() {}

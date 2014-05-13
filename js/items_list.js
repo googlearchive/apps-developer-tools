@@ -264,9 +264,6 @@ cr.define('apps_dev_tool', function() {
       // Set delete button handler.
       this.setDeleteButton_(item, node);
 
-      // Set delete behavior handler.
-      this.setDeleteBehaviorButton_(item, node);
-
       // First get the item id.
       var idLabel = node.querySelector('.extension-id');
       idLabel.textContent = ' ' + item.id;
@@ -485,28 +482,6 @@ cr.define('apps_dev_tool', function() {
         incognito.querySelector('input').checked = item.incognito_enabled;
         incognito.hidden = false;
       }
-    },
-
-    /**
-     * Sets the delete extension behavior history handler.
-     * @param {!Object} item A dictionary of item metadata.
-     * @param {!HTMLElement} el HTML element containing all items.
-     * @private
-     */
-    setDeleteBehaviorButton_: function(item, el) {
-      var deleteBehaviorButton = el.querySelector('.delete-behavior-link');
-      deleteBehaviorButton.addEventListener('click', function(e) {
-        if (item.isApp) {
-          $('delete-behavior-heading').textContent =
-              str('deleteBehaviorAppHeading');
-        } else {
-          $('delete-behavior-heading').textContent =
-              str('deleteBehaviorExtensionHeading');
-        }
-        $('item-root-dir').value = item.path;
-        AppsDevTool.showOverlay($('deleteBehaviorOverlay'));
-      });
-      deleteBehaviorButton.hidden = false;
     },
 
     /**
