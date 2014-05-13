@@ -3,7 +3,7 @@
  * found in the LICENSE file. */
 
 .activity-action {
-  float: left; 
+  float: left;
 }
 
 .activity-count {
@@ -60,7 +60,7 @@
   width: 100%;
 }
 
-#behavior-overlay {
+#behaviorOverlay {
   padding-top: 8px !important;
 }
 
@@ -97,5 +97,42 @@
 #item-toggle {
   cursor: pointer;
   float: left;
+  font-weight: bold;
+}
+
+#delete-behavior-heading #delete-all-behavior-heading {
+  padding-bottom: 5px;
+  width: 520px;
+}
+
+#delete-behavior-button {
+  background-color: transparent;
+  background-image: -webkit-image-set(
+      url(../images/delete.png) 1x,
+      url(../images/2x/delete.png) 2x);
+  background-position: center center;
+  background-repeat: no-repeat;
+  border: 1px solid rgba(0,0,0,0.1);
+  box-shadow: none;
+  height: 36px;
+  min-height: 26px;
+  min-width: 26px;
+  opacity: .6;
+  padding: 0px;
+  position: absolute;
+  right: 0;
+  top: 11px;
+  width: 36px;
+}
+
+#delete-behavior-button:hover {
+  opacity: .8;
+}
+
+#delete-behavior-button:active {
+  opacity: 1;
+}
+
+#delete-behavior-extension-id {
   font-weight: bold;
 }

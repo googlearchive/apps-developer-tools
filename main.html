@@ -146,7 +146,7 @@ found in the LICENSE file.
         </div>
       </div>
 
-      <div class="page" id="behavior-overlay" >
+      <div class="page" id="behaviorOverlay" >
         <div id="close-behavior-overlay"></div>
         <div class="behavior-content-area" id="behavior-content-area">
           <tabbox id="tab-box">
@@ -157,6 +157,7 @@ found in the LICENSE file.
                 <tab i18n-content="appsDevtoolHistory"></tab>
                 <tab i18n-content="appsDevtoolRealtime"></tab>
               </tabs>
+              <button id="delete-behavior-button" title="Clear behavior"></button>
               <div id="behavior-header-bottom-separator"></div>
             </div>
 
@@ -218,7 +219,10 @@ found in the LICENSE file.
       <div id="deleteBehaviorOverlay" class="page">
         <h1 i18n-content="deleteBehaviorTitle"></h1>
         <div class="content-area">
-          <div id="delete-behavior-heading"></div>
+          <div>
+            <span id="delete-behavior-heading" i18n-content="deleteBehaviorHeading"></span>
+            <span id="delete-behavior-extension-id"></span>
+          </div>
         </div>
         <div class="action-area">
           <div class="action-area-right">
@@ -458,8 +462,6 @@ found in the LICENSE file.
                   i18n-content="extensionSettingsPermissions" href="#"></a>
               <a class="behavior-link"
                   i18n-content="extensionBehavior" href="#"></a>
-              <a class="delete-behavior-link"
-                  i18n-content="extensionDeleteBehavior" href="#"></a>
               <a class="site-link" target="_blank" hidden></a>
               <a class="options-link" i18n-content="extensionSettingsOptions"
                   href="#" target="_blank" hidden></a>

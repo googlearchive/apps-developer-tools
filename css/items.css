@@ -628,8 +628,3 @@ button[disabled]:active {
 .menu-item:hover {
   color: #333;
 }
-
-#delete-behavior-heading #delete-all-behavior-heading {
-  padding-bottom: 5px;
-  width: 520px;
-}
