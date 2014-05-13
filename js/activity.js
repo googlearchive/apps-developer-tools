@@ -416,7 +416,6 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Decides if the activity is notable (security relevant).
-   *
    * @return {boolean} True if activity is notable, false otherwise.
    */
   Activity.prototype.isNotable = function() {
@@ -436,7 +435,7 @@ cr.define('apps_dev_tool', function() {
       }
     }
 
-    // Most instrusive Chrome apis.
+    // Most intrusive Chrome apis.
     if (this.activity_.activityType.substring(0, 3) == 'api' &&
         Activity.NOTABLE_CHROME_API_METHODS_.indexOf(this.activity_.apiCall) >=
             0) {
@@ -455,7 +454,6 @@ cr.define('apps_dev_tool', function() {
   /**
    * Decides if the activity is unimportant (should be hidden in the summary
    * view).
-   *
    * @return {boolean} True if activity should be hidden, false otherwise.
    */
   Activity.prototype.isUnimportant = function() {
