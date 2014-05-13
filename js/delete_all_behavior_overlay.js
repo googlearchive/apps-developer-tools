@@ -8,24 +8,24 @@ cr.define('apps_dev_tool', function() {
 /** const */ var AppsDevTool = apps_dev_tool.AppsDevTool;
 
   /**
-   * DeleteBehaviorOverlay class
-   * Encapsulated handling of the 'Delete Behavior History' overlay page.
+   * DeleteAllBehaviorOverlay class
+   * Encapsulated handling of the 'Delete All Behavior History' overlay page.
    * @constructor
    */
-  function DeleteBehaviorOverlay() {}
+  function DeleteAllBehaviorOverlay() {}
 
-  cr.addSingletonGetter(DeleteBehaviorOverlay);
+  cr.addSingletonGetter(DeleteAllBehaviorOverlay);
 
-  DeleteBehaviorOverlay.prototype = {
+  DeleteAllBehaviorOverlay.prototype = {
     initializePage: function() {
       var overlay = $('overlay');
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
       overlay.addEventListener('cancelOverlay', this.hideOverlay_.bind(this));
 
-      $('delete-behavior-dismiss').addEventListener('click',
+      $('delete-all-behavior-dismiss').addEventListener('click',
           this.hideOverlay_.bind(this));
-      $('delete-behavior-commit').addEventListener('click',
+      $('delete-all-behavior-commit').addEventListener('click',
           this.handleCommit_.bind(this));
     },
 
@@ -38,17 +38,18 @@ cr.define('apps_dev_tool', function() {
     },
 
     /**
-     * Handles a click on the delete behavior history.
+     * Handles a click on the delete all behavior history.
      * @param {Event} e The click event.
      * @private
      */
     handleCommit_: function(e) {
+      chrome.activityLogPrivate.deleteDatabase();
       this.hideOverlay_();
     },
   };
 
   // Export
   return {
-    DeleteBehaviorOverlay: DeleteBehaviorOverlay,
+    DeleteAllBehaviorOverlay: DeleteAllBehaviorOverlay,
   };
 });
