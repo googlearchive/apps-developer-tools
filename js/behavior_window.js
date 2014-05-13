@@ -352,12 +352,14 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.refreshVisibleTab = function() {
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
+      $('delete-behavior-button').style.display = 'block';
       $('history-tab-panel').className = 'current-tab';
       $('history-tab-panel').selected = 'selected';
       $('realtime-tab-panel').className = '';
       $('summary-mode-tab-all').style.display = 'block';
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
+      $('delete-behavior-button').style.display = 'none';
       $('realtime-tab-panel').className = 'current-tab';
       $('realtime-tab-panel').selected = 'selected';
       $('history-tab-panel').className = '';
