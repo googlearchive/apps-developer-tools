@@ -30,20 +30,6 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Listens on the activity log api and adds activities.
-   * @param {!ExtensionActivity} activity An activity from the
-   *     activityLogPrivate api.
-   */
-  BehaviorWindow.onExtensionActivity = function(activity) {
-    if (activity.extensionId == this.instance_.currentExtensionId_) {
-      var act = new watchdog.Activity(activity);
-      if (act.passesFilter(BehaviorWindow.instance_.activityFilter_)) {
-        BehaviorWindow.addToDevActivityList(act);
-      }
-    }
-  };
-
-  /**
    * Hides the present overlay showing and clear all generated activity
    * lists.
    */
@@ -88,7 +74,7 @@ cr.define('apps_dev_tool', function() {
      * stop button is pressed.
      * @private {Function}
      */
-    activityListener_: BehaviorWindow.onExtensionActivity.bind(BehaviorWindow),
+    activityListener_: null,
 
     /**
      * Filter to use when displaying activity info. See activityLogPrivate API
@@ -191,6 +177,20 @@ cr.define('apps_dev_tool', function() {
       if (numRegular == 0) {
         $('empty-history').style.display = 'block';
       }
+  };
+
+  /**
+   * Listens on the activity log api and adds activities.
+   * @param {!ExtensionActivity} activity An activity from the
+   *     activityLogPrivate api.
+   */
+  BehaviorWindow.onExtensionActivity = function(activity) {
+    if (activity.extensionId == this.instance_.currentExtensionId_) {
+      var act = new watchdog.Activity(activity);
+      if (act.passesFilter(BehaviorWindow.instance_.activityFilter_)) {
+        BehaviorWindow.addToDevActivityList(act);
+      }
+    }
   };
 
   /**
@@ -385,6 +385,10 @@ cr.define('apps_dev_tool', function() {
     // Don't bother adding a listener if there is no extension selected.
     if (!this.instance_.currentExtensionId_) {
       return;
+    }
+
+    if (!this.instance_.activityListener_) {
+      this.instance_.activityListener_ = this.onExtensionActivity.bind(this);
     }
 
     chrome.activityLogPrivate.onExtensionActivity.addListener(
