@@ -9,7 +9,10 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * DeleteBehaviorOverlay class
-   * Encapsulated handling of the 'Delete Behavior History' overlay page.
+   * Encapsulated handling of the delete behavior history overlay page and
+   * functionality that implements deletion of behavior history for a particular
+   * extension/application. This overlay is invoked from the behavior window
+   * overlay and returns to it when closed.
    * @constructor
    */
   function DeleteBehaviorOverlay() {}
