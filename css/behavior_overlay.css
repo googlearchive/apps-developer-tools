@@ -72,7 +72,11 @@
 
 #behavior-tab-panels {
   box-shadow: none;
-  overflow-y: scroll;
+  overflow-y: auto;
+}
+
+#behavior-tab-panels {
+  width: 600px;
 }
 
 #close-behavior-overlay {
