@@ -12,6 +12,7 @@
   padding: 0;
   position: relative;
   width: 640px;
+  z-index: 0;
 }
 
 .behavior-extension-details {
@@ -40,14 +41,18 @@
   -webkit-user-select: text;
 }
 
-#behavior-tab-header {
-  height: 48px;
-  width: 100%;
-}
-
 #behavior-header-bottom-separator {
   border-bottom: 1px solid #d1d1d1;
   width: 100%;
+}
+
+#behavior-tab-header {
+  height: 58px;
+  width: 100%;
+}
+
+#behaviorOverlay {
+  padding-top: 8px !important;
 }
 
 #behavior-tab-panels {
@@ -60,12 +65,14 @@
       url(../images/search_clear_active.png) 1x,
       url(../images/2x/search_clear_active.png) 2x);
   background-repeat: no-repeat;
-  border: none !important;
+  border: none;
+  cursor: pointer;
   height: 16px;
   position: absolute;
-  right: 5px;
-  top: 5px;
+  right: 6px;
+  top: 6px;
   width: 16px;
+  z-index: 1;
 }
 
 .activity-action {
