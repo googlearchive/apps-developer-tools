@@ -208,7 +208,7 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.onExtensionActivity = function(activity) {
     if (activity.extensionId == this.instance_.currentExtensionId_) {
-      var act = new watchdog.Activity(activity);
+      var act = new apps_dev_tool.Activity(activity);
       if (act.passesFilter(BehaviorWindow.instance_.activityFilter_)) {
         BehaviorWindow.addToDevActivityList(act);
       }
