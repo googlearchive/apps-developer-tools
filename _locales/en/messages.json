@@ -231,6 +231,19 @@
     "message": "Cancel",
     "description": "Used for Cancel on buttons."
   },
+  "btnStart": {
+    "message": "Start",
+    "description": "Used for Start button in the realtime tab."
+  },
+  "btnPause": {
+    "message": "Pause",
+    "description": "Used for Pause button in the realtime tab."
+  },
+  "btnClear": {
+    "message": "Clear",
+    "description": "Used for Clear button in the realtime tab."
+  },
+
   "packExtensionRootDir": {
     "message": "Extension root directory:",
     "description": "Label in the pack extension dialog for the control that lets the user select the extension to pack."

@@ -34,9 +34,9 @@ cr.define('apps_dev_tool', function() {
    * lists.
    */
   var hideBehaviorOverlay = function() {
-    BehaviorWindow.clearSummaryViewActivities();
+    BehaviorWindow.clearHistoryTab();
     BehaviorWindow.stop();
-    BehaviorWindow.clearDeveloperModeViewActivities();
+    BehaviorWindow.clearRealtimeTab();
     AppsDevTool.showOverlay(null);
   };
 
@@ -94,7 +94,6 @@ cr.define('apps_dev_tool', function() {
       cr.ui.overlay.setupOverlay(overlay);
       cr.ui.overlay.globalInitialization();
 
-      // Register cancelOverlay event handler for ESC keydown event.
       overlay.addEventListener(
           'cancelOverlay', hideBehaviorOverlay.bind(overlay));
       $('close-behavior-overlay').addEventListener(
@@ -106,6 +105,21 @@ cr.define('apps_dev_tool', function() {
         }, false);
       $('realtime-tab').addEventListener('click', function() {
           setVisibleTab(BehaviorWindow.TabIds.STREAM_MODE);
+        }, false);
+
+      // Register event handler for realtime panel buttons.
+      var start = BehaviorWindow.start.bind(BehaviorWindow); 
+      $('realtime-start').addEventListener('click', function() {
+          start();
+        }, false);
+      var pause = BehaviorWindow.stop.bind(BehaviorWindow); 
+      $('realtime-pause').addEventListener('click', function() {
+          pause();
+        }, false);
+      var clear = BehaviorWindow.clearDeveloperModeViewActivities.bind(
+          BehaviorWindow);
+      $('realtime-clear').addEventListener('click', function() {
+          clear();
         }, false);
     }
   };
@@ -194,7 +208,25 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Clear the history tab.
+   * Clear the buttons and activities of the history tab.
+   */
+  BehaviorWindow.clearHistoryTab = function() {
+    this.clearSummaryViewActivities();
+    // TODO(spostman): Hide the clear button in the history tab.
+  };
+
+  /**
+   * Clear the buttons and activities of the realtime tab.
+   */
+  BehaviorWindow.clearRealtimeTab = function() {
+    this.clearDeveloperModeViewActivities();    
+    $('realtime-start').style.display = 'none';
+    $('realtime-pause').style.display = 'none';
+    $('realtime-clear').style.display = 'none';
+  };
+
+  /**
+   * Clear the history activities.
    */
   BehaviorWindow.clearSummaryViewActivities = function() {
     this.clearActivityCountList('activity-list-notable');
@@ -203,7 +235,7 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Clear the realtime tab.
+   * Clear the realtime activities.
    */
   BehaviorWindow.clearDeveloperModeViewActivities = function() {
     this.clearActivityCountList('activity-list-dev');
@@ -242,10 +274,7 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.clearActivityCountList = function(listName) {
     var parentNode = document.getElementById(listName);
     if (parentNode) {
-      while (parentNode.firstChild) {
-        parentNode.removeChild(parentNode.firstChild);
-      }
-      parent.innerHTML = '';
+      parentNode.innerHTML = '';
     }
   };
 
@@ -325,11 +354,13 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.refreshVisibleTab = function() {
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
       $('history-tab-panel').className = 'current-tab';
+      $('history-tab-panel').selected = 'selected';
       $('realtime-tab-panel').className = '';
       $('summary-mode-tab-all').style.display = 'block';
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab-panel').className = 'current-tab';
+      $('realtime-tab-panel').selected = 'selected';
       $('history-tab-panel').className = '';
       $('dev-mode-tab-content').style.display = 'block';
       this.start();
@@ -348,13 +379,19 @@ cr.define('apps_dev_tool', function() {
     // Clean up the state from the last tab.
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
       $('history-tab-panel').className = '';
-      $('summary-mode-tab-notable').style.display = 'none';
       $('summary-mode-tab-all').style.display = 'none';
+      $('summary-mode-tab-notable').style.display = 'none';
+
     } else if (this.instance_.currentTab_ ==
                BehaviorWindow.TabIds.STREAM_MODE) {
       $('realtime-tab-panel').className = '';
       $('dev-mode-tab-content').style.display = 'none';
+      // Stop activity log listener. 
       this.stop();
+      // Clear the realtime panel buttons.
+      $('realtime-start').style.display = 'none';
+      $('realtime-pause').style.display = 'none';
+      $('realtime-clear').style.display = 'none';
     }
     // Now set up the new tab.
     this.instance_.currentTab_ = tabId;
@@ -390,10 +427,9 @@ cr.define('apps_dev_tool', function() {
     if (!this.instance_.activityListener_) {
       this.instance_.activityListener_ = this.onExtensionActivity.bind(this);
     }
-
+    this.updateDevModeControls(true);
     chrome.activityLogPrivate.onExtensionActivity.addListener(
         this.instance_.activityListener_);
-    this.updateDevModeControls(true);
   };
 
   /**
@@ -411,12 +447,13 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.updateDevModeControls = function(running) {
     if (running) {
-      // TODO(spostman): implement stop and clear buttons.
-      // $('start').style.display = 'none';
-      // $('stop').style.display = 'block';
+       $('realtime-start').style.display = 'none';
+       $('realtime-pause').style.display = 'block';
+       $('realtime-clear').style.display = 'block';
     } else {
-      // $('start').style.display = 'block';
-      // $('stop').style.display = 'none';
+       $('realtime-pause').style.display = 'none';
+       $('realtime-start').style.display = 'block';
+       $('realtime-clear').style.display = 'block';
     }
   };
 
