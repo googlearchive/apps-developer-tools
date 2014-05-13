@@ -95,11 +95,8 @@ cr.define('apps_dev_tool', function() {
     }),
 
     initializePage: function() {
-      var overlay = $('overlay');
-      cr.ui.overlay.setupOverlay(overlay);
-      cr.ui.overlay.globalInitialization();
-      overlay.addEventListener(
-          'cancelOverlay', hideBehaviorOverlay.bind(overlay));
+      $('overlay').addEventListener(
+          'cancelOverlay', hideBehaviorOverlay.bind($('overlay')));
 
       $('close-behavior-overlay').addEventListener(
           'click', hideBehaviorOverlay.bind(this));

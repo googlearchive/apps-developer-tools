@@ -38,44 +38,41 @@ cr.define('cr.ui.overlay', function() {
   /** @type {boolean} */
   var globallyInitialized = false;
 
-  /** @type {!Array.<Object>} */
-  var initializedOverlays = [];
-
   /**
    * Makes initializations which must hook at the document level.
    */
   function globalInitialization() {
-    if (globallyInitialized)
-      return;
+    if (!globallyInitialized) {
+      document.addEventListener('keydown', function(e) {
+        var overlay = getTopOverlay();
+        if (!overlay)
+          return;
 
-    document.addEventListener('keydown', function(e) {
-      var overlay = getTopOverlay();
-      if (!overlay)
-        return;
+        // Close the overlay on escape.
+        if (e.keyCode == 27)  // Escape
+          cr.dispatchSimpleEvent(overlay, 'cancelOverlay');
 
-      // Close the overlay on escape.
-      if (e.keyCode == 27)  // Escape
-        cr.dispatchSimpleEvent(overlay, 'cancelOverlay');
-
-      // Execute the overlay's default button on enter, unless focus is on an
-      // element that has standard behavior for the enter key.
-      var forbiddenTagNames = /^(A|BUTTON|SELECT|TEXTAREA)$/;
-      if (e.keyIdentifier == 'Enter' &&
-          !forbiddenTagNames.test(document.activeElement.tagName)) {
-        var button = getDefaultButton(overlay);
-        if (button) {
-          button.click();
-          // Executing the default button may result in focus moving to a
-          // different button. Calling preventDefault is necessary to not have
-          // that button execute as well.
-          e.preventDefault();
+        // Execute the overlay's default button on enter, unless focus is on an
+        // element that has standard behavior for the enter key.
+        var forbiddenTagNames = /^(A|BUTTON|SELECT|TEXTAREA)$/;
+        if (e.keyIdentifier == 'Enter' &&
+            !forbiddenTagNames.test(document.activeElement.tagName)) {
+          var button = getDefaultButton(overlay);
+          if (button) {
+            button.click();
+            // Executing the default button may result in focus moving to a
+            // different button. Calling preventDefault is necessary to not have
+            // that button execute as well.
+            e.preventDefault();
+          }
         }
-      }
-    });
+      });
 
-    window.addEventListener('resize', setMaxHeightAllPages);
+      window.addEventListener('resize', setMaxHeightAllPages);
+      globallyInitialized = true;
+    }
+
     setMaxHeightAllPages();
-    globallyInitialized = true;
   }
 
   /**
@@ -95,11 +92,6 @@ cr.define('cr.ui.overlay', function() {
    * @param {HTMLElement} overlay The .overlay.
    */
   function setupOverlay(overlay) {
-    if (initializedOverlays.indexOf(overlay) != -1)
-      return;
-
-    initializedOverlays.push(overlay);
-
     // Close the overlay on clicking any of the pages' close buttons.
     var closeButtons = overlay.querySelectorAll('.page > .close-button');
     for (var i = 0; i < closeButtons.length; i++) {
