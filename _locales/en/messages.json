@@ -231,6 +231,10 @@
     "message": "Cancel",
     "description": "Used for Cancel on buttons."
   },
+  "clearHistory": {
+    "message": "Clear history",
+    "description": "The button to clear all history for a specific extension/app."
+  },
   "btnStart": {
     "message": "Start",
     "description": "Used for Start button in the realtime tab."
