@@ -614,7 +614,7 @@ cr.define('apps_dev_tool', function() {
    * @param {!Event} event Key event.
    */
   BehaviorWindow.onSearchKeyDown = function(event) {
-    if (event.keyCode != 13) // Enter key.
+    if (event.keyCode != 13)  // Enter key.
       return;
 
     this.instance_.currentSearchFilter_ =
