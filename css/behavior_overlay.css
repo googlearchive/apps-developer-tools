@@ -88,6 +88,12 @@
   padding-top: 8px !important;
 }
 
+#behavior-search {
+  right: 0px;
+  text-align: left;
+  width: 180px;
+}
+
 #behavior-tab-header {
   height: 58px;
   width: 100%;

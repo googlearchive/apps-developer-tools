@@ -105,7 +105,7 @@ tabpanel {
   top: 3px;
 }
 
-#search {
+input[type='search'] {
   -webkit-padding-end: 5px;
   -webkit-padding-start: 34px;
   background-image: -webkit-image-set(
@@ -122,13 +122,13 @@ tabpanel {
   width: 230px;
 }
 
-html[dir='rtl'] #search {
+html[dir='rtl'] input[type='search'] {
   background-position-x: calc(100% - 16px);
   left: 16px;
   right: auto;
 }
 
-#search::-webkit-search-cancel-button {
+input[type='search']::-webkit-search-cancel-button {
   -webkit-appearance: none;
   background-image: -webkit-image-set(
       url(../images/search_clear.png) 1x,
@@ -138,13 +138,13 @@ html[dir='rtl'] #search {
   width: 16px;
 }
 
-#search::-webkit-search-cancel-button:hover {
+input[type='search']::-webkit-search-cancel-button:hover {
   background-image: -webkit-image-set(
       url(../images/search_clear_hover.png) 1x,
       url(../images/2x/search_clear_hover.png) 2x);
 }
 
-#search::-webkit-search-cancel-button:active {
+input[type='search']::-webkit-search-cancel-button:active {
   background-image: -webkit-image-set(
       url(../images/search_clear_active.png) 1x,
       url(../images/2x/search_clear_active.png) 2x);

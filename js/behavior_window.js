@@ -74,6 +74,12 @@ cr.define('apps_dev_tool', function() {
     currentTab_: BehaviorWindow.TabIds.NOSELECTION_MODE,
 
     /**
+     * Search filter entered to a search box.
+     * @private {!string}
+     */
+     currentSearchFilter_: '',
+
+    /**
      * Listener on the chrome.activityLogPrivate.onExtensionActivity event.
      * We need to keep track of it so the correct listener is removed when the
      * stop button is pressed.
@@ -97,11 +103,13 @@ cr.define('apps_dev_tool', function() {
     initializePage: function() {
       $('overlay').addEventListener(
           'cancelOverlay', hideBehaviorOverlay.bind($('overlay')));
-
       $('close-behavior-overlay').addEventListener(
           'click', hideBehaviorOverlay.bind(this));
       $('delete-behavior-button').addEventListener(
           'click', BehaviorWindow.showDeleteBehaviorOverlay.bind(this));
+
+      $('behavior-search').addEventListener(
+          'keydown', BehaviorWindow.onSearchKeyDown.bind(BehaviorWindow));
 
       var setVisibleTab = BehaviorWindow.setVisibleTab.bind(BehaviorWindow);
       $('history-tab').addEventListener('click', function() {
@@ -396,6 +404,8 @@ cr.define('apps_dev_tool', function() {
       $('realtime-pause').style.display = 'none';
       $('realtime-clear').style.display = 'none';
     }
+    $('behavior-search').value = '';
+
     // Now set up the new tab.
     this.instance_.currentTab_ = tabId;
     this.refreshVisibleTab();
@@ -465,6 +475,15 @@ cr.define('apps_dev_tool', function() {
    * @param {!watchdog.Activity} activity Activity to add to the list.
    */
   BehaviorWindow.addToDevActivityList = function(activity) {
+    // Check if there is a search filter set and if the current activity matches
+    // the search filter.
+    var filter = this.instance_.currentSearchFilter_;
+    if (filter != '' &&
+        activity.getArgUrl().toLowerCase().indexOf(filter) == -1 &&
+        activity.getPageUrl().toLowerCase().indexOf(filter) == -1 &&
+        activity.getApiCall().toLowerCase().indexOf(filter) == -1)
+      return;
+
     var activitiesTemplate = document.querySelector(
         '#template-collection > [data-name="activity-list-dev"]');
     var el = activitiesTemplate.cloneNode(true);
@@ -588,6 +607,23 @@ cr.define('apps_dev_tool', function() {
    */
   BehaviorWindow.deleteAllExtensionBehaviorHistory = function() {
     chrome.activityLogPrivate.deleteDatabase();
+  };
+
+  /**
+   * Adjusts the list of displayed activities according to search input.
+   * @param {!Event} event Key event.
+   */
+  BehaviorWindow.onSearchKeyDown = function(event) {
+    if (event.keyCode != 13)  // Enter key.
+      return;
+
+    this.instance_.currentSearchFilter_ =
+        $('behavior-search').value.toLowerCase();
+    if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
+      // TODO: implement.
+    } else if (this.instance_.currentTab_ == BehaviorWindow.TabIds.STREAM_MODE) {
+      this.clearDeveloperModeViewActivities();
+    }
   };
 
   // Export
