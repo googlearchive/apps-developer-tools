@@ -2183,6 +2183,18 @@
   },
   "webrequest_response_cookie_modifications": {
     "message": "Modified web page cookies"
+  },  
+  "filterActivitiesTxt": {
+    "description": "Text for displaying the activity filter options.",
+    "message": "Filter activity stream"
+  },
+  "accessedTemplate": {
+    "message": "Accessed $property$",
+    "placeholders": {
+      "property": {
+        "content": "$1"
+      }
+    }
   },
   "eventTemplate": {
     "message": "Notified of $event$",
@@ -2191,14 +2203,6 @@
         "content": "$1"
       }
     }
-  },
-  "filterActivitiesTxt": {
-    "description": "Text for displaying the activity filter options.",
-    "message": "Filter activity stream"
-  },
-  "genericModified": {
-    "description": "Used for setters and other things that change a website",
-    "message": "Modified a website"
   },
   "invokedTemplate": {
     "message": "Invoked $api_call$",
@@ -2216,7 +2220,19 @@
       }
     }
   },
-    "deleteAllBehaviorTitle": {
+  "webRequestTemplate": {
+    "message": "Intercepted browser request ($method$)",
+    "placeholders": {
+      "method": {
+        "content": "$1"
+      }
+    }
+  },
+  "genericModified": {
+    "description": "Used for setters and other things that change a website",
+    "message": "Modified a website"
+  },
+  "deleteAllBehaviorTitle": {
     "message": "Clear all behavior history?",
     "description": "Title of delete all behavior history dialog."
   },
