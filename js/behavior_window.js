@@ -77,7 +77,7 @@ cr.define('apps_dev_tool', function() {
      * Search filter entered to a search box.
      * @private {!string}
      */
-     currentSearchFilter_: '',
+    currentSearchFilter_: '',
 
     /**
      * Listener on the chrome.activityLogPrivate.onExtensionActivity event.
@@ -404,8 +404,9 @@ cr.define('apps_dev_tool', function() {
       $('realtime-pause').style.display = 'none';
       $('realtime-clear').style.display = 'none';
     }
+    // Clear behavior-search button and value.
     $('behavior-search').value = '';
-
+    this.instance_.currentSearchFilter_ = '';
     // Now set up the new tab.
     this.instance_.currentTab_ = tabId;
     this.refreshVisibleTab();
