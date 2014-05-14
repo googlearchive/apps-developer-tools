@@ -55,7 +55,9 @@ cr.define('apps_dev_tool', function() {
       // Add Cmd-F / Ctrl-F shortcut to focus the search field.
       document.addEventListener('keydown', function(event) {
         if ((event.keyCode == 70) && (event.metaKey || event.ctrlKey)) {
-          document.querySelector('#search').focus();
+          var overlay = AppsDevTool.getCurrentOverlay();
+          (overlay ? overlay : $('extension-settings')).querySelector(
+              'input[type="search"]').focus();
         }
       });
 

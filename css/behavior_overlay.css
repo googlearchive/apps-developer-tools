@@ -171,3 +171,49 @@
 #delete-activity-button:active {
   opacity: 1;
 }
+
+#behavior-search {
+  -webkit-padding-end: 5px;
+  -webkit-padding-start: 34px;
+  background-image: -webkit-image-set(
+      url(../images/search.png) 1x,
+      url(../images/2x/search.png) 2x);
+  background-position: 10px 8px;
+  background-repeat: no-repeat;
+  border: none;
+  font-size: 13px;
+  height: 18px;
+  position: absolute;
+  right: 0px;
+  text-align: left;
+  top: 16px;
+  width: 180px;
+}
+
+html[dir='rtl'] #behavior-search {
+  background-position-x: calc(100% - 16px);
+  left: 16px;
+  right: auto;
+}
+
+#behavior-search::-webkit-search-cancel-button {
+  -webkit-appearance: none;
+  background-image: -webkit-image-set(
+      url(../images/search_clear.png) 1x,
+      url(../images/2x/search_clear.png) 2x);
+  background-repeat: no-repeat;
+  height: 16px;
+  width: 16px;
+}
+
+#behavior-search::-webkit-search-cancel-button:hover {
+  background-image: -webkit-image-set(
+      url(../images/search_clear_hover.png) 1x,
+      url(../images/2x/search_clear_hover.png) 2x);
+}
+
+#behavior-search::-webkit-search-cancel-button:active {
+  background-image: -webkit-image-set(
+      url(../images/search_clear_active.png) 1x,
+      url(../images/2x/search_clear_active.png) 2x);
+}
