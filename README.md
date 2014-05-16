@@ -1,5 +1,5 @@
-Chrome Apps & Extensions Developer Tools
-========================================
+Chrome Apps & Extensions Developer Tool
+=======================================
 
 Develop and Debug Chrome Apps & Extensions.
 The Chrome Apps & Extensions Developer Tool helps developers build and debug Chrome Apps and Extensions. 
