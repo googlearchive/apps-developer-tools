@@ -76,18 +76,46 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Loads the activities for the extension.
-   * @param {!ActivityFilter} filter Filter for the activity lookup.
+   * Loads the activities matching any of a set of filters.
+   * @param {!Array.<!activityLogPrivate.ActivityFilter>} filters List of
+   * filters to use.
    * @param {Function} callback The callback that receives the activities.
    */
   ActivityGroupList.getFilteredExtensionActivities = function(
-      filter, callback) {
-    chrome.activityLogPrivate.getExtensionActivities(filter, function(result) {
+      filters, callback) {
+    // We assume that every activity returned by the getExtensionActivities
+    // method has a unique activityId, and use the activityId to group together
+    // duplicates.  The allActivities object will store all matched activities,
+    // keyed by activityId.
+    var allActivities = {};
+    var searchesRemaining = filters.length;
+
+    var completeSearch = function() {
       var activityList = new ActivityGroupList();
-      result.activities.forEach(function(activity) {
-        activityList.add(activity);
-      });
+      for (var id in allActivities) {
+        if (allActivities.hasOwnProperty(id)) {
+          activityList.add(allActivities[id]);
+        }
+      }
       callback(activityList);
+    };
+
+    // If no filters are provided, return early with an empty result set.
+    if (searchesRemaining == 0) {
+      completeSearch();
+      return;
+    }
+
+    filters.forEach(function(filter) {
+      chrome.activityLogPrivate.getExtensionActivities(
+          filter,
+          function(result) {
+            result.activities.forEach(function(activity) {
+              allActivities[activity.activityId] = activity;
+            });
+            if (--searchesRemaining == 0)
+              completeSearch();
+          });
     });
   };
 

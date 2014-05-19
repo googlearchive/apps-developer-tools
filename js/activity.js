@@ -479,58 +479,6 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Decides if the activity passes the filter.
-   * @param {activityLogPrivate.ActivityFilter} filter Filter to check the
-   * activity against.
-   * @return {boolean} True if activity passes, false otherwise.
-   */
-  Activity.prototype.passesFilter = function(filter) {
-    if (filter.activityType) {
-      if (filter.activityType != 'any' &&
-          filter.activityType != this.activity_.activityType) {
-        return false;
-      }
-    }
-
-    if (filter.apiCall) {
-      if (filter.apiCall instanceof RegExp) {
-        if (filter.apiCall.exec(this.activity_.apiCall) == null)
-          return false;
-      } else {
-        if (filter.apiCall != this.activity_.apiCall)
-          return false;
-      }
-    }
-
-    if (filter.pageUrl) {
-      if (filter.pageUrl instanceof RegExp) {
-        if (filter.pageUrl.exec(this.activity_.pageUrl) == null)
-          return false;
-      } else {
-        if (filter.pageUrl != this.activity_.pageUrl)
-          return false;
-      }
-    }
-
-    if (filter.argUrl) {
-      if (filter.argUrl instanceof RegExp) {
-        if (filter.argUrl.exec(this.activity_.argUrl) == null)
-          return false;
-      } else {
-        if (filter.argUrl != this.activity_.argUrl)
-          return false;
-      }
-    }
-
-    if (filter.filterCallback) {
-      if (!filter.filterCallback(this))
-        return false;
-    }
-
-    return true;
-  };
-
-  /**
    * Returns a raw activity object which is the ExtensionActivity object.
    * @return {!activityLogPrivate.ExtensionActivity} A raw activity object.
    */
