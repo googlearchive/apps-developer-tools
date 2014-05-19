@@ -348,7 +348,8 @@ cr.define('extensions', function() {
      *     or null if the overlay should be hidden.
      */
     initializePage: function(showOverlay) {
-      $('overlay').addEventListener('cancelOverlay', this.handleDismiss_.bind(this));
+      $('extension-error-overlay').addEventListener(
+          'cancelOverlay', this.handleDismiss_.bind(this));
 
       $('extension-error-overlay-dismiss').addEventListener(
           'click', this.handleDismiss_.bind(this));

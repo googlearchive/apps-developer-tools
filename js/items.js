@@ -25,9 +25,6 @@ cr.define('apps_dev_tool', function() {
       var overlay = $('overlay');
       cr.ui.overlay.globalInitialization();
       cr.ui.overlay.setupOverlay(overlay);
-      overlay.addEventListener('cancelOverlay', function() {
-        AppsDevTool.showOverlay(null);
-      });
 
       cr.ui.decorate('tabbox', cr.ui.TabBox);
 

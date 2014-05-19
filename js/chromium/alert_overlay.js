@@ -16,6 +16,16 @@ cr.define('alertOverlay', function() {
   var cancelButton;
 
   function initialize(e) {
+    // When canceling this overlay, try to issue click event to cancel button,
+    // and if it is not present, send the click event to ok button.
+    $('alertOverlay').addEventListener('cancelOverlay', function() {
+      okButton = $('alertOverlayOk');
+      cancelButton = $('alertOverlayCancel');
+      var button = cancelButton.clickCallback ? cancelButton : okButton;
+      assert(button.clickCallback);
+      cr.dispatchSimpleEvent(button, 'click');
+    });
+
     okButton = $('alertOverlayOk');
     cancelButton = $('alertOverlayCancel');
 

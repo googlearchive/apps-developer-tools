@@ -25,6 +25,8 @@ cr.define('apps_dev_tool', function() {
 
   PackItemOverlay.prototype = {
     initializePage: function() {
+      $('packItemOverlay').addEventListener(
+          'cancelOverlay', hideOverlay.bind(this));
       $('pack-item-dismiss').addEventListener('click',
           hideOverlay.bind(this));
       $('pack-item-commit').addEventListener('click',
@@ -142,6 +144,8 @@ cr.define('apps_dev_tool', function() {
 
   DeleteAllBehaviorOverlay.prototype = {
     initializePage: function() {
+      $('deleteAllBehaviorOverlay').addEventListener(
+          'cancelOverlay', hideOverlay.bind(this));
       $('delete-all-behavior-dismiss').addEventListener('click',
           hideOverlay.bind(this));
       $('delete-all-behavior-commit').addEventListener('click',
@@ -172,6 +176,8 @@ cr.define('apps_dev_tool', function() {
 
   DeleteBehaviorOverlay.prototype = {
     initializePage: function() {
+      $('deleteBehaviorOverlay').addEventListener(
+          'cancelOverlay', this.handleCancel_.bind(this));
       $('delete-behavior-dismiss').addEventListener('click',
           this.handleCancel_.bind(this));
       $('delete-behavior-commit').addEventListener('click',
