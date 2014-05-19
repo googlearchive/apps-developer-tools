@@ -87,19 +87,6 @@ cr.define('apps_dev_tool', function() {
      */
     activityListener_: null,
 
-    /**
-     * Filter to use when displaying activity info. See activityLogPrivate API
-     * for details of valid filters.
-     * @private {!ActivityFilter}
-     */
-    activityFilter_: /** @type {!ActivityFilter} */ ({
-      activityType: 'any',
-      extensionId: '',
-      apiCall: null,
-      pageUrl: null,
-      argUrl: null
-    }),
-
     initializePage: function() {
       $('overlay').addEventListener(
           'cancelOverlay', hideBehaviorOverlay.bind($('overlay')));
@@ -144,8 +131,6 @@ cr.define('apps_dev_tool', function() {
     // Set the filter to point at the newly selected extension.
     this.instance_.currentExtensionId_ = item.id;
     this.instance_.currentExtensionName_ = item.name;
-    this.instance_.activityFilter_.extensionId =
-        this.instance_.currentExtensionId_;
 
     // Before showing BehaviorWindow, a user does not choose any tab.
     this.instance_.currentTab_ = BehaviorWindow.TabIds.NOSELECTION_MODE;
@@ -165,8 +150,47 @@ cr.define('apps_dev_tool', function() {
       return;
     }
     var callback = this.addToSummaryModeLists.bind(this);
+
+    var filters = [];
+    var search = this.instance_.currentSearchFilter_;
+    if (search == "") {
+      // No search filter => simply find all matching extension activities
+      filters.push({
+          activityType: 'any',
+          extensionId: this.instance_.currentExtensionId_,
+          apiCall: null,
+          pageUrl: null,
+          argUrl: null
+      });
+    } else {
+      // Exact search by API name
+      filters.push({
+          activityType: 'any',
+          extensionId: this.instance_.currentExtensionId_,
+          apiCall: search,
+          pageUrl: null,
+          argUrl: null
+      });
+      // Substring search by page URL ("%" acts as wildcard)
+      filters.push({
+          activityType: 'any',
+          extensionId: this.instance_.currentExtensionId_,
+          apiCall: null,
+          pageUrl: "%" + search + "%",
+          argUrl: null
+      });
+      // Substring search by argument URL
+      filters.push({
+          activityType: 'any',
+          extensionId: this.instance_.currentExtensionId_,
+          apiCall: null,
+          pageUrl: null,
+          argUrl: "%" + search + "%"
+      });
+    }
+
     apps_dev_tool.ActivityGroupList.getFilteredExtensionActivities(
-        this.instance_.activityFilter_, callback);
+        filters, callback);
   };
 
   /**
@@ -208,9 +232,7 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.onExtensionActivity = function(activity) {
     if (activity.extensionId == this.instance_.currentExtensionId_) {
       var act = new apps_dev_tool.Activity(activity);
-      if (act.passesFilter(BehaviorWindow.instance_.activityFilter_)) {
-        BehaviorWindow.addToDevActivityList(act);
-      }
+      BehaviorWindow.addToDevActivityList(act);
     }
   };
 
@@ -478,7 +500,7 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.addToDevActivityList = function(activity) {
     // Check if there is a search filter set and if the current activity matches
     // the search filter.
-    var filter = this.instance_.currentSearchFilter_;
+    var filter = this.instance_.currentSearchFilter_.toLowerCase();
     if (filter != '' &&
         activity.getArgUrl().toLowerCase().indexOf(filter) == -1 &&
         activity.getPageUrl().toLowerCase().indexOf(filter) == -1 &&
@@ -619,9 +641,9 @@ cr.define('apps_dev_tool', function() {
       return;
 
     this.instance_.currentSearchFilter_ =
-        $('behavior-search').value.toLowerCase();
+        $('behavior-search').value;
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
-      // TODO: implement.
+      this.refreshActivityList();
     } else if (this.instance_.currentTab_ == BehaviorWindow.TabIds.STREAM_MODE) {
       this.clearDeveloperModeViewActivities();
     }
