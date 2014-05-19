@@ -63,6 +63,7 @@ cr.define('apps_dev_tool', function() {
           'keydown', function(event) {
         if (event.keyCode == 27) {
           document.querySelector('#search').blur();
+          ItemList.loadItemsInfo();
         }
       });
       var packItemOverlay =
