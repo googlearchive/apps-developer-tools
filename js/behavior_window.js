@@ -88,7 +88,7 @@ cr.define('apps_dev_tool', function() {
     activityListener_: null,
 
     initializePage: function() {
-      $('overlay').addEventListener(
+      $('behavior-overlay').addEventListener(
           'cancelOverlay', hideBehaviorOverlay.bind($('overlay')));
       $('close-behavior-overlay').addEventListener(
           'click', hideBehaviorOverlay.bind(this));

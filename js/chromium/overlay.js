@@ -7,18 +7,15 @@
  */
 cr.define('cr.ui.overlay', function() {
   /**
-   * Gets the top, visible overlay. It makes the assumption that if multiple
-   * overlays are visible, the last in the byte order is topmost.
-   * TODO(estade): rely on aria-visibility instead?
-   * @return {HTMLElement} The overlay.
+   * Gets the top, visible overlay page.
+   * @return {HTMLElement} The overlay page.
    */
-  function getTopOverlay() {
-    var overlays = document.querySelectorAll('.overlay:not([hidden])');
-    return overlays[overlays.length - 1];
+  function getTopOverlayPage() {
+    return document.querySelector('#overlay .page.showing');
   }
 
   /**
-   * Returns a visible default button of the overlay, if it has one. If the
+   * Returns a visible default button of the overlay page, if it has one. If the
    * overlay has more than one, the first one will be returned.
    *
    * @param {HTMLElement} overlay The .overlay.
@@ -27,7 +24,7 @@ cr.define('cr.ui.overlay', function() {
   function getDefaultButton(overlay) {
     function isHidden(node) { return node.hidden; }
     var defaultButtons =
-        overlay.querySelectorAll('.page .button-strip > .default-button');
+        overlay.querySelectorAll('.button-strip > .default-button');
     for (var i = 0; i < defaultButtons.length; i++) {
       if (!findAncestor(defaultButtons[i], isHidden))
         return defaultButtons[i];
@@ -44,7 +41,7 @@ cr.define('cr.ui.overlay', function() {
   function globalInitialization() {
     if (!globallyInitialized) {
       document.addEventListener('keydown', function(e) {
-        var overlay = getTopOverlay();
+        var overlay = getTopOverlayPage();
         if (!overlay)
           return;
 
