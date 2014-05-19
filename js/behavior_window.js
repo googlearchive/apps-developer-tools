@@ -500,11 +500,12 @@ cr.define('apps_dev_tool', function() {
   BehaviorWindow.addToDevActivityList = function(activity) {
     // Check if there is a search filter set and if the current activity matches
     // the search filter.
-    var filter = this.instance_.currentSearchFilter_.toLowerCase();
+    var filter = this.instance_.currentSearchFilter_;
+    var filterLower = filter.toLowerCase();
     if (filter != '' &&
-        activity.getArgUrl().toLowerCase().indexOf(filter) == -1 &&
-        activity.getPageUrl().toLowerCase().indexOf(filter) == -1 &&
-        activity.getApiCall().toLowerCase().indexOf(filter) == -1)
+        activity.getArgUrl().toLowerCase().indexOf(filterLower) == -1 &&
+        activity.getPageUrl().toLowerCase().indexOf(filterLower) == -1 &&
+        activity.getApiCall().indexOf(filter) == -1)
       return;
 
     var activitiesTemplate = document.querySelector(
