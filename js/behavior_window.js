@@ -33,12 +33,19 @@ cr.define('apps_dev_tool', function() {
    * lists.
    */
   var hideBehaviorOverlay = function() {
-    BehaviorWindow.clearHistoryTab();
+    // Check if ESC was pressed on search box of behavior overlay. If that is
+    // the case, clear the search results and unfocus the search box.
+    if (document.activeElement.id == 'behavior-search') {
+      var search = $('behavior-search');
+      search.value = '';
+      search.blur();
+      BehaviorWindow.updateSearch();
+      return;
+    }
     BehaviorWindow.stop();
     BehaviorWindow.clearRealtimeTab();
     AppsDevTool.showOverlay(null);
   };
-
 
   BehaviorWindow.prototype = {
     /**
@@ -97,6 +104,8 @@ cr.define('apps_dev_tool', function() {
 
       $('behavior-search').addEventListener(
           'keydown', BehaviorWindow.onSearchKeyDown.bind(BehaviorWindow));
+      $('behavior-search').addEventListener(
+          'input', BehaviorWindow.onSearchInput.bind(BehaviorWindow));
 
       var setVisibleTab = BehaviorWindow.setVisibleTab.bind(BehaviorWindow);
       $('history-tab').addEventListener('click', function() {
@@ -634,13 +643,11 @@ cr.define('apps_dev_tool', function() {
   };
 
   /**
-   * Adjusts the list of displayed activities according to search input.
-   * @param {!Event} event Key event.
+   * Updates displayed activities according to the current value of the search.
    */
-  BehaviorWindow.onSearchKeyDown = function(event) {
-    if (event.keyCode != 13)  // Enter key.
+  BehaviorWindow.updateSearch = function() {
+    if (this.instance_.currentSearchFilter_ == $('behavior-search').value)
       return;
-
     this.instance_.currentSearchFilter_ =
         $('behavior-search').value;
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
@@ -648,6 +655,25 @@ cr.define('apps_dev_tool', function() {
     } else if (this.instance_.currentTab_ == BehaviorWindow.TabIds.STREAM_MODE) {
       this.clearDeveloperModeViewActivities();
     }
+  };
+
+  /**
+   * Adjusts the list of displayed activities according to search input.
+   * @param {!Event} event Key event.
+   */
+  BehaviorWindow.onSearchKeyDown = function(event) {
+    if (event.keyCode != 13)  // Enter key.
+      return;
+    BehaviorWindow.updateSearch();
+  };
+
+  /**
+   * Handles click on cancel button of the search box through onImput event.
+   * @param {!Event} event Key event.
+   */
+  BehaviorWindow.onSearchInput = function(event) {
+    if ($('behavior-search').value == '')
+      BehaviorWindow.updateSearch();
   };
 
   // Export
