@@ -7,6 +7,10 @@
     "message": "search",
     "description": "Placeholder text that appears inside the search box until the user inputs data."
   },
+  "appsDevtoolSearchUrl": {
+    "message": "search for a URL",
+    "description": "Placeholder text that appears inside the search box until the user inputs data."
+  },
   "appsDevtoolApps": {
     "message": "Apps",
     "description": "Text for the word 'Apps'."
@@ -232,7 +236,7 @@
     "description": "Used for Cancel on buttons."
   },
   "clearHistory": {
-    "message": "Clear history",
+    "message": "Clear behavior history",
     "description": "The button to clear all history for a specific extension/app."
   },
   "btnStart": {
@@ -244,7 +248,7 @@
     "description": "Used for Pause button in the realtime tab."
   },
   "btnClear": {
-    "message": "Clear",
+    "message": "Clear screen",
     "description": "Used for Clear button in the realtime tab."
   },
 
@@ -370,7 +374,7 @@
     "message": "once"
   },
   "menuClearBehaviorItem": {
-    "message": "Clear all extension/app history",
+    "message": "Clear all behavior history",
     "description": "Text for the clear all extension/app behavior history menu item."
   },
   "allRecentHistoryHeader": {
@@ -379,11 +383,11 @@
   },
   "notableHistoryHeader": {
     "description": "Title for notable behavior section.",
-    "message": "Privacy and security"
+    "message": "Privacy-related history"
   },
   "developerActivityHeader": {
     "description": "Title for developer stream of events.",
-    "message": "Realtime activity stream"
+    "message": "Realtime behavior"
   },
   "activity_log_count": {
     "description": "The number of activity log types.",
@@ -2237,7 +2241,7 @@
     "description": "Title of delete all behavior history dialog."
   },
   "deleteAllBehaviorHeading": {
-    "message": "Do you really want to delete behavior history of all extensions and applications?",
+    "message": "Do you want to delete the behavior history for all extensions and apps?",
     "description": "Heading for delete all extension/application behavior history dialog."
   }
 }
