@@ -129,10 +129,6 @@
   opacity: 1;
 }
 
-#delete-behavior-extension-id {
-  font-weight: bold;
-}
-
 .dev-details {
   padding-left: 88px;
 }
@@ -181,4 +177,10 @@
 
 #delete-activity-button:active {
   opacity: 1;
+}
+
+.separator {
+  border-top: 1px rgb(191, 191, 191) solid;
+  margin-top: 15px;
+  padding-top: 5px;
 }

@@ -130,83 +130,8 @@ cr.define('apps_dev_tool', function() {
     AppsDevTool.showOverlay($('alertOverlay'));
   };
 
-  /**
-   * DeleteAllBehaviorOverlay class.
-   * Encapsulated handling of the delete ALL behavior history overlay page and
-   * functionality that implements deletion of behavior history for ALL
-   * extensions and applications. This overlay is invoked by the item in the
-   * settings menu, and it returns to the main window when it finishes.
-   * @constructor
-   */
-  function DeleteAllBehaviorOverlay() {}
-
-  cr.addSingletonGetter(DeleteAllBehaviorOverlay);
-
-  DeleteAllBehaviorOverlay.prototype = {
-    initializePage: function() {
-      $('deleteAllBehaviorOverlay').addEventListener(
-          'cancelOverlay', hideOverlay.bind(this));
-      $('delete-all-behavior-dismiss').addEventListener('click',
-          hideOverlay.bind(this));
-      $('delete-all-behavior-commit').addEventListener('click',
-          this.handleCommit_.bind(this));
-    },
-
-    /**
-     * Handles a click on the delete all behavior history.
-     * @private
-     */
-    handleCommit_: function() {
-      apps_dev_tool.BehaviorWindow.deleteAllExtensionBehaviorHistory();
-      hideOverlay();
-    },
-  };
-
-  /**
-   * DeleteBehaviorOverlay class.
-   * Encapsulated handling of the delete behavior history overlay page and
-   * functionality that implements deletion of behavior history for a particular
-   * extension/application. This overlay is invoked from the behavior window
-   * overlay and returns to it when closed.
-   * @constructor
-   */
-  function DeleteBehaviorOverlay() {}
-
-  cr.addSingletonGetter(DeleteBehaviorOverlay);
-
-  DeleteBehaviorOverlay.prototype = {
-    initializePage: function() {
-      $('deleteBehaviorOverlay').addEventListener(
-          'cancelOverlay', this.handleCancel_.bind(this));
-      $('delete-behavior-dismiss').addEventListener('click',
-          this.handleCancel_.bind(this));
-      $('delete-behavior-commit').addEventListener('click',
-          this.handleCommit_.bind(this));
-    },
-
-    /**
-     * Hides the present overlay and shows the behavior overlay.
-     * @private
-     */
-    handleCancel_: function() {
-      AppsDevTool.showOverlay($('behavior-overlay'));
-    },
-
-    /**
-     * Handles a click on the delete behavior history.
-     * @private
-     */
-    handleCommit_: function() {
-      apps_dev_tool.BehaviorWindow.deleteExtensionBehaviorHistory(function() {
-        AppsDevTool.showOverlay($('behavior-overlay'));
-      });
-    },
-  };
-
   // Export
   return {
     PackItemOverlay: PackItemOverlay,
-    DeleteAllBehaviorOverlay: DeleteAllBehaviorOverlay,
-    DeleteBehaviorOverlay: DeleteBehaviorOverlay,
   };
 });
