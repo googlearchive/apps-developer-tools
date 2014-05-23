@@ -106,7 +106,7 @@ cr.define('apps_dev_tool', function() {
       $('close-behavior-overlay').addEventListener(
           'click', hideBehaviorOverlay.bind(this));
       $('delete-behavior-button').addEventListener(
-          'click', BehaviorWindow.showDeleteBehaviorOverlay.bind(this));
+          'click', BehaviorWindow.deleteBehavior.bind(this));
 
       $('behavior-search').addEventListener(
           'keydown', BehaviorWindow.onSearchKeyDown.bind(BehaviorWindow));
@@ -588,10 +588,23 @@ cr.define('apps_dev_tool', function() {
    * Shows the delete behavior overlay which deletes behavior history for
    * the current extension or application.
    */
-  BehaviorWindow.showDeleteBehaviorOverlay = function() {
-    $('delete-behavior-extension-id').textContent =
-        this.currentExtensionName_ + '?';
-    AppsDevTool.showOverlay($('deleteBehaviorOverlay'));
+  BehaviorWindow.deleteBehavior = function() {
+    alertOverlay.setValues(
+        chrome.i18n.getMessage('deleteBehaviorTitle'),
+        chrome.i18n.getMessage('deleteBehaviorHeading') + ' ' +
+            this.currentExtensionName_ + '?',
+        chrome.i18n.getMessage('deleteButton'),
+        chrome.i18n.getMessage('cancel'),
+        function() {
+          apps_dev_tool.BehaviorWindow.deleteExtensionBehaviorHistory(
+              function() {
+                AppsDevTool.showOverlay($('behavior-overlay'));
+              });
+        },
+        function() {
+          AppsDevTool.showOverlay($('behavior-overlay'));
+        });
+    AppsDevTool.showOverlay($('alertOverlay'));
   };
 
   /**
