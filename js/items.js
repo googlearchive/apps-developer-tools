@@ -68,10 +68,6 @@ cr.define('apps_dev_tool', function() {
       });
       var packItemOverlay =
           apps_dev_tool.PackItemOverlay.getInstance().initializePage();
-      var deleteBehaviorOverlay =
-          apps_dev_tool.DeleteBehaviorOverlay.getInstance().initializePage();
-      var deleteAllBehaviorOverlay =
-          apps_dev_tool.DeleteAllBehaviorOverlay.getInstance().initializePage();
       var behaviorOverlay =
           apps_dev_tool.BehaviorWindow.getInstance().initializePage();
       extensions.ExtensionErrorOverlay.getInstance().initializePage(
@@ -138,7 +134,19 @@ cr.define('apps_dev_tool', function() {
      */
     handleDeleteAllBehavior_: function(e) {
       this.hideSettingsMenu_();
-      AppsDevTool.showOverlay($('deleteAllBehaviorOverlay'));
+      alertOverlay.setValues(
+          chrome.i18n.getMessage('deleteAllBehaviorTitle'),
+          chrome.i18n.getMessage('deleteAllBehaviorHeading'),
+          chrome.i18n.getMessage('deleteButton'),
+          chrome.i18n.getMessage('cancel'),
+          function() {
+            apps_dev_tool.BehaviorWindow.deleteAllExtensionBehaviorHistory();
+            AppsDevTool.showOverlay(null);
+          },
+          function() {
+            AppsDevTool.showOverlay(null);
+          });
+      AppsDevTool.showOverlay($('alertOverlay'));
     },
 
     /**
