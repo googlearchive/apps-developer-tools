@@ -230,8 +230,10 @@ cr.define('apps_dev_tool', function() {
       // Only show the notable section if there are notable activities.
       if (numNotable > 0) {
         $('summary-mode-tab-notable').style.display = 'block';
+        $('summary-mode-tab-all').setAttribute('class', 'separator');
       } else {
         $('summary-mode-tab-notable').style.display = 'none';
+        $('summary-mode-tab-all').setAttribute('class', '');
       }
 
       if (numRegular == 0) {
