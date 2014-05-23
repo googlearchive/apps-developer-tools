@@ -14,6 +14,7 @@
 
 .activity-pageURL {
   clear: left;
+  padding-left: 96px;
 }
 
 .activity-pageURL-indented {
@@ -130,6 +131,10 @@
 
 #delete-behavior-extension-id {
   font-weight: bold;
+}
+
+.dev-details {
+  padding-left: 88px;
 }
 
 #item-arrow {
