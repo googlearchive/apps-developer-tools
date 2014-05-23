@@ -88,7 +88,7 @@ cr.define('apps_dev_tool', function() {
 
     /**
      * The timeout that handles pauses during searches.
-     * @private {function}
+     * @private {number}
      */
     searchTimeout_: null,
 
@@ -658,7 +658,8 @@ cr.define('apps_dev_tool', function() {
         $('behavior-search').value;
     if (this.instance_.currentTab_ == BehaviorWindow.TabIds.HISTORY_MODE) {
       this.refreshActivityList();
-    } else if (this.instance_.currentTab_ == BehaviorWindow.TabIds.STREAM_MODE) {
+    } else if (this.instance_.currentTab_ ==
+               BehaviorWindow.TabIds.STREAM_MODE) {
       this.clearDeveloperModeViewActivities();
     }
   };
