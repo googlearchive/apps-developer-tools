@@ -87,6 +87,12 @@ cr.define('apps_dev_tool', function() {
     currentSearchFilter_: '',
 
     /**
+     * The timeout that handles pauses during searches.
+     * @private {function}
+     */
+    searchTimeout_: null,
+
+    /**
      * Listener on the chrome.activityLogPrivate.onExtensionActivity event.
      * We need to keep track of it so the correct listener is removed when the
      * stop button is pressed.
@@ -659,16 +665,23 @@ cr.define('apps_dev_tool', function() {
 
   /**
    * Adjusts the list of displayed activities according to search input.
+   * If the user pauses for more than 500ms, search will happen automatically.
    * @param {!Event} event Key event.
    */
   BehaviorWindow.onSearchKeyDown = function(event) {
-    if (event.keyCode != 13)  // Enter key.
+    clearTimeout(this.instance_.searchTimeout_);
+    if (event.keyCode != 13) {  // Enter key.
+      this.instance_.searchTimeout_ = setTimeout(
+          function() {
+            BehaviorWindow.updateSearch();
+          }, 500);
       return;
+    }
     BehaviorWindow.updateSearch();
   };
 
   /**
-   * Handles click on cancel button of the search box through onImput event.
+   * Handles click on cancel button of the search box through onInput event.
    * @param {!Event} event Key event.
    */
   BehaviorWindow.onSearchInput = function(event) {
