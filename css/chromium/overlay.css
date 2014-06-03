@@ -71,7 +71,9 @@
 }
 
 .overlay .page > .close-button {
-  background-image: url('../../images/chromium/close_dialog.png');
+  background-image: -webkit-image-set(
+      url(../images/chromium/close_dialog.png) 1x,
+      url(../images/chromium/2x/close_dialog.png) 2x);
   background-position: center;
   background-repeat: no-repeat;
   height: 14px;

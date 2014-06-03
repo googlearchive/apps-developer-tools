@@ -108,16 +108,16 @@
 
 #close-behavior-overlay {
   background-image: -webkit-image-set(
-      url(../images/search_clear_active.png) 1x,
-      url(../images/2x/search_clear_active.png) 2x);
+      url(../images/chromium/close_dialog.png) 1x,
+      url(../images/chromium/2x/close_dialog.png) 2x);
   background-repeat: no-repeat;
   border: none;
   cursor: pointer;
-  height: 16px;
+  height: 14px;
   position: absolute;
-  right: 6px;
-  top: 6px;
-  width: 16px;
+  right: 7px;
+  top: 7px;
+  width: 14px;
   z-index: 1;
 }
 
