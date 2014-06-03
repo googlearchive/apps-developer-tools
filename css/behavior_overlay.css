@@ -112,13 +112,24 @@
       url(../images/chromium/2x/close_dialog.png) 2x);
   background-repeat: no-repeat;
   border: none;
-  cursor: pointer;
   height: 14px;
   position: absolute;
   right: 7px;
   top: 7px;
   width: 14px;
   z-index: 1;
+}
+
+#close-behavior-overlay:hover {
+  background-image: -webkit-image-set(
+      url('../images/chromium/close_dialog_hover.png') 1x,
+      url('../images/chromium/2x/close_dialog_hover.png') 2x);
+}
+
+#close-behavior-overlay:active {
+  background-image: -webkit-image-set(
+      url('../images/chromium/close_dialog_pressed.png') 1x,
+      url('../images/chromium/2x/close_dialog_pressed.png') 2x);
 }
 
 #delete-behavior-button:hover {

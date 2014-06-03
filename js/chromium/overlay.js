@@ -90,11 +90,15 @@ cr.define('cr.ui.overlay', function() {
    */
   function setupOverlay(overlay) {
     // Close the overlay on clicking any of the pages' close buttons.
-    var closeButtons = overlay.querySelectorAll('.page > .close-button');
-    for (var i = 0; i < closeButtons.length; i++) {
-      closeButtons[i].addEventListener('click', function(e) {
-        cr.dispatchSimpleEvent(overlay, 'cancelOverlay');
-      });
+    var pages = overlay.querySelectorAll('.page');
+    for (var i = 0; i < pages.length; i++) {
+      var page = pages[i];
+      var closeButtons = page.querySelectorAll('.close-button');
+      for (var k = 0; k < closeButtons.length; k++) {
+        closeButtons[k].addEventListener('click', function(e) {
+          cr.dispatchSimpleEvent(page, 'cancelOverlay');
+        });
+      }
     }
 
     // Remove the 'pulse' animation any time the overlay is hidden or shown.
