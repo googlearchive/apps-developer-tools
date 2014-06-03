@@ -102,7 +102,7 @@ cr.define('apps_dev_tool', function() {
 
     initializePage: function() {
       $('behavior-overlay').addEventListener(
-          'cancelOverlay', hideBehaviorOverlay /*.bind($('overlay')) */);
+          'cancelOverlay', hideBehaviorOverlay);
       $('delete-behavior-button').addEventListener(
           'click', BehaviorWindow.deleteBehavior.bind(this));
 
