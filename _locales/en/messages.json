@@ -2187,7 +2187,7 @@
   },
   "webrequest_response_cookie_modifications": {
     "message": "Modified web page cookies"
-  },  
+  },
   "filterActivitiesTxt": {
     "description": "Text for displaying the activity filter options.",
     "message": "Filter activity stream"
@@ -2228,6 +2228,53 @@
     "message": "Intercepted browser request ($method$)",
     "placeholders": {
       "method": {
+        "content": "$1"
+      }
+    }
+  },
+  "blinkAddEventListener": {
+    "message": "Added event listener"
+  },
+  "blinkAddElement": {
+    "message": "Added HTML element"
+  },
+  "blinkSetAttribute": {
+    "message": "Set attribute on HTML element"
+  },
+  "blinkRequestResource": {
+    "message": "Requested resource"
+  },
+  "blinkAddEventListenerTemplate": {
+    "message": "Added on$event$ event listener",
+    "placeholders": {
+      "event": {
+        "content": "$1"
+      }
+    }
+  },
+  "blinkAddElementTemplate": {
+    "message": "Added $element$ element",
+    "placeholders": {
+      "element": {
+        "content": "$1"
+      }
+    }
+  },
+  "blinkSetAttributeTemplate": {
+    "message": "Set $attr$ attribute on $element$ element",
+    "placeholders": {
+      "element": {
+        "content": "$1"
+      },
+      "attr": {
+        "content": "$2"
+      }
+    }
+  },
+  "blinkRequestResourceTemplate": {
+    "message": "Requested $resource$",
+    "placeholders": {
+      "resource": {
         "content": "$1"
       }
     }
