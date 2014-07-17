@@ -313,7 +313,8 @@ cr.define('apps_dev_tool', function() {
    */
   Activity.prototype.getActionString = function() {
     var messageName = this.activity_.apiCall.replace('.', '_');
-    if (this.activity_.activityType.substring(0, 3) == 'dom') {
+    if (this.activity_.activityType.substring(0, 3) == 'dom' &&
+        this.activity_.apiCall.substring(0, 5) != 'blink') {
       messageName = 'dom_' + messageName;
     } else if (this.activity_.activityType.substring(0, 3) == 'api') {
       messageName = 'chrome_' + messageName;
@@ -401,6 +402,7 @@ cr.define('apps_dev_tool', function() {
    */
   Activity.prototype.getDevModeActionString = function() {
     if (this.activity_.activityType.substring(0, 3) == 'dom' &&
+        this.activity_.apiCall.substring(0, 5) != 'blink' &&
         this.activity_.other) {
       var domVerb = this.activity_.other.domVerb;
       if (domVerb == 'setter') {
@@ -418,6 +420,19 @@ cr.define('apps_dev_tool', function() {
     } else if (this.activity_.activityType == 'api_event') {
       return chrome.i18n.getMessage(
           'eventTemplate', [this.activity_.apiCall]);
+    } else if (this.activity_.apiCall == 'blinkAddEventListener') {
+      return chrome.i18n.getMessage(
+          'blinkAddEventListenerTemplate', [this.getArgs()[1]]);
+    } else if (this.activity_.apiCall == 'blinkAddElement') {
+      return chrome.i18n.getMessage(
+          'blinkAddElementTemplate', [this.getArgs()[0]]);
+    } else if (this.activity_.apiCall == 'blinkSetAttribute') {
+      return chrome.i18n.getMessage(
+          'blinkSetAttributeTemplate', [this.getArgs()[0], this.getArgs()[1]]);
+    } else if (this.activity_.apiCall == 'blinkRequestResource') {
+      return chrome.i18n.getMessage(
+          'blinkRequestResourceTemplate',
+          [this.getArgs()[0] ? this.getArgs()[0].toLowerCase() : '']);
     }
     return chrome.i18n.getMessage(
         'invokedTemplate', [this.activity_.apiCall]);
